@@ -1,0 +1,5 @@
+nomReferencia: BicicletasBarcelonaXML url: http://wservice.viabicing.cat/v1/getstations.php?v=1
+nomReferencia: AparcamientosBarcelonaCSV url: http://bismartopendata.blob.core.windows.net/opendata/opendata/aparcaments_0_opendata_aparcaments.csv
+nomReferencia: TaxiBarcelonaCSV url: http://bismartopendata.blob.core.windows.net/opendata/opendata/paradestaxi_0_opendata_paradestaxi.csv
+nomReferencia: AutobusesBarcelonaCSV url: http://bismartopendata.blob.core.windows.net/opendata/opendata/estacionsbus_0_opendata_estacionsbus.csv
+nomReferencia: TransportesBarcelonaCSV url: http://bismartopendata.blob.core.windows.net/opendata/opendata/transports_0_opendata_transports.csv
