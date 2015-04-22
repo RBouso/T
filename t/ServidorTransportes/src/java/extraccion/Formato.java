@@ -5,6 +5,7 @@
  */
 package extraccion;
 
+import java.awt.geom.Point2D;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,13 +14,22 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static javax.measure.unit.SI.METER;
+import maps.java.Geocoding;
 import org.jscience.geography.coordinates.LatLong;
 import org.jscience.geography.coordinates.UTM;
 import org.jscience.geography.coordinates.crs.CoordinatesConverter;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
+import org.jsoup.select.Elements;
 
 /**
  *
@@ -51,6 +61,10 @@ public abstract class Formato {
     protected String urlSchema = ""; //url que 
     protected Boolean transporte = false; 
     protected ArrayList<String> linea = new ArrayList<>();
+    protected String dlinea = "";
+    protected String codigo = "";
+    protected String correspondencia = "";
+    protected String espera = "";
     
     /**
      * Lista de nombres que pueden aparecer en un archivo con respecto al lugar 
@@ -59,15 +73,17 @@ public abstract class Formato {
      * número de calle y finalment telefono.
      */
     protected String lugar[][] = {{"nom", "nombre", "nom_capa_cast", "name"},
-        {"descripcion-entidad", "descripcion", "equipament"}, 
+        {"descripcion-entidad", "descripcion", "equipament", "descripcion linea"}, 
         {"coordenada-x", "lat", "latitud", "latitude", "coord_x", "coord-x","gis x ", 
             "location"}, 
         {"coordenada-y", "long", "longitud", "longitude", "coord_y", "coord-y",
             "gis y"}, 
-        {"adreca", "direccion", "nombre-via", "street", "calle"}, 
+        {"adreca", "direccion", "nombre-via", "street", "calle","parada"}, 
         {"streetnumber","num","nº", "n�"}, 
         {"telefono", "telefon"}};
     
+    protected String lin[][] = {{"codigo linea"},  
+        {"correspondencias"}};
     /**
      * Lista de nombres que pueden aparecer en un archivo si es un Aparcamiento. 
      * La primera lista hace referencia al identificador, la segunda a la 
@@ -89,6 +105,7 @@ public abstract class Formato {
         {"bikes", "blibres"}};
    
     ArrayList<String> transports = new ArrayList();
+   
 
 
   
@@ -215,7 +232,12 @@ public abstract class Formato {
                 lat = String.valueOf(latLong.getCoordinates()[0]);
                 longitud = String.valueOf(latLong.getCoordinates()[1]);
             }
+            if (lat.isEmpty() && longitud.isEmpty()) {
+//                getLatLong();
+            }
             if (!lat.isEmpty() && !longitud.isEmpty()) {
+                lat = lat.replace(',', '.');
+                longitud = longitud.replace(',', '.');
                 bw.append("geo: <div itemprop=\"geo\" itemscope itemtype=\"http://schema.org/GeoCoordinates\" > \n");
                 bw.append("latitud: <meta itemprop=\"latitude\" content=\""+lat+"\" /> \n");
                 bw.append("longitud: <meta itemprop=\"longitude\" content=\""+longitud+"\" />\n");
@@ -253,16 +275,21 @@ public abstract class Formato {
             if(!bdisp.isEmpty())
                 bw.append("biciLibres: <span itemprop=\"bikes\">"+bdisp+"</span>\n");
             
-                int lin = 0;
-                while (lin < linea.size()) {
-                    bw.append("Linea: <span itemprop=\"line\">"+linea.get(lin)+"</span>\n");
+                int line = 0;
+                while (line < linea.size()) {
+                    bw.append("Linea: <span itemprop=\"line\">"+linea.get(line)+"</span>\n");
                     File l = new File(fichero+"/Linea");
                     if (!l.exists()) 
                         l.createNewFile();
                     BufferedWriter bw1 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fichero+"/Linea",true), "utf-8"));
-                    if (!existeLinea(linea.get(lin)))bw1.append(linea.get(lin)+"\n");
+                    if (!codigo.isEmpty()) {
+                        if (!existeLinea(codigo+" "+dlinea))
+                            bw1.append(codigo+ " " +dlinea+"\n");
+                    
+                    }
+                    else if (!existeLinea(linea.get(line)))bw1.append(linea.get(line)+"\n");
                     bw1.close();
-                    ++lin;
+                    ++line;
                 
             }
             bw.append("</div> \n");
@@ -302,7 +329,8 @@ private void crear_ficheros(String folder, String pais, String ciudad) {
 //            for (i = 0; i < lugar[pos].length; i++) {
 //                if (lugar[pos][i].equalsIgnoreCase(nn)) 
 //                    return true;}
-
+        else if (transporte.equals("linea"))
+            transp = lin;
         else if (transporte.equals("aparcamientos")) 
                 transp = Aparcamiento;
 //            for (i = 0; i < Aparcamiento[pos].length; i++) 
@@ -311,7 +339,8 @@ private void crear_ficheros(String folder, String pais, String ciudad) {
         else if (transporte.equals("bicicletas")) 
             transp = bicicletas;
         for (i = 0; i < transp[pos].length; i++) {
-              
+//              if( referencia.contains("AutobusesBilbao")&& transporte.equals("linea"))
+//                  System.out.println(nn+" "+ transp[pos][i]+" "+transp[pos][i].compareToIgnoreCase(nn));
             if (transp[pos][i].equalsIgnoreCase(nn)) 
                     return true;}
         
@@ -320,13 +349,18 @@ private void crear_ficheros(String folder, String pais, String ciudad) {
 
 
     protected void obtenerDatos(String nn, String nv) {
+
         //Lugar
 
 //        if (referencia.contains("RDF"))System.out.println(nn );
         if (contiene(nn, "lugar", 0))
             nom = nv;
-        else if (contiene(nn, "lugar", 1))
+        else if (contiene(nn, "lugar", 1)){
+            if (nn.contains("linea")) 
+                dlinea = nv;
             descripcion = nv;
+        }
+            
         else if (contiene(nn, "lugar", 2)) {
             if(nn.equals("location")) {
                 int espacio = nv.indexOf(" ");
@@ -354,6 +388,10 @@ private void crear_ficheros(String folder, String pais, String ciudad) {
             numCalle = nv;
         else if (contiene(nn, "lugar", 6))
             telefono = nv;
+        else if (contiene(nn, "linea", 0))
+            codigo = nv;
+        else if (contiene(nn, "linea", 1))
+            correspondencia = nv;
         //aparcamientos
         else if (referencia.contains("Aparcamiento")) {
             if (contiene(nn,"aparcamientos",0))
@@ -403,12 +441,18 @@ private void crear_ficheros(String folder, String pais, String ciudad) {
         aocupados = "";
         bdisp = "";
         linea = new ArrayList<>();
+        codigo = "";
+        correspondencia = "";
     }
 
     private void obtenerLineas() {
         int u;
         String result;
-        if (!descripcion.isEmpty()) {
+        if (!correspondencia.isEmpty() && !codigo.isEmpty()) {
+            result = codigo+","+correspondencia;
+            obtenerLinea(result);
+        }
+        else if (!descripcion.isEmpty()) {
             //System.out.println(descripcion);
             if (referencia.contains("AutobusesBarcelona")) {
                 result = descripcion.substring(descripcion.indexOf("-")+1);
@@ -421,11 +465,12 @@ private void crear_ficheros(String folder, String pais, String ciudad) {
                 int ini = descripcion.indexOf("(");
                 u = descripcion.indexOf(")");
                 result = descripcion.substring(ini+1, u);
-                System.out.println(result);
+//                System.out.println(result);
                 obtenerLinea(result);
             }
         }
 //        System.out.println(calle);
+        
         else  {
             u = nom.indexOf(" ");
             
@@ -464,17 +509,16 @@ private void crear_ficheros(String folder, String pais, String ciudad) {
     private void obtenerLinea(String result) {
         int ini = 0;
         int fin = result.length();
-        
-        if (referencia.contains("Autobus"))System.out.println(result+" "+ini+" "+fin);
+
         while(ini < fin) {
             result = result.substring(ini);
-            if (result.contains("."))
-                fin = result.indexOf(".");
+            if (result.contains(","))
+                fin = result.indexOf(",");
             else if (result.contains("-"))
                 fin = result.indexOf("-");
             else 
                 fin = result.length();
-            System.out.println(result+" "+ini+" "+fin);
+//            System.out.println(result+" "+ini+" "+fin);
             linea.add(result.substring(0, fin));
             ini = fin+1;
             fin = result.length();
@@ -498,5 +542,43 @@ private void crear_ficheros(String folder, String pais, String ciudad) {
                 else if (nom.contains("Tran") || nom.contains("Tram") )
                     referencia = "Tranvia";
        }
+    }
+
+    private void getLatLong() {
+        try {
+            Geocoding ObjGeocod=new Geocoding();
+            Point2D.Double resultadoCD=ObjGeocod.getCoordinates(calle+" "+numCalle+", "+ciudad);
+            System.out.println( resultadoCD.x + "," + resultadoCD.y+" "+codigo+" "+correspondencia);
+            lat = String.valueOf(resultadoCD.x);
+            longitud = String.valueOf(resultadoCD.y);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Formato.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(Formato.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    void integrarTiempos() {
+        try {
+            Document htmlFile = Jsoup.parse(new File(fichero+"/Autobus.html"), "ISO-8859-1");
+//            List<Node> childNodes = htmlFile.body().childNodes();
+            Elements select = htmlFile.select("span[itemprop=streetAddress]");
+            for (int i = 0; i < select.size(); i++) {
+                Element ca = select.get(i);
+                if (ca.text().equals(calle)){
+                   
+                }
+            }
+//                Node nodo = childNodes.get(i);
+//                List<Node> childNodes1 = nodo.childNodes();
+//                for(int j = 0; j < childNodes1.size();j++) {
+//                    Node get = childNodes1.get(j);
+//                    System.out.println();
+//                }
+//                
+//            }
+        } catch (IOException ex) {
+            Logger.getLogger(Formato.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

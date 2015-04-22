@@ -51,7 +51,8 @@ public class ServicioAdapter {
             int ultimo =url.lastIndexOf("/");
             
             nombre = url.substring(ultimo+1);
-                    
+            if (con.getContentType().contains("csv") && !nombre.contains(".csv"))
+                nombre = nombre+".csv";
             f = new File(folder+pais+"/"+ciudad+"/"+ nombre);
             // Fichero en el que queremos guardar el contenido
             FileOutputStream fos = new FileOutputStream(f);
@@ -62,16 +63,7 @@ public class ServicioAdapter {
             // Primera lectura y bucle hasta el final
             int leido = is.read(array);
             while (leido > 0) {
-                if (con.getContentType().contains("text/csv")) {
-                    
-                    byte[] h = array;
-                    for(int i = 0; i < h.length; i++) {
-                        if (h[i] == ';') h[i] = ',';
-                        else if (h[i] == ',') h[i] = '.';
-                    }
-                    fos.write(h,0,leido);
-                }
-                else fos.write(array,0,leido);
+                fos.write(array,0,leido);
                 leido=is.read(array);
                 
             }

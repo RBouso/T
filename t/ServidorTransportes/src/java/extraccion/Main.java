@@ -23,7 +23,9 @@ public class Main {
             //extractor e = new extractor();
             
 ////
-//            CtrlUrlDatos cfd = new CtrlUrlDatos();
+            CtrlUrlDatos cfd = new CtrlUrlDatos();
+            cfd.anadirURL("Bilbao", "España", "TiempoEsperaBilbaoCSV","http://www.bilbao.net/autobuses/jsp/od_horarios.jsp?idioma=c&formato=csv&tipo=espera");
+
 //            cfd.anadirURL("Bilbao", "España", "BicicletasBilbaoXML","http://www.bilbao.net/WebServicesBilbao/WSBilbao?s=ODPRESBICI&u=OPENDATA&p0=A&p1=A");
 //            cfd.anadirURL("Madrid", "España", "AutobusesMadridRDF","http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/EMT/2015/EMT_2015_04.rdf");
 //            cfd.anadirURL("Madrid", "España", "MetroMadridRDF","http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/Metro/2015/Metro_2015_04.rdf");

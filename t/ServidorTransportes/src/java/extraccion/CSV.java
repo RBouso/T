@@ -37,7 +37,7 @@ public class CSV extends Formato{
             super.referencia = referencia;
             super.fichero = "ficheros/"+pais+"/"+ciudad;
             folder = folder+pais+"/"+ciudad+"/"+nomFichero;
-            CsvReader f = new CsvReader(folder);
+            CsvReader f = new CsvReader(folder, ';');
             //leer archivo
             f.readHeaders();
 
@@ -52,9 +52,11 @@ public class CSV extends Formato{
                     String header = f.getHeader(i);
                     String valor = f.get(i);
                     super.obtenerDatos(header, valor);
-                    
                 }
-                 super.integrarDatos(j, ultimo-1);
+                if (referencia.contains("Tiempo"))
+                    super.integrarTiempos();
+                else 
+                    super.integrarDatos(j, ultimo-1);
                  j++;
             }
            
