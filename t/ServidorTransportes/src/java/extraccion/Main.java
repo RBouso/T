@@ -9,10 +9,13 @@ import Controlador.Datos.CtrlUrlDatos;
 import Controlador.Dominio.CtrlFactoriaDatos;
 import Controlador.Dominio.Controlador;
 import Controlador.Dominio.ControladorExtraccion;
+import java.util.List;
+import javafx.util.Pair;
 import static javax.measure.unit.SI.METER;
 import org.jscience.geography.coordinates.LatLong;
 import org.jscience.geography.coordinates.UTM;
 import org.jscience.geography.coordinates.crs.CoordinatesConverter;
+import stransportes.Transportes;
 
 /**
  *
@@ -21,10 +24,19 @@ import org.jscience.geography.coordinates.crs.CoordinatesConverter;
 public class Main {
         public static void main(String[] args) {
             //extractor e = new extractor();
+            Transportes t = new Transportes();
+            List<Pair<Double, Double> > l = t.getParadas("Barcelona", "España", "Autobus", "118");
+            for (int i = 0; i < l.size(); i++) {
+                System.out.println("latitud: "+l.get(i).getKey()+" longitud: "+l.get(i).getValue());
+            }    
+          
+            
+                    
+            
             
 ////
-            CtrlUrlDatos cfd = new CtrlUrlDatos();
-            cfd.anadirURL("Bilbao", "España", "TiempoEsperaBilbaoCSV","http://www.bilbao.net/autobuses/jsp/od_horarios.jsp?idioma=c&formato=csv&tipo=espera");
+//            CtrlUrlDatos cfd = new CtrlUrlDatos();
+//            cfd.anadirURL("Bilbao", "España", "TiempoEsperaBilbaoCSV","http://www.bilbao.net/autobuses/jsp/od_horarios.jsp?idioma=c&formato=csv&tipo=espera");
 
 //            cfd.anadirURL("Bilbao", "España", "BicicletasBilbaoXML","http://www.bilbao.net/WebServicesBilbao/WSBilbao?s=ODPRESBICI&u=OPENDATA&p0=A&p1=A");
 //            cfd.anadirURL("Madrid", "España", "AutobusesMadridRDF","http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/EMT/2015/EMT_2015_04.rdf");
@@ -39,8 +51,8 @@ public class Main {
 //            cfd.anadirURL("Madrid", "España", "AparcamientosMadridRDF", "http://datos.madrid.es/egob/catalogo/202625-0-aparcamientos-publicos.rdf");
 //            
  //cfd.anadirURL("Madrid", "España", "AparcamientosMadridCSV","http://datos.madrid.es/egob/catalogo/202625-0-aparcamientos-publicos.csv");
-            Controlador c = new ControladorExtraccion();
-            c.executar();
+//            Controlador c = new ControladorExtraccion();
+//            c.executar();
 //            Formato f  = new CSV()
 //;f.extraerDatos("transports_0_opendata_transports.csv", "TransportesBarcelona", 
 //        "http://bismartopendata.blob.core.windows.net/opendata/opendata/transports_0_opendata_transports.csv", "Barcelona", "España");

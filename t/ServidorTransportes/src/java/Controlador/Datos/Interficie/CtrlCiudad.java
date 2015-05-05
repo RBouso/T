@@ -10,6 +10,7 @@ import Ficheros.Ciudad;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,5 +23,7 @@ public interface CtrlCiudad {
     public void anadirCiudad(String nombre, String pais) ;
 
     public ArrayList<Ciudad> getCiudades() ;
+
+    public List<String> getTransportes(String ciudad);
     
 }

@@ -5,9 +5,18 @@
  */
 package Controlador.Dominio;
 
+import Controlador.Datos.CtrlAutobusDatos;
 import Controlador.Datos.CtrlCiudadDatos;
+import Controlador.Datos.CtrlFerrocarrilesDatos;
+import Controlador.Datos.CtrlFunicularDatos;
+import Controlador.Datos.CtrlLineaEstacionDatos;
+import Controlador.Datos.CtrlMetroDatos;
+import Controlador.Datos.CtrlTelefericoDatos;
+import Controlador.Datos.CtrlTranviaDatos;
 import Controlador.Datos.CtrlUrlDatos;
 import Controlador.Datos.Interficie.CtrlCiudad;
+import Controlador.Datos.Interficie.CtrlEstacionCivica;
+import Controlador.Datos.Interficie.CtrlLineaEstacion;
 import Controlador.Datos.Interficie.CtrlURL;
 import Ficheros.Ciudad;
 import Ficheros.URL;
@@ -34,6 +43,8 @@ import java.util.logging.Logger;
 public class CtrlFactoriaDatos {
     private static CtrlCiudad cc = null; 
     private static CtrlURL cu = null;
+    private static CtrlEstacionCivica cec = null;
+    private static CtrlLineaEstacion cle = null;
     private static CtrlFactoriaDatos INSTANCE = null;
 
     public CtrlFactoriaDatos() {
@@ -59,5 +70,26 @@ public class CtrlFactoriaDatos {
     CtrlURL getCtrlURL() {
          if (cu == null)cu = new CtrlUrlDatos();
         return cu;
+    }
+
+    CtrlEstacionCivica getCtrlEstacionCivica(String transporte) {
+        if (transporte.equalsIgnoreCase("autobus")) 
+            cec = new CtrlAutobusDatos();
+        else if (transporte.equalsIgnoreCase("metro"))
+            cec = new CtrlMetroDatos();
+        else if (transporte.equalsIgnoreCase("tranvia"))
+            cec = new CtrlTranviaDatos();
+        else if (transporte.equalsIgnoreCase("ferrocarriles"))
+            cec = new CtrlFerrocarrilesDatos();
+        else if (transporte.equalsIgnoreCase("funicular"))
+            cec = new CtrlFunicularDatos();
+        else if (transporte.equalsIgnoreCase("teleferico"))
+            cec = new CtrlTelefericoDatos();
+        return cec;
+    }
+
+    CtrlLineaEstacion getCtrlLineaEstacion() {
+        if (cle == null) cle = new CtrlLineaEstacionDatos();
+        return cle;
     }
 }

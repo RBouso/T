@@ -11,6 +11,7 @@ import Ficheros.Ciudad;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -43,6 +44,34 @@ public class CtrlCiudadDatos implements CtrlCiudad{
             }
         }
         return ac;
+    }
+
+    @Override
+    public List<String> getTransportes(String ciudad) {
+        ArrayList<String> result = new ArrayList<>();
+        File f = new File(folder);
+        File[] paises = f.listFiles();
+        Boolean encontrada = false;
+
+        for (int i = 0; i < paises.length && !encontrada; i++) {
+            File[] ciudades = paises[i].listFiles();
+
+            for (int j = 0; j < ciudades.length && !encontrada; j++) {
+                if (ciudades[j].getName().equalsIgnoreCase(ciudad)) {
+                    encontrada = true;
+                    File[]  transp = ciudades[i].listFiles();
+                    for (int k = 0; k < transp.length; k++) {
+                        String nombre = transp[k].getName();
+                        if (nombre.contains(".html")) {
+                            int ult =nombre.indexOf(".");
+                            result.add(nombre.substring(0, ult));
+                        }
+                    }
+                }
+                
+            }
+        }
+        return result;
     }
 
     
