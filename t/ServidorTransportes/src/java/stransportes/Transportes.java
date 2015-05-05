@@ -52,11 +52,14 @@ public class Transportes {
 
     /**
      * Web service operation
+     * @return 
      */
     @WebMethod(operationName = "getParadas")
-    public List<Pair<Double, Double> > getParadas(@WebParam(name = "ciudad") String ciudad, @WebParam(name = "pais") String pais, @WebParam(name = "transporte") String transporte, @WebParam(name = "linea") String linea) {
+    public List<String > getParadas(@WebParam(name = "ciudad") String ciudad, @WebParam(name = "pais") String pais, @WebParam(name = "transporte") String transporte, @WebParam(name = "linea") String linea) {
         //TODO write your implementation code here:
         ControladorTransportes ct = new ControladorTransportes();
-        return ct.getParadas(ciudad, pais, transporte, linea);
+        ct.getParadas(ciudad, pais, transporte, linea);
+        return null;
+                
     }
 }

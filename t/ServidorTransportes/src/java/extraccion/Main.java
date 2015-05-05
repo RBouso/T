@@ -24,11 +24,11 @@ import stransportes.Transportes;
 public class Main {
         public static void main(String[] args) {
             //extractor e = new extractor();
-            Transportes t = new Transportes();
-            List<Pair<Double, Double> > l = t.getParadas("Barcelona", "España", "Autobus", "118");
-            for (int i = 0; i < l.size(); i++) {
-                System.out.println("latitud: "+l.get(i).getKey()+" longitud: "+l.get(i).getValue());
-            }    
+//            Transportes t = new Transportes();
+//            List<Pair<Double, Double> > l = t.getParadas("Barcelona", "España", "Autobus", "118");
+//            for (int i = 0; i < l.size(); i++) {
+//                System.out.println("latitud: "+l.get(i).getKey()+" longitud: "+l.get(i).getValue());
+//            }    
           
             
                     
