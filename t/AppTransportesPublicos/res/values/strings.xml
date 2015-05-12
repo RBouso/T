@@ -14,8 +14,8 @@
     <string name="title_activity_header">Header</string>
     <!-- Lista de titulos de navegacion -->
     <array name="nav_options">
-        <item></item>
         <item>Ciudades</item>
+        <item>Transportes</item>
         <item>Buscar una parada</item>
         <item>Buscar paradas</item>
         <item>Consultar transportes</item>

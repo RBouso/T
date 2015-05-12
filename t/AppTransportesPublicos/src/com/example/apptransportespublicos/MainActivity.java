@@ -1,8 +1,10 @@
 package com.example.apptransportespublicos;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
 //import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -11,7 +13,8 @@ import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.app.Fragment;
+
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -26,6 +29,8 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -60,6 +65,9 @@ public class MainActivity extends ActionBarActivity {
 	public boolean mChangeContentFragment = false;
 	public Object mNextContentFragment;
 	private Object mContentFragment;
+	private Bundle b;
+	private String ciudad;
+	private MainActivity context;
 //	private NavigationAdapter NavAdapter;
 	@SuppressLint("NewApi")
 	@Override
@@ -67,9 +75,15 @@ public class MainActivity extends ActionBarActivity {
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		context = this;
 		android.app.ActionBar bar = getActionBar();
 		//for color
 		bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0033CD")));
+		
+		
+//		Intent i = new Intent(MainActivity.this, BusquedaParada.class);
+//	     startActivity(i);
+	     
 //		getActionBar().setDisplayHomeAsUpEnabled(true);
 		NavDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		//Lista
@@ -86,8 +100,7 @@ public class MainActivity extends ActionBarActivity {
 //            	R.layout.activity_header, R.id.title_item, titulos));
 		
 //		getSupportActionBar().setHomeButtonEnabled(true);
-		Log.d("onclick", " stOnItem "+ NavList.callOnClick()+" "+NavList.getChoiceMode()
-				);
+
 
 		NavList.setOnItemClickListener(new OnItemClickListener() {
 
@@ -97,22 +110,26 @@ public class MainActivity extends ActionBarActivity {
 				// TODO Auto-generated method stub
 
 		        
-
-				Log.d("onclick", position+ " entor");
 //				 Toast.makeText(getApplicationContext(), "holaaaaaaaa", Toast.LENGTH_SHORT).show();
 				 Intent i;
 				 switch (position) {
+				    
 				    case 0:
-				        break;
-				    case 1:
 				    	 i = new Intent(MainActivity.this, Listas.class);
+				    	 i.putExtra("ciudad", ciudad);
 					     startActivity(i);
+					     
+					     finish();
+					     break;
+				    case 1:
+				    	i = new Intent(MainActivity.this, Transportes.class);
+				    	i.putExtra("ciudad", ciudad);
+				    	startActivity(i);
+				    	finish();
 					     break;
 				    case 2:
 				    	i = new Intent(MainActivity.this, BusquedaParada.class);
 					     startActivity(i);
-					     break;
-				    case 3:
 				        Toast.makeText(getApplicationContext(), "Favoritos", Toast.LENGTH_SHORT).show();
 				        break;
 				    }
@@ -140,9 +157,15 @@ public class MainActivity extends ActionBarActivity {
         };
 
         NavDrawerLayout.setDrawerListener(new DrawerListener());
-		
+        b = getIntent().getExtras();
+        if (b != null) {
+			if (b.getString("Anterior").equals("ciudades")){
+				ciudad = b.getString("ciudad");
+
+			}
+		}
 	    
-        if (savedInstanceState == null) {
+       if (savedInstanceState == null) {
             selectItem(0);
         }
 //       obtenerGeolocalizacion();
@@ -154,12 +177,40 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 
+	private void obtenerVistaCiudad() {
+	// TODO Auto-generated method stub
+		Geocoder g = new Geocoder(context);
+		try {
+			List<Address> fromLocationName = g.getFromLocationName(ciudad, 1);
+			latitude = fromLocationName.get(0).getLatitude();
+			longitude = fromLocationName.get(0).getLongitude();
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
+	private void crearFragment() {
+	// TODO Auto-generated method stub
+		android.support.v4.app.Fragment fragment1 = new FragmentMapa();
+		FragmentManager fragmentManager = getFragmentManager();
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.content_frame, fragment1).commit();
+	}
+
+
 	private void selectItem(int i) {
 	// TODO Auto-generated method stub
 		if (i == 0){
-			android.app.Fragment fragment1 = new FragmentMapa();
-			FragmentManager fragmentManager = getFragmentManager();
-			fragmentManager.beginTransaction().replace(R.id.content_frame, fragment1).commit();
+			crearFragment();
+//			if (b != null)
+//				obtenerVistaCiudad();
+//			else 
+				obtenerGeolocalizacion();
 			
 		}
         // update selected item and title, then close the drawer
@@ -168,7 +219,78 @@ public class MainActivity extends ActionBarActivity {
         NavDrawerLayout.closeDrawer(NavList);
 }
 
+	private void obtenerGeolocalizacion() {
+		// TODO Auto-generated method stub
+        locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locListener = new LocationListener()
+        {
+          
 
+			
+
+			@Override
+			public void onLocationChanged(Location location) {
+				// TODO Auto-generated method stub
+				latitude = location.getLatitude();
+				longitude = location.getLongitude();
+				Geocoder g = new Geocoder(context);
+				try {
+					List<Address> fromLocation = g.getFromLocation(latitude, longitude, 1);
+					if (ciudad == null) ciudad = fromLocation.get(0).getLocality();
+					else {
+						obtenerVistaCiudad();
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				añadirPunto();
+			}
+
+			@Override
+			public void onStatusChanged(String provider, int status,
+					Bundle extras) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onProviderEnabled(String provider) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onProviderDisabled(String provider) {
+				// TODO Auto-generated method stub
+				
+			}
+             
+        };
+        if (locManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+        	locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10,   locListener);
+        else
+            locManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 10,  locListener);
+         
+    }// end launchLocator.
+	
+
+
+	private void añadirPunto() {
+		// TODO Auto-generated method stub
+//		Log.d("Longitud", latitude+" "+ longitude);
+////		if (locManager!= null)
+//		if (longitude != 0.0 && latitude != 0.0) {
+//			Log.d("Longitud", "entro");
+		if (fragment == null) Log.d("fragment1", "is nullllllllll");
+		else Log.d("fragment1", "is not nullllllllllllll");
+			fragment.getMap().setMyLocationEnabled(true);
+			fragment.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom((new LatLng(latitude, longitude)), 13));
+
+			fragment.getMap().addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)));
+		
+	}
 	
 
 	private class DrawerListener implements android.support.v4.widget.DrawerLayout.DrawerListener {
@@ -256,7 +378,6 @@ private  class FragmentMapa extends Fragment {
 	public FragmentMapa(){}
 
 
-	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
@@ -266,71 +387,17 @@ private  class FragmentMapa extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.activity_fragment_mapa, container, false);
-        fragment = new SupportMapFragment();
-//      getSupportFragmentManager().beginTransaction()
+        
+		fragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+		if (fragment.getMap() == null) Log.d("fragment0", "is nullllllllll");
+		else Log.d("fragment0", "is not nullllllllllllll");
+		//      getSupportFragmentManager().beginTransaction()
 //              .add(android.R.id.content, fragment).commit();
 //        obtenerGeolocalizacion();
         return rootView;
     }
 	
-	private void obtenerGeolocalizacion() {
-		// TODO Auto-generated method stub
-        locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locListener = new LocationListener()
-        {
-          
 
-			
-
-			@Override
-			public void onLocationChanged(Location location) {
-				// TODO Auto-generated method stub
-				latitude = location.getLatitude();
-				longitude = location.getLongitude();
-				añadirPunto();
-			}
-
-			@Override
-			public void onStatusChanged(String provider, int status,
-					Bundle extras) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void onProviderEnabled(String provider) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void onProviderDisabled(String provider) {
-				// TODO Auto-generated method stub
-				
-			}
-             
-        };
-        if (locManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
-        	locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10,   locListener);
-        else
-            locManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 10,  locListener);
-         
-    }// end launchLocator.
-	
-
-
-	private void añadirPunto() {
-		// TODO Auto-generated method stub
-//		Log.d("Longitud", latitude+" "+ longitude);
-////		if (locManager!= null)
-//		if (longitude != 0.0 && latitude != 0.0) {
-//			Log.d("Longitud", "entro");
-			fragment.getMap().setMyLocationEnabled(true);
-			fragment.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom((new LatLng(latitude, longitude)), 13));
-
-			fragment.getMap().addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)));
-		
-	}
 
 }
 }

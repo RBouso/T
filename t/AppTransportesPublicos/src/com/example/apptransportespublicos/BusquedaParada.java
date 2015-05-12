@@ -1,6 +1,7 @@
 package com.example.apptransportespublicos;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.SoapFault;
@@ -13,6 +14,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.ActionBarActivity;
+import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
@@ -34,10 +36,10 @@ public class BusquedaParada extends FragmentActivity {
 	private boolean park = false;
 	private boolean bici = false;
 	
-	public final static String URL = "http://192.168.1.130:8084/ServidorTransportes/Transportes?wsdl";
-	public static final String NAMESPACE = "http://sTransportes";
+	public final static String URL = "http://192.168.1.130:8084/ServerSmart/transportesPublicos?wsdl";
+	public static final String NAMESPACE = "http://transportesPublicos";
 	public static final String SOAP_ACTION_PREFIX = "/";
-	 private static final String METHOD = "getTransportes";
+	 private static final String METHOD = "getCiudad";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -100,13 +102,17 @@ public class BusquedaParada extends FragmentActivity {
 		       // SoapEnvelop.VER11 is SOAP Version 1.1 constant
 		       SoapSerializationEnvelope envelope = new 
 		    		   SoapSerializationEnvelope(SoapEnvelope.VER11) ; 
+		       envelope.implicitTypes = true;
+		       envelope.dotNet = true;
 		              SoapObject request = new SoapObject(NAMESPACE, METHOD);
 		       //bodyOut is the body object to be sent out with this envelope
-		       envelope.bodyOut = request;
-		       
+		       envelope.setOutputSoapObject(request);
+		       Log.d("Mensaje soap fault",request.toString());
 		       HttpTransportSE transport = new HttpTransportSE(URL);
+		       Log.d("Mensaje soap fault",transport.toString());
 		       try {
 		         transport.call(NAMESPACE + SOAP_ACTION_PREFIX + METHOD, envelope);
+		         
 		       } catch (IOException e) {
 		         e.printStackTrace();
 		       } catch (XmlPullParserException e) {
@@ -115,6 +121,8 @@ public class BusquedaParada extends FragmentActivity {
 		   //bodyIn is the body object received with this envelope
 		   if (envelope.bodyIn != null) {
 		     //getProperty() Returns a specific property at a certain index.
+			   SoapFault error = (SoapFault)envelope.bodyIn;
+			  
 		     SoapPrimitive resultSOAP = (SoapPrimitive) ((SoapObject) envelope.bodyIn).getProperty(0);
 		     resp=resultSOAP.toString();
 		   }

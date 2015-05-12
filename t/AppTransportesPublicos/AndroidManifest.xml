@@ -82,11 +82,23 @@
         </activity>
         <activity
             android:name=".Listas"
-            android:label="@string/title_activity_listas" >
+            android:label="Ciudades" >
         </activity>
         <activity
             android:name=".NombreListas"
             android:label="@string/title_activity_nombre_listas" >
+        </activity>
+        <activity
+            android:name=".Transportes"
+            android:label="Transportes" >
+        </activity>
+        <activity
+            android:name=".Lineas"
+            android:label="Líneas" >
+        </activity>
+        <activity
+            android:name=".Paradas"
+            android:label="Paradas" >
         </activity>
     </application>
 
