@@ -1,0 +1,3 @@
+nomReferencia: BicicletasBilbaoXML url: http://www.bilbao.net/WebServicesBilbao/WSBilbao?s=ODPRESBICI&u=OPENDATA&p0=A&p1=A
+nomReferencia: AutobusesBilbaoCSV url: http://www.bilbao.net/autobuses/jsp/od_recorridos.jsp?idioma=c&formato=csv&tipo=lineas
+nomReferencia: TiempoEsperaBilbaoCSV url: www.bilbao.net/autobuses/jsp/od_horarios.jsp?idioma=c&formato=csv&tipo=espera
