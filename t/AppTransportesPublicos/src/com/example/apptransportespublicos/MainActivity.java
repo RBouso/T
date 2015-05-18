@@ -1,12 +1,29 @@
 package com.example.apptransportespublicos;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+import com.example.conexion.constantes;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 //import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.maps.MapActivity;
@@ -24,6 +41,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -35,6 +53,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -67,7 +86,16 @@ public class MainActivity extends ActionBarActivity {
 	private Object mContentFragment;
 	private Bundle b;
 	private String ciudad;
+	private String pais;
 	private MainActivity context;
+	private String transporte;
+	private List<Aparcamiento> apar = new ArrayList<Aparcamiento>();
+	private List<Bicicletas> bici = new ArrayList<Bicicletas>();
+	private List<EstructuraPublica> ep = new ArrayList<EstructuraPublica>();
+	private String linea;
+	private Object parada;
+	private ArrayList<String> transportesList = new ArrayList<String>();
+	
 //	private NavigationAdapter NavAdapter;
 	@SuppressLint("NewApi")
 	@Override
@@ -80,9 +108,7 @@ public class MainActivity extends ActionBarActivity {
 		//for color
 		bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0033CD")));
 		
-		
-//		Intent i = new Intent(MainActivity.this, BusquedaParada.class);
-//	     startActivity(i);
+
 	     
 //		getActionBar().setDisplayHomeAsUpEnabled(true);
 		NavDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -122,20 +148,24 @@ public class MainActivity extends ActionBarActivity {
 					     finish();
 					     break;
 				    case 1:
-				    	i = new Intent(MainActivity.this, Transportes.class);
-				    	i.putExtra("ciudad", ciudad);
-				    	startActivity(i);
-				    	finish();
+				    	buscaTransportes("Transportes");
+				    	
 					     break;
 				    case 2:
-				    	i = new Intent(MainActivity.this, BusquedaParada.class);
-					     startActivity(i);
+				    	buscaTransportes("BusquedaParadas");
+//				    	Log.d("transportes", "tamaño " +transportesList.size());
+//				    	i = new Intent(MainActivity.this, BusquedaParada.class);
+//				    	i.putExtra("ciudad", ciudad);
+//				    	i.putExtra("transportes", transportesList);
+//					     startActivity(i);
 				        Toast.makeText(getApplicationContext(), "Favoritos", Toast.LENGTH_SHORT).show();
 				        break;
 				    }
 				NavList.setItemChecked(position, true);
 //				    NavDrawerLayout.closeDrawer(NavList);
 				}
+
+
 			
 		});
 		
@@ -163,6 +193,19 @@ public class MainActivity extends ActionBarActivity {
 				ciudad = b.getString("ciudad");
 
 			}
+			else if (b.getString("Anterior").equals("transportes")){
+				ciudad = b.getString("ciudad");
+				transporte = b.getString("transporte");
+				Toast.makeText(getApplicationContext(), transporte, Toast.LENGTH_SHORT).show();
+			}
+			else if (b.get("Anterior").equals("busqueda")) {
+				ciudad = b.getString("ciudad");
+				transporte = b.getString("transporte");
+				linea = b.getString("linea");
+				parada = b.get("parada");
+
+			}
+			
 		}
 	    
        if (savedInstanceState == null) {
@@ -184,6 +227,7 @@ public class MainActivity extends ActionBarActivity {
 			List<Address> fromLocationName = g.getFromLocationName(ciudad, 1);
 			latitude = fromLocationName.get(0).getLatitude();
 			longitude = fromLocationName.get(0).getLongitude();
+			pais = fromLocationName.get(0).getCountryName();
 			
 			
 		} catch (IOException e) {
@@ -236,17 +280,39 @@ public class MainActivity extends ActionBarActivity {
 				Geocoder g = new Geocoder(context);
 				try {
 					List<Address> fromLocation = g.getFromLocation(latitude, longitude, 1);
-					if (ciudad == null) ciudad = fromLocation.get(0).getLocality();
+					if (ciudad == null) {
+						ciudad = fromLocation.get(0).getLocality();
+						pais = fromLocation.get(0).getCountryName();
+						añadirPunto();
+					}
 					else {
 						obtenerVistaCiudad();
+						if (transporte != null) {
+							if (linea != null && parada != null) {
+								obtenerLatLong();
+							}
+							else {
+								buscarParadas();
+								añadirParadas();
+							}
+						}
+						else {
+							añadirPunto();
+						}
 					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
-				añadirPunto();
+				
 			}
+
+
+
+
+
+
 
 			@Override
 			public void onStatusChanged(String provider, int status,
@@ -272,10 +338,95 @@ public class MainActivity extends ActionBarActivity {
         	locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10,   locListener);
         else
             locManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 10,  locListener);
-         
+   
+        
     }// end launchLocator.
 	
+	private void obtenerLatLong() {
+		// TODO Auto-generated method stub
+		//Transporte, linea y parada
+	}
+	
+	
+	
+	private void añadirParadas() {
+		// TODO Auto-generated method stub
+		int icono = 0;
+		if (transporte.equals("Aparcamiento")) {
+			icono = R.drawable.icono_parking;
+			for (int i = 0; i < apar.size(); i++) {
+				Aparcamiento a = apar.get(i);
+				double la = a.latitud;
+				double lo = a.longitud;
+				LatLng l = new LatLng(la, lo);
+				fragment.getMap().addMarker(new MarkerOptions().position(l)
+						.title(a.direccion).snippet("Plazas totales: "+String.valueOf(a.plazasTotales)+"/n Plazas libres"
+								+String.valueOf(a.plazasLibres))
+						.snippet("Plazas libres: "+String.valueOf(a.plazasLibres)).alpha(1F).anchor(0.2F,0.2F)
+						.icon(BitmapDescriptorFactory.fromResource(icono)));
+			}
+			
+		}
+		else if (transporte.equals("Bicicletas")) {
+			icono = R.drawable.icono_bici;
+			for (int i = 0; i < bici.size(); i++) {
+				Bicicletas a = bici.get(i);
+				double la = a.latitud;
+				double lo = a.longitud;
+				LatLng l = new LatLng(la, lo);
+				fragment.getMap().addMarker(new MarkerOptions().position(l)
+						.title(a.direccion).snippet("Nº Anclajes: "+String.valueOf(a.anclajes)+"/n Plazas libres"
+								+String.valueOf(a.biciLibres))
+						.snippet("Plazas libres: "+String.valueOf(a.anclajes)).alpha(1F).anchor(0.2F,0.2F)
+						.icon(BitmapDescriptorFactory.fromResource(icono)));
+			}
+			
+		}
+		else {
+			if (transporte.equals("Taxi"))
+				icono = R.drawable.icono_taxi;
+			else if (transporte.equals("Autobus"))
+				icono = R.drawable.icono_bus;
+			else if (transporte.equals("Metro"))
+				icono = R.drawable.icono_metro;
+			else if (transporte.equals("Tranvia"))
+				icono = R.drawable.icono_tranvia;
+			else if (transporte.equals("Ferrocarriles"))
+				icono = R.drawable.icono_cercanias;
+			else if (transporte.equals("Funicular"))
+				icono = R.drawable.icono_funicular;
+			else if (transporte.equals("Teleferico"))
+				icono = R.drawable.icono_teleferico;
+			for (int i = 0; i < ep.size(); i++) {
+				EstructuraPublica a = ep.get(i);
+				double la = a.latitud;
+				double lo = a.longitud;
+				LatLng l = new LatLng(la, lo);
+				fragment.getMap().addMarker(new MarkerOptions().position(l)
+						.title(a.direccion).alpha(1F).anchor(0.2F,0.2F)
+						.icon(BitmapDescriptorFactory.fromResource(icono)));
+			}
+			
+		}
+		
+		fragment.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom((new LatLng(latitude, longitude)), 14));
+	}
 
+	private void buscarParadas() {
+		// TODO Auto-generated method stub
+		Aparcamiento a = new Aparcamiento();
+		a.latitud = latitude;
+		a.longitud = longitude;
+		a.plazasLibres = 3;
+		a.plazasTotales = 300;
+		a.direccion= "Av. Meridiana 596";
+		a.localidad = "Barcelona";
+		a.region = "Barcelona";
+		a.pais = "España";
+		a.identificador = "A78";
+				
+		apar.add(a);
+	}
 
 	private void añadirPunto() {
 		// TODO Auto-generated method stub
@@ -283,8 +434,6 @@ public class MainActivity extends ActionBarActivity {
 ////		if (locManager!= null)
 //		if (longitude != 0.0 && latitude != 0.0) {
 //			Log.d("Longitud", "entro");
-		if (fragment == null) Log.d("fragment1", "is nullllllllll");
-		else Log.d("fragment1", "is not nullllllllllllll");
 			fragment.getMap().setMyLocationEnabled(true);
 			fragment.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom((new LatLng(latitude, longitude)), 13));
 
@@ -400,5 +549,171 @@ private  class FragmentMapa extends Fragment {
 
 
 }
+	private void buscaTransportes(String nom) {
+		// TODO Auto-generated method stub
+		ProgressDialog progress = new ProgressDialog(this);
+		progress.setMessage("Buscando, por favor espere...");
+		new LoadParadaTask(progress, nom).execute();
+	
+	}
+	
+private class LoadParadaTask extends AsyncTask<Void, Void, String> {
+		
+		ProgressDialog progress;
+		String nom;
+		
+		public LoadParadaTask(ProgressDialog progress, String nom) {
+			// TODO Auto-generated constructor stub
+			this.progress = progress;
+			 this.nom = nom;
+		}
+
+
+		public void onPreExecute() {
+			progress.show();
+		}
+
+		@Override
+		protected String doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+				
+				HttpClient cliente = new DefaultHttpClient();
+
+				String url = constantes.transportes+ciudad;
+				HttpGet peticion = new HttpGet(url);
+				Log.d("Url 1", url);
+				// ejecuta una petición get
+				 InputStream is = null;
+				 String result = "";
+				try {
+
+					HttpResponse respuesta = cliente.execute(peticion);
+					
+					is = respuesta.getEntity().getContent();
+					if (is != null) {
+						result = convertInputtoString(is);
+						
+						
+						
+						
+					}
+					else {
+						result = "No ha funcionado";
+					}
+					is.close();
+					return result;
+				
+				} catch (ClientProtocolException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					return null;
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					return null;
+				}
+				
+//				return HttpRequest.get(params[0]).accept("application/json").body();
+			
+		}
+
+
+
+		protected void onPostExecute(String response) {
+			try {
+				//linea.setText(response);
+				progress.dismiss();
+				
+				JSONObject json = new JSONObject(response);
+//				JSONObject jso = json.getJSONObject("data");
+				JSONArray js = json.getJSONArray("nombres");
+				for (int i = 0; i < js.length(); i++) {
+					JSONObject j = js.getJSONObject(i);
+					transportesList.add(j.getString("nombre"));
+					
+				}
+				
+				if(nom.equals("BusquedaParadas")) {
+			    	Intent i = new Intent(MainActivity.this, BusquedaParada.class);
+			    	i.putExtra("ciudad", ciudad);
+			    	i.putExtra("transportes", transportesList);
+				     startActivity(i);
+				}
+				else {
+					Intent i = new Intent(MainActivity.this, Transportes.class);
+			    	i.putExtra("ciudad", ciudad);
+			    	i.putExtra("pais", pais);
+			    	i.putExtra("transportes", transportesList);
+			    	startActivity(i);
+			    	
+				}
+
+				
+//					
+//					Parada p;
+//					for (int i = 0; i < js.length(); ++ i) {
+//						JSONObject j = js.getJSONObject(i);
+//						p = new Parada();
+//						p.setCorrespondencia(j.getString("connections"));
+//						p.setId(j.getString("id"));
+//						p.setLatitud(j.getString("lat"));
+//						p.setLinea(j.getString("line"));
+//						p.setLongitud(j.getString("lon"));
+//						p.setNombre(j.getString("name"));
+//						p.setTipo(j.getString("type"));
+//						p.setZona(j.getString("zone"));
+//						lista.add(p);
+//					}
+//		
+//			        paradas.setAdapter(adapt);
+//				}
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				Log.e("Error nuestro", e.toString());	
+			}
+			catch (Exception e) {
+				// TODO Auto-generated catch block
+				Log.e("Error nuestro", e.toString());
+			}
+//			List<Parada> paradas = getParadas(h);
+//			if (!paradas.isEmpty()) {
+//				mostrarParada(paradas.get(0));
+//			}
+		}
+	}
+	
+	
+	private static String convertInputtoString(InputStream is) {
+		// TODO Auto-generated method stub
+		BufferedReader b = null;
+		try {
+			b = new BufferedReader(new InputStreamReader(is, "utf-8"), 8);
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		String line = "";
+		String result = "";
+		try {
+			while ((line = b.readLine()) != null) {
+				result += line;
+			}
+		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				is.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
 }
 

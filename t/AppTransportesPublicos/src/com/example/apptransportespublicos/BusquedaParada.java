@@ -1,8 +1,23 @@
 package com.example.apptransportespublicos;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.SoapFault;
 import org.ksoap2.serialization.SoapObject;
@@ -11,17 +26,34 @@ import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 import org.xmlpull.v1.XmlPullParserException;
 
+
+import com.example.conexion.constantes;
+
+
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v7.app.ActionBarActivity;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 public class BusquedaParada extends FragmentActivity {
 
@@ -35,6 +67,11 @@ public class BusquedaParada extends FragmentActivity {
 	private boolean taxi = false;
 	private boolean park = false;
 	private boolean bici = false;
+	private String transporte;
+	private String ciudad;
+	private ArrayList<String> transportes = new ArrayList<String>();
+	
+	
 	
 	public final static String URL = "http://192.168.1.130:8084/ServerSmart/transportesPublicos?wsdl";
 	public static final String NAMESPACE = "http://transportesPublicos";
@@ -43,119 +80,56 @@ public class BusquedaParada extends FragmentActivity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_busqueda_parada);
 		android.app.ActionBar bar = getActionBar();
 		//for color
 		bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0033CD")));
+		Bundle b = getIntent().getExtras();
+		ciudad = b.getString("ciudad");
+		transportes = b.getStringArrayList("transportes");
 		
 		tabHost= (FragmentTabHost) findViewById(android.R.id.tabhost);
 		tabHost.setup(this,
 		getSupportFragmentManager(),android.R.id.tabcontent);
-		buscaTransportes();
-		if (bus)
-			tabHost.addTab(tabHost.newTabSpec("Bus").setIndicator("Bus"),
-			Tab.class, null);
-		if (metro)
+		
+	
+		if (transportes.contains("Autobus")) {
+			tabHost.addTab(tabHost.newTabSpec("Autobus").setIndicator("Autobus"),
+			Tab.class, b);
+			
+		}
+		if (transportes.contains("Metro")) {
 			tabHost.addTab(tabHost.newTabSpec("Metro").setIndicator("Metro"),
-			Metro.class, null);
-		if (tran)
+			Tab.class, b);
+		}
+		if (transportes.contains("Tranvia"))
 			tabHost.addTab(tabHost.newTabSpec("Tranvia").setIndicator("Tranvia"),
-			Tran.class, null);
-		if (ferro)
+			Tab.class, b);
+		if (transportes.contains("Ferrocarriles"))
 			tabHost.addTab(tabHost.newTabSpec("Ferrocarriles").setIndicator("Ferrocarriles"),
-			Ferro.class, null);
-		if (funi)
+			Tab.class, b);
+		if (transportes.contains("Funicular"))
 			tabHost.addTab(tabHost.newTabSpec("Funicular").setIndicator("Funicular"),
-			Funicular.class, null);
-		if (tele)
+			Tab.class, b);
+		if (transportes.contains("Teleferico"))
 			tabHost.addTab(tabHost.newTabSpec("Teleferico").setIndicator("Teleferico"),
-			Teleferico.class, null);
+			Tab.class, b);
 		if (taxi)
 			tabHost.addTab(tabHost.newTabSpec("Taxi").setIndicator("Taxi"),
-			Taxi.class, null);
+			Tab.class, null);
 		if (park)
 			tabHost.addTab(tabHost.newTabSpec("Aparcamiento").setIndicator("Aparcamiento"),
-			Aparcamiento.class, null);
+			Tab.class, b);
 		if (bici)
-			tabHost.addTab(tabHost.newTabSpec("Bicicleta").setIndicator("Bicicletas"),
-			Bicicletas.class, null);
-
+			tabHost.addTab(tabHost.newTabSpec("Bicicletas").setIndicator("Bicicletas"),
+			Tab.class, b);
+		
+	
 		}
 	
-	private void buscaTransportes() {
-		// TODO Auto-generated method stub
-		AsyncTaskRunner runner = new AsyncTaskRunner();
-		  runner.execute();
-		bus = true;
-		metro = true;
 	
-	}
-	
-	private class AsyncTaskRunner extends AsyncTask<String, String, String>        {
-
-		   private String resp;
-		   @Override
-		   protected String doInBackground(String... params) {
-		     publishProgress("Loading contents..."); // Calls onProgressUpdate()
-		     try {
-		       // SoapEnvelop.VER11 is SOAP Version 1.1 constant
-		       SoapSerializationEnvelope envelope = new 
-		    		   SoapSerializationEnvelope(SoapEnvelope.VER11) ; 
-		       envelope.implicitTypes = true;
-		       envelope.dotNet = true;
-		              SoapObject request = new SoapObject(NAMESPACE, METHOD);
-		       //bodyOut is the body object to be sent out with this envelope
-		       envelope.setOutputSoapObject(request);
-		       Log.d("Mensaje soap fault",request.toString());
-		       HttpTransportSE transport = new HttpTransportSE(URL);
-		       Log.d("Mensaje soap fault",transport.toString());
-		       try {
-		         transport.call(NAMESPACE + SOAP_ACTION_PREFIX + METHOD, envelope);
-		         
-		       } catch (IOException e) {
-		         e.printStackTrace();
-		       } catch (XmlPullParserException e) {
-		         e.printStackTrace();
-		     }
-		   //bodyIn is the body object received with this envelope
-		   if (envelope.bodyIn != null) {
-		     //getProperty() Returns a specific property at a certain index.
-			   SoapFault error = (SoapFault)envelope.bodyIn;
-			  
-		     SoapPrimitive resultSOAP = (SoapPrimitive) ((SoapObject) envelope.bodyIn).getProperty(0);
-		     resp=resultSOAP.toString();
-		   }
-		 } catch (Exception e) {
-		   e.printStackTrace();
-		   resp = e.getMessage();
-		 }
-		 return resp;
-		      }
-
-		  /**
-		   * 
-		   * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
-		   */
-		  @Override
-		  protected void onPostExecute(String result) {
-		 // execution of result of Long time consuming operation
-		 // In this example it is the return value from the web service
-		 Log.d("salidas",result);
-		  }
-
-		  /**
-		   * 
-		   * @see android.os.AsyncTask#onPreExecute()
-		   */
-		  @Override
-		  protected void onPreExecute() {
-		 // Things to be done before execution of long running operation. For
-		 // example showing ProgessDialog
-		  }
-
-}
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -175,4 +149,6 @@ public class BusquedaParada extends FragmentActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+
 }

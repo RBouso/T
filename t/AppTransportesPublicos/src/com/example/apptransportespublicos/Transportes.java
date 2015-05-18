@@ -18,8 +18,9 @@ import android.widget.AdapterView.OnItemClickListener;
 public class Transportes extends ActionBarActivity {
 	ListView lista;
 	private ArrayAdapter<String> adapt;
-	private ArrayList<String> list;
+	private ArrayList<String> transportes;
 	private String ciudad;
+	private String pais;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,16 +30,19 @@ public class Transportes extends ActionBarActivity {
 		//for color
 		bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0033CD")));
 		lista = (ListView)findViewById(R.id.listView1);
-		list = new ArrayList<String>();
+		transportes = new ArrayList<String>();
 		
 		Bundle b = getIntent().getExtras();
 		ciudad = b.getString("ciudad");
-		String [] valores = {"Taxi", "Autobus", "Bicicletas"};
+		pais = b.getString("pais");
+		transportes = b.getStringArrayList("transportes");
+		String[] valores = new String[transportes.size()];
+		valores = transportes.toArray(valores);
 		Arrays.sort(valores);
 		adapt = new ArrayAdapter<String>(this,
 	              R.layout.activity_nombre_listas, R.id.nom, valores) ;
 		lista.setAdapter(adapt);
-	
+		
 		
 		  // ListView Item Click Listener
         lista.setOnItemClickListener(new OnItemClickListener() {
@@ -53,18 +57,31 @@ public class Transportes extends ActionBarActivity {
 	               
 	               // ListView Clicked item value
 	               String  itemValue    = (String) lista.getItemAtPosition(position);
-	                  
-	               
-	                // Show Alert 
+	                 
+	               // Show Alert 
 	                Toast.makeText(getApplicationContext(),
 	                  "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
 	                  .show();
-	                Intent i = new Intent(Transportes.this, Lineas.class);
-	                i.putExtra("ciudad", ciudad);
-	                i.putExtra("transporte", itemValue);
-	                
-	                startActivity(i);
-	                
+	               
+	               if (itemValue.equals("Aparcamiento") || itemValue.equals("Bicicletas")
+	            		   || itemValue.equals("Taxi")) {
+	            	   Intent i = new Intent(Transportes.this,MainActivity.class);
+	            	   
+	            	   i.putExtra("Anterior", "transportes");
+	            	   i.putExtra("ciudad", ciudad);
+	            	   i.putExtra("pais", pais);
+	            	   i.putExtra("transporte", itemValue);
+	            	   startActivity(i);
+	            	   finish();
+	               }
+	               
+	               else {
+		                Intent i = new Intent(Transportes.this, Lineas.class);
+		                i.putExtra("ciudad", ciudad);
+		                i.putExtra("transporte", itemValue);
+		                
+		                startActivity(i);
+	               } 
             	
               }
 

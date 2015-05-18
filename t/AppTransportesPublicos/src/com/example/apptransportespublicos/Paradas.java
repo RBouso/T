@@ -20,6 +20,8 @@ public class Paradas  extends ActionBarActivity {
 	private ArrayAdapter<String> adapt;
 	private ArrayList<String> list;
 	private String ciudad;
+	private String transporte;
+	private String linea;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,8 @@ public class Paradas  extends ActionBarActivity {
 		
 		Bundle b = getIntent().getExtras();
 		ciudad = b.getString("ciudad");
+		transporte = b.getString("transporte");
+		linea = b.getString("linea");
 		String [] valores = {"Navas", "La sagrera", "Torras i Bages"};
 		Arrays.sort(valores);
 		adapt = new ArrayAdapter<String>(this,
@@ -60,11 +64,13 @@ public class Paradas  extends ActionBarActivity {
 	                  "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
 	                  .show();
 	                Intent i = new Intent(Paradas.this, MainActivity.class);
+	                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	                i.putExtra("ciudad", ciudad);
-	                i.putExtra("transporte", itemValue);
-	                
+	                i.putExtra("transporte", transporte);
+	                i.putExtra("parada", itemValue);
 	                startActivity(i);
 	                finish();
+	                
             	
               }
 
