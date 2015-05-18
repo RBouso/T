@@ -14,8 +14,8 @@ import java.util.List;
  * @author raquel
  */
 public class CtrlTelefericoDatos extends CtrlEstacionCivicaDatos{
-    public List<String> getLineas(String ciudad, String pais) {
-        String fichero = "ficheros/"+pais+"/"+ciudad+"/Teleferico.html";
+    public ArrayList<String> getLineas(String ciudad, String pais) {
+        String fichero = folder+pais+"/"+ciudad+"/Teleferico.html";
         return obtenerLineas(fichero);
     }
 

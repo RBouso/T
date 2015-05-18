@@ -273,8 +273,8 @@ Codigo linea;Descripcion linea;Sentido;Numero parada;Codigo parada;Parada;Zona;C
 27;ARABELLA - BETOLATZA;Betolatza - Arabella;4;7504;Circunvalación 12;Betolaza-Circunvalacion;
 27;ARABELLA - BETOLATZA;Betolatza - Arabella;5;7506;Uretamendi / Plaza;Pl. Uretamendi;
 27;ARABELLA - BETOLATZA;Betolatza - Arabella;6;7602;Iturrigorribidea 37;Cº Iturrigorri;72,77
-27;ARABELLA - BETOLATZA;Betolatza - Arabella;7;7309;Gordoniz (90);Gordoniz-Pl. Belategi;72,76,77
-27;ARABELLA - BETOLATZA;Betolatza - Arabella;8;7308;Gordoniz (54) / Pza Errekalde;Gordoniz-Pl. Recalde;72,76,77
+27;ARABELLA - BETOLATZA;Betolatza - Arabella;7;7309;Gordoniz (90);Gordoniz-Pl. Belategi;76,77
+27;ARABELLA - BETOLATZA;Betolatza - Arabella;8;7308;Gordoniz (54) / Pza Errekalde;Gordoniz-Pl. Recalde;76,77
 27;ARABELLA - BETOLATZA;Betolatza - Arabella;9;7311;Gordoniz 49A;Gordoniz-Jaen;A8,57,72,77
 27;ARABELLA - BETOLATZA;Betolatza - Arabella;10;7107;Gordoniz 39;Gordoniz-Pl. Guardia Civil;72,77
 27;ARABELLA - BETOLATZA;Betolatza - Arabella;11;6213;Gregorio la Revilla 35;Gregorio de la Revilla-Perez Galdos;38,48,72,77,88
@@ -296,7 +296,7 @@ Codigo linea;Descripcion linea;Sentido;Numero parada;Codigo parada;Parada;Zona;C
 28;URIBARRI - ALTAMIRA;URIBARRI - ALTAMIRA;2;2415;Zumalacárregui / T.Zubiria;Zumalacarregui-Grupo Panera;A1,A5,A7,03,22,26,30,62
 28;URIBARRI - ALTAMIRA;URIBARRI - ALTAMIRA;3;2417;Trauko (14);Zumalacarregui-Grupo Panera;26
 28;URIBARRI - ALTAMIRA;URIBARRI - ALTAMIRA;4;2410;Trauko 3;Uribarri-Trauko;26
-28;URIBARRI - ALTAMIRA;URIBARRI - ALTAMIRA;5;2204;Matiko 31;Uribarri-Escuelas;26,72
+28;URIBARRI - ALTAMIRA;URIBARRI - ALTAMIRA;5;2207;Matiko 27;Uribarri-Escuelas;26,72
 28;URIBARRI - ALTAMIRA;URIBARRI - ALTAMIRA;6;2203;Matiko 1;Matiko;26,72
 28;URIBARRI - ALTAMIRA;URIBARRI - ALTAMIRA;7;2110;Tiboli 1;Tiboli;26,72,77
 28;URIBARRI - ALTAMIRA;URIBARRI - ALTAMIRA;8;2102;Campo Volantín (4);Campo Volantin-Ayuntamiento;11,26,71,72,77
@@ -774,7 +774,7 @@ Codigo linea;Descripcion linea;Sentido;Numero parada;Codigo parada;Parada;Zona;C
 72;LARRASKITU - CASTAÑOS/GAZTELEKU;Karitateko Alaben - Larraskitu  - Castaños/Gazteleku;17;2104;Campo Volantín 13;Campo Volantin-Hotel Nervion;22,26,28,77
 72;LARRASKITU - CASTAÑOS/GAZTELEKU;Karitateko Alaben - Larraskitu  - Castaños/Gazteleku;18;2206;Tiboli 12;Castaños-Tiboli;22,26,28
 72;LARRASKITU - CASTAÑOS/GAZTELEKU;Karitateko Alaben - Larraskitu  - Castaños/Gazteleku;19;2201;Anselma de Salces (2);Uribarri-Escuelas;
-72;LARRASKITU - CASTAÑOS/GAZTELEKU;Karitateko Alaben - Larraskitu  - Castaños/Gazteleku;20;2204;Matiko 31;Uribarri-Escuelas;26,28
+72;LARRASKITU - CASTAÑOS/GAZTELEKU;Karitateko Alaben - Larraskitu  - Castaños/Gazteleku;20;2207;Matiko 27;Uribarri-Escuelas;26,28
 72;LARRASKITU - CASTAÑOS/GAZTELEKU;Karitateko Alaben - Larraskitu  - Castaños/Gazteleku;21;2203;Matiko 1;Matiko;26,28
 72;LARRASKITU - CASTAÑOS/GAZTELEKU;Karitateko Alaben - Larraskitu  - Castaños/Gazteleku;22;2107;Castaños / Funikularra;Castaños-Funicular;77
 72;LARRASKITU - CASTAÑOS/GAZTELEKU;Castaños/Karitateko Alaben - Larraskitu;1;2107;Castaños / Funikularra;Castaños-Funicular;77
@@ -831,8 +831,8 @@ Codigo linea;Descripcion linea;Sentido;Numero parada;Codigo parada;Parada;Zona;C
 76;ARTATZU/XALBADOR - MOYUA;Artatzu/Xalbador - Moyua;2;7318;Xalbador / Alhóndiga;Xalbador-Rekalde;
 76;ARTATZU/XALBADOR - MOYUA;Artatzu/Xalbador - Moyua;3;7319;Xalbador / F.Baldezate;Xalbador-Rekalde;
 76;ARTATZU/XALBADOR - MOYUA;Artatzu/Xalbador - Moyua;4;7317;Xalbador / (Alhóndiga);Xalbador-Rekalde;
-76;ARTATZU/XALBADOR - MOYUA;Artatzu/Xalbador - Moyua;5;7309;Gordoniz (90);Gordoniz-Pl. Belategi;27,72,77
-76;ARTATZU/XALBADOR - MOYUA;Artatzu/Xalbador - Moyua;6;7308;Gordoniz (54) / Pza Errekalde;Gordoniz-Pl. Recalde;27,72,77
+76;ARTATZU/XALBADOR - MOYUA;Artatzu/Xalbador - Moyua;5;7309;Gordoniz (90);Gordoniz-Pl. Belategi;27,77
+76;ARTATZU/XALBADOR - MOYUA;Artatzu/Xalbador - Moyua;6;7308;Gordoniz (54) / Pza Errekalde;Gordoniz-Pl. Recalde;27,77
 76;ARTATZU/XALBADOR - MOYUA;Artatzu/Xalbador - Moyua;7;7410;Errekalde-Larraskitu 2;Ciudadela-Ambulatorio;A8,72,77
 76;ARTATZU/XALBADOR - MOYUA;Artatzu/Xalbador - Moyua;8;7409;Errekalde-Larraskitu 14;Ciudadela-Larraskitu;A8,72,77
 76;ARTATZU/XALBADOR - MOYUA;Artatzu/Xalbador - Moyua;9;7411;Errekalde-Larraskitu 36;Ctra. Larraskitu-Parque;A8,72,77
@@ -877,8 +877,8 @@ Codigo linea;Descripcion linea;Sentido;Numero parada;Codigo parada;Parada;Zona;C
 77;PEÑASCAL - MINA DEL MORRO;Peñascal - Mina del Morro;2;7606;Peñascal 29;Bº El Peñascal;72
 77;PEÑASCAL - MINA DEL MORRO;Peñascal - Mina del Morro;3;7603;Peñascal (16) / Eliza;Cº Iturrigorri-Iglesia;72
 77;PEÑASCAL - MINA DEL MORRO;Peñascal - Mina del Morro;4;7602;Iturrigorribidea 37;Cº Iturrigorri;27,72
-77;PEÑASCAL - MINA DEL MORRO;Peñascal - Mina del Morro;5;7309;Gordoniz (90);Gordoniz-Pl. Belategi;27,72,76
-77;PEÑASCAL - MINA DEL MORRO;Peñascal - Mina del Morro;6;7308;Gordoniz (54) / Pza Errekalde;Gordoniz-Pl. Recalde;27,72,76
+77;PEÑASCAL - MINA DEL MORRO;Peñascal - Mina del Morro;5;7309;Gordoniz (90);Gordoniz-Pl. Belategi;27,76
+77;PEÑASCAL - MINA DEL MORRO;Peñascal - Mina del Morro;6;7308;Gordoniz (54) / Pza Errekalde;Gordoniz-Pl. Recalde;27,76
 77;PEÑASCAL - MINA DEL MORRO;Peñascal - Mina del Morro;7;7311;Gordoniz 49A;Gordoniz-Jaen;A8,27,57,72
 77;PEÑASCAL - MINA DEL MORRO;Peñascal - Mina del Morro;8;7107;Gordoniz 39;Gordoniz-Pl. Guardia Civil;27,72
 77;PEÑASCAL - MINA DEL MORRO;Peñascal - Mina del Morro;9;6213;Gregorio la Revilla 35;Gregorio de la Revilla-Perez Galdos;27,38,48,72,88
@@ -1259,8 +1259,8 @@ G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;25;7701;Peñascal (146)
 G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;26;7606;Peñascal 29;Bº El Peñascal;72,77
 G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;27;7603;Peñascal (16) / Eliza;Cº Iturrigorri-Iglesia;72,77
 G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;28;7602;Iturrigorribidea 37;Cº Iturrigorri;27,72,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;29;7309;Gordoniz (90);Gordoniz-Pl. Belategi;27,72,76,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;30;7308;Gordoniz (54) / Pza Errekalde;Gordoniz-Pl. Recalde;27,72,76,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;29;7309;Gordoniz (90);Gordoniz-Pl. Belategi;27,76,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;30;7308;Gordoniz (54) / Pza Errekalde;Gordoniz-Pl. Recalde;27,76,77
 G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;31;7305;Ciudadela 2A;Ciudadela-Iglesia;A8,72,77
 G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;32;7409;Errekalde-Larraskitu 14;Ciudadela-Larraskitu;A8,72,76,77
 G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;33;7411;Errekalde-Larraskitu 36;Ctra. Larraskitu-Parque;A8,72,76,77

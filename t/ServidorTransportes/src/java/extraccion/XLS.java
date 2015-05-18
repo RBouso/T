@@ -24,7 +24,6 @@ import jxl.read.biff.BiffException;
  */
 public class XLS extends Formato{
     private URLConnection con; 
-    private String folder = "descargas/";
     private String nombre;
     
     public void extraerDatos(String nomFichero, String referencia, String url, String ciudad, String pais) {
@@ -36,7 +35,7 @@ public class XLS extends Formato{
             super.ciudad = ciudad;
             super.pais = pais;
             super.referencia = referencia;
-            super.fichero = "ficheros/"+pais+"/"+ciudad;
+            super.fichero = fichero+pais+"/"+ciudad;
             folder = folder+pais+"/"+ciudad+"/"+nomFichero;
             //se crea el archivo excel
             Workbook archivoExcel = Workbook.getWorkbook(new File( folder)); 

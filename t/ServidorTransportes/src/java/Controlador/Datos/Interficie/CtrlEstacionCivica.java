@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface CtrlEstacionCivica {
 
-    public List<String> getLineas(String ciudad, String pais);
+    public ArrayList<String> getLineas(String ciudad, String pais);
 
     
 }

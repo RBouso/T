@@ -5,10 +5,14 @@
  */
 package Ficheros;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author raquel
  */
+@XmlRootElement
 public class Ciudad {
     private String nombre;
     private String pais;
@@ -21,6 +25,7 @@ public class Ciudad {
     public Ciudad() {
     }
 
+    @XmlElement(name = "nombre_persona")
     public String getNombre() {
         return nombre;
     }

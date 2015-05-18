@@ -9,13 +9,15 @@ import Controlador.Datos.CtrlUrlDatos;
 import Controlador.Dominio.CtrlFactoriaDatos;
 import Controlador.Dominio.Controlador;
 import Controlador.Dominio.ControladorExtraccion;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.util.Pair;
 import static javax.measure.unit.SI.METER;
 import org.jscience.geography.coordinates.LatLong;
 import org.jscience.geography.coordinates.UTM;
 import org.jscience.geography.coordinates.crs.CoordinatesConverter;
-import stransportes.Transportes;
+import s1transportes.GenericResource;
+
 
 /**
  *
@@ -24,8 +26,11 @@ import stransportes.Transportes;
 public class Main {
         public static void main(String[] args) {
             //extractor e = new extractor();
-//            Transportes t = new Transportes();
+            GenericResource t = new GenericResource();
 //            List<Pair<Double, Double> > l = t.getParadas("Barcelona", "España", "Autobus", "118");
+
+            ArrayList<String> l  = t.getTransportes("Barcelona");
+            System.out.println(l.toString());
 //            for (int i = 0; i < l.size(); i++) {
 //                System.out.println("latitud: "+l.get(i).getKey()+" longitud: "+l.get(i).getValue());
 //            }    

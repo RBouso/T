@@ -34,12 +34,13 @@ import org.jsoup.select.Elements;
  * @author raquel
  */
 public class CtrlLineaEstacionDatos implements CtrlLineaEstacion{
+    private String folder = "/home/raquel/NetBeansProjects/ServidorTransportes/ficheros/";
     
     public ArrayList<LineaEstacion> getLineaEstacionTransporte(String ciudad, 
         String pais, String transporte) {
         ArrayList<LineaEstacion> ec = new ArrayList<>();
         try {
-            String fichero = "ficheros/"+pais+"/"+ciudad+"/"+transporte+".html";
+            String fichero = folder+pais+"/"+ciudad+"/"+transporte+".html";
             Document htmlFile = Jsoup.parse(new File(fichero), "ISO-8859-1");
             if (htmlFile.select("span[itemprop=line]").size() != 0) {
                 Elements e = htmlFile.body().children();

@@ -24,6 +24,6 @@ public interface CtrlCiudad {
 
     public ArrayList<Ciudad> getCiudades() ;
 
-    public List<String> getTransportes(String ciudad);
+    public ArrayList<String> getTransportes(String ciudad);
     
 }

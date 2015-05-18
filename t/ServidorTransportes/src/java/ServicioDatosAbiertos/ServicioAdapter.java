@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  * @author raquel
  */
 public class ServicioAdapter {
-    private String folder = "descargas/";
+    private String folder = "/home/raquel/NetBeansProjects/ServidorTransportes/descargas/";
     
     /**
      * Descarga el fichero que se encuentra en la url y lo copia en la carpeta 

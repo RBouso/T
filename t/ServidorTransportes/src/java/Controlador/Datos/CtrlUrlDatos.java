@@ -25,7 +25,7 @@ import java.util.logging.Logger;
  * @author raquel
  */
 public class CtrlUrlDatos implements CtrlURL{
-    private String folder = "ficheros/";
+    private String folder = "/home/raquel/NetBeansProjects/ServidorTransportes/ficheros/";
 
    
     

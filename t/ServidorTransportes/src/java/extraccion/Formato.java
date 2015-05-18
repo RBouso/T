@@ -36,7 +36,9 @@ import org.jsoup.select.Elements;
  * @author raquel
  */
 public abstract class Formato {
-    protected String fichero = ""; //url del fichero donde se han de guardar los datos
+    protected String fichero = "/home/raquel/NetBeansProjects/ServidorTransportes/ficheros/";
+    //url del fichero donde se han de guardar los datos
+    protected String folder = "/home/raquel/NetBeansProjects/ServidorTransportes/descargas/";
     protected String furl = ""; //url del fichero donde se encuentran los datos extraidos
     protected String ciudad = ""; //nombre de la ciudad a la que hacen referencia los datos
     protected String pais = ""; //nombre del pais al que hacen referencia los datos

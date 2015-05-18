@@ -21,8 +21,8 @@ import java.util.logging.Logger;
  * @author raquel
  */
 public class CSV extends Formato{
-    private URLConnection con; 
-    private String folder = "descargas/";
+    private URLConnection con;
+   
     private String nombre;
     
     
@@ -35,7 +35,7 @@ public class CSV extends Formato{
             super.ciudad = ciudad;
             super.pais = pais;
             super.referencia = referencia;
-            super.fichero = "ficheros/"+pais+"/"+ciudad;
+            super.fichero = super.fichero+pais+"/"+ciudad;
             folder = folder+pais+"/"+ciudad+"/"+nomFichero;
             CsvReader f = new CsvReader(folder, ';');
             //leer archivo

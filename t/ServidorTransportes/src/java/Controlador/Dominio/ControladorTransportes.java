@@ -53,7 +53,7 @@ public class ControladorTransportes extends Controlador{
      * @param ciudad: nombre de la ciudad de la cual se quiere obtener sus transportes
      * @return Lista de los transportes que contiene la ciudad
      */
-    public List<String> getTransportes(String ciudad) {
+    public ArrayList<String> getTransportes(String ciudad) {
         CtrlFactoriaDatos cfd = new CtrlFactoriaDatos();
         //Conseguir todas las ciudades que hay en el sistema
         CtrlCiudad cc = cfd.getCtrlCiudad();
@@ -67,7 +67,7 @@ public class ControladorTransportes extends Controlador{
      * @param transporte: Nombre del transporte
      * @return Lista de lineas que el transporte tiene en la ciudad ciudad
      */
-    public List<String> getLineas(String ciudad, String pais, String transporte) {
+    public ArrayList<String> getLineas(String ciudad, String pais, String transporte) {
         CtrlFactoriaDatos cfd = new CtrlFactoriaDatos();
         CtrlEstacionCivica cec =  cfd.getCtrlEstacionCivica(transporte) ;
         if (cec == null) return null;

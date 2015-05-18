@@ -23,11 +23,13 @@ import org.jsoup.select.Elements;
  * @author raquel
  */
 public abstract class CtrlEstacionCivicaDatos implements CtrlEstacionCivica{
-     
-    @Override
-    public abstract List<String> getLineas(String ciudad, String pais);
     
-    protected List<String> obtenerLineas(String fichero) {
+    protected String folder = "/home/raquel/NetBeansProjects/ServidorTransportes/ficheros/";
+    
+    @Override
+    public abstract ArrayList<String> getLineas(String ciudad, String pais);
+    
+    protected ArrayList<String> obtenerLineas(String fichero) {
         try {
             
             ArrayList<String> result = new ArrayList<>();

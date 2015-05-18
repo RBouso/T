@@ -23,9 +23,9 @@ import org.jsoup.select.Elements;
  */
 public class CtrlAutobusDatos extends CtrlEstacionCivicaDatos {
     
-    public List<String> getLineas(String ciudad, String pais) {
+    public ArrayList<String> getLineas(String ciudad, String pais) {
        
-            String fichero = "ficheros/"+pais+"/"+ciudad+"/Autobus.html";
+            String fichero = folder+pais+"/"+ciudad+"/Autobus.html";
             return obtenerLineas(fichero);
 
     }

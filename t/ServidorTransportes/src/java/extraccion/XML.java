@@ -23,7 +23,7 @@ import org.xml.sax.SAXException;
  * @author raquel
  */
 public class XML extends Formato{
-    private String descargas = "descargas/";
+    
     private String tags[] = {"station", "DETALLE"};
     
     @Override
@@ -35,8 +35,8 @@ public class XML extends Formato{
             super.ciudad = ciudad;
             super.pais = pais;
             super.referencia = referencia;
-            super.fichero = "ficheros/"+pais+"/"+ciudad;
-            descargas = descargas+pais+"/"+ciudad+"/"+nomFichero;
+            super.fichero = fichero+pais+"/"+ciudad;
+            folder =folder+pais+"/"+ciudad+"/"+nomFichero;
             DocumentBuilderFactory fabricaCreadorDocumento = DocumentBuilderFactory.newInstance();
             DocumentBuilder creadorDocumento;
             creadorDocumento = fabricaCreadorDocumento.newDocumentBuilder();
