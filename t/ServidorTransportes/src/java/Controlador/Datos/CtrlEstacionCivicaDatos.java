@@ -34,7 +34,7 @@ public abstract class CtrlEstacionCivicaDatos implements CtrlEstacionCivica{
             
             ArrayList<String> result = new ArrayList<>();
            
-            Document htmlFile = Jsoup.parse(new File(fichero), "ISO-8859-1");
+            Document htmlFile = Jsoup.parse(new File(fichero), "UTF-8");
 //            List<Node> childNodes = htmlFile.body().childNodes();
             
             Elements select = htmlFile.select("span[itemprop=line]");

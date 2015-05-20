@@ -8,6 +8,9 @@ package s1transportes;
 
 import Controlador.Dominio.ControladorTransportes;
 import Ficheros.Ciudad;
+import Ficheros.EstacionAlquilerBicicletas;
+import Ficheros.EstacionAparcamiento;
+import Ficheros.EstacionCivica;
 import com.google.common.collect.ArrayListMultimap;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -64,16 +67,12 @@ public class GenericResource {
 
     
     @GET
-    @Path("/ciudad")
+    @Path("/ciudades")
     @Produces(MediaType.APPLICATION_JSON)
-    public ArrayList<String> getCiudad() {
-        Ciudad c = new Ciudad();
-                c.setNombre("Barcelona");
-        ArrayList<String>  res = new ArrayList<>();
-        res.add("Barcelona");
-        res.add("Madrid");
+    public ArrayList<String> getCiudades() {
+        ControladorTransportes ct = new ControladorTransportes();
         
-        return res;
+        return  ct.getCiudades();
 //        return res;
     }
     
@@ -94,5 +93,36 @@ public class GenericResource {
         //TODO write your implementation code here:
         ControladorTransportes ct = new ControladorTransportes();
         return ct.getLineas(ciudad, pais, transporte);
+    }
+    
+    @GET
+    @Path("/aparcamiento/ciudad={ciudad}&pais={pais}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ArrayList<EstacionAparcamiento> getAparcamientos(@PathParam("ciudad") String ciudad, 
+            @PathParam("pais") String pais) {
+        //TODO write your implementation code here:
+        ControladorTransportes ct = new ControladorTransportes();
+        return ct.getAparcamientos(ciudad, pais);
+    }
+      
+    @GET
+    @Path("/bicicletas/ciudad={ciudad}&pais={pais}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ArrayList<EstacionAlquilerBicicletas> getBicicletas(@PathParam("ciudad") String ciudad, 
+            @PathParam("pais") String pais) {
+        //TODO write your implementation code here:
+        ControladorTransportes ct = new ControladorTransportes();
+        return ct.getBicicletas(ciudad, pais);
+    }
+    
+    @GET
+    @Path("/paradas/ciudad={ciudad}&pais={pais}&transporte={transporte}&linea={linea}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ArrayList<EstacionCivica> getParadas(@PathParam("ciudad") String ciudad, 
+            @PathParam("pais") String pais, @PathParam("transporte") String transporte, 
+            @PathParam("linea") String linea) {
+        //TODO write your implementation code here:
+        ControladorTransportes ct = new ControladorTransportes();
+        return ct.getParadas(ciudad, pais, transporte, linea);
     }
 }

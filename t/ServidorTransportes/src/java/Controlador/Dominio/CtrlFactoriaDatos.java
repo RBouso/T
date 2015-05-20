@@ -5,8 +5,10 @@
  */
 package Controlador.Dominio;
 
+
 import Controlador.Datos.CtrlAutobusDatos;
 import Controlador.Datos.CtrlCiudadDatos;
+import Controlador.Datos.CtrlEstacionAlquilerBicicletasDatos;
 import Controlador.Datos.CtrlFerrocarrilesDatos;
 import Controlador.Datos.CtrlFunicularDatos;
 import Controlador.Datos.CtrlLineaEstacionDatos;
@@ -14,27 +16,13 @@ import Controlador.Datos.CtrlMetroDatos;
 import Controlador.Datos.CtrlTelefericoDatos;
 import Controlador.Datos.CtrlTranviaDatos;
 import Controlador.Datos.CtrlUrlDatos;
+import Controlador.Datos.CtrlEstacionAparcamientoDatos;
 import Controlador.Datos.Interficie.CtrlCiudad;
+import Controlador.Datos.Interficie.CtrlEstacionAlquilerBicicletas;
+import Controlador.Datos.Interficie.CtrlEstacionAparcamiento;
 import Controlador.Datos.Interficie.CtrlEstacionCivica;
 import Controlador.Datos.Interficie.CtrlLineaEstacion;
 import Controlador.Datos.Interficie.CtrlURL;
-import Ficheros.Ciudad;
-import Ficheros.URL;
-import extraccion.extractorFacade;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -45,6 +33,8 @@ public class CtrlFactoriaDatos {
     private static CtrlURL cu = null;
     private static CtrlEstacionCivica cec = null;
     private static CtrlLineaEstacion cle = null;
+    private static CtrlEstacionAparcamiento cea = null;
+    private static CtrlEstacionAlquilerBicicletas ceab = null;
     private static CtrlFactoriaDatos INSTANCE = null;
 
     public CtrlFactoriaDatos() {
@@ -67,12 +57,12 @@ public class CtrlFactoriaDatos {
         return cc;
     }
 
-    CtrlURL getCtrlURL() {
+    public CtrlURL getCtrlURL() {
          if (cu == null)cu = new CtrlUrlDatos();
         return cu;
     }
 
-    CtrlEstacionCivica getCtrlEstacionCivica(String transporte) {
+    public CtrlEstacionCivica getCtrlEstacionCivica(String transporte) {
         if (transporte.equalsIgnoreCase("autobus")) 
             cec = new CtrlAutobusDatos();
         else if (transporte.equalsIgnoreCase("metro"))
@@ -88,8 +78,18 @@ public class CtrlFactoriaDatos {
         return cec;
     }
 
-    CtrlLineaEstacion getCtrlLineaEstacion() {
+    public CtrlLineaEstacion getCtrlLineaEstacion() {
         if (cle == null) cle = new CtrlLineaEstacionDatos();
         return cle;
+    }
+    
+    public CtrlEstacionAparcamiento getCtrlEstacionAparcamiento() {
+        if (cea == null) cea = new CtrlEstacionAparcamientoDatos();
+        return cea;
+    }
+
+    CtrlEstacionAlquilerBicicletas getCtrlEstacionAlquilerBicicletas() {
+        if (ceab == null) ceab = new CtrlEstacionAlquilerBicicletasDatos();
+        return ceab;
     }
 }

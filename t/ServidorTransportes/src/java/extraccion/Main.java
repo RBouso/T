@@ -9,6 +9,7 @@ import Controlador.Datos.CtrlUrlDatos;
 import Controlador.Dominio.CtrlFactoriaDatos;
 import Controlador.Dominio.Controlador;
 import Controlador.Dominio.ControladorExtraccion;
+import Ficheros.EstacionAparcamiento;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.util.Pair;
@@ -28,13 +29,13 @@ public class Main {
             //extractor e = new extractor();
             GenericResource t = new GenericResource();
 //            List<Pair<Double, Double> > l = t.getParadas("Barcelona", "España", "Autobus", "118");
-
-            ArrayList<String> l  = t.getTransportes("Barcelona");
-            System.out.println(l.toString());
+            
+//            ArrayList<EstacionAparcamiento> l  = t.getAparcamientos("Barcelona", "España");
+//         
 //            for (int i = 0; i < l.size(); i++) {
-//                System.out.println("latitud: "+l.get(i).getKey()+" longitud: "+l.get(i).getValue());
+//                System.out.println(l.get(i).getDireccion().getPais());
 //            }    
-          
+//          
             
                     
             
@@ -56,8 +57,8 @@ public class Main {
 //            cfd.anadirURL("Madrid", "España", "AparcamientosMadridRDF", "http://datos.madrid.es/egob/catalogo/202625-0-aparcamientos-publicos.rdf");
 //            
  //cfd.anadirURL("Madrid", "España", "AparcamientosMadridCSV","http://datos.madrid.es/egob/catalogo/202625-0-aparcamientos-publicos.csv");
-//            Controlador c = new ControladorExtraccion();
-//            c.executar();
+            Controlador c = new ControladorExtraccion();
+            c.executar();
 //            Formato f  = new CSV()
 //;f.extraerDatos("transports_0_opendata_transports.csv", "TransportesBarcelona", 
 //        "http://bismartopendata.blob.core.windows.net/opendata/opendata/transports_0_opendata_transports.csv", "Barcelona", "España");

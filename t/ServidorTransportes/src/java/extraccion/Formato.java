@@ -202,7 +202,7 @@ public abstract class Formato {
                     f.delete();
                     if (referencia.contains("RDF")) System.out.println("creo el fichero");
                 f.createNewFile();}
-            bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fichero+nomFichero,true), "utf-8"));
+            bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fichero+nomFichero,true), "UTF-8"));
             if (i == 0 ) {
                 
                 bw.write("<!DOCTYPE html> \n");
@@ -225,7 +225,7 @@ public abstract class Formato {
 
                 coordx = coordx.replace(',', '.');
                 coordy = coordy.replace(',', '.');
-                UTM utm = UTM.valueOf(30, 'T', Double.parseDouble(coordx), Double.parseDouble(coordy), METER);
+                UTM utm = UTM.valueOf(31, 'T', Double.parseDouble(coordx), Double.parseDouble(coordy), METER);
 
                 CoordinatesConverter<UTM, LatLong> utmToLatLong = UTM.CRS
                         .getConverterTo(LatLong.CRS);

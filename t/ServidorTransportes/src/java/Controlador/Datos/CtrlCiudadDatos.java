@@ -37,7 +37,7 @@ public class CtrlCiudadDatos implements CtrlCiudad{
         File f = new File(folder);
         
         File[] paises = f.listFiles();
-        System.out.println("holaaaaaaaaa "+f.exists());
+        
         for (int i = 0; i < paises.length; i++) {
             File[] ciudades = paises[i].listFiles();
             String nomPais = paises[i].getName();
