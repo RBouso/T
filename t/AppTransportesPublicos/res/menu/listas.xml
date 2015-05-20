@@ -8,5 +8,12 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never"/>
+    
+    <item android:id="@+id/menu_busqueda_list" 
+        android:showAsAction="always"
+		android:title="Search"
+		android:icon="@android:drawable/ic_menu_search"
+		android:actionViewClass="android.widget.SearchView" />
+    
 
 </menu>

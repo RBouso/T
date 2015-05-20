@@ -1555,7 +1555,7 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f080039;
         public static final int action_bar_title=0x7f080038;
         public static final int action_context_bar=0x7f080033;
-        public static final int action_example=0x7f080060;
+        public static final int action_example=0x7f080061;
         public static final int action_menu_divider=0x7f08002c;
         public static final int action_menu_presenter=0x7f08002d;
         public static final int action_mode_close_button=0x7f08003a;
@@ -1600,6 +1600,7 @@ containing a value of this type.
         public static final int map=0x7f080052;
         public static final int match_parent=0x7f08000e;
         public static final int menu_busqueda=0x7f08005f;
+        public static final int menu_busqueda_list=0x7f080060;
         public static final int middle=0x7f080028;
         public static final int monochrome=0x7f080016;
         public static final int never=0x7f080020;

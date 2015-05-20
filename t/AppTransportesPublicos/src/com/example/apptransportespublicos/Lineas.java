@@ -11,6 +11,7 @@ import java.util.Arrays;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
@@ -20,7 +21,10 @@ import org.json.JSONObject;
 import com.example.conexion.constantes;
 
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -28,19 +32,24 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class Lineas  extends ActionBarActivity {
+public class Lineas  extends Activity implements OnQueryTextListener{
 	ListView lista;
 	private ArrayAdapter<String> adapt;
 	private ArrayList<String> list;
 	private String ciudad;
 	private String transporte;
+	private String pais;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +64,7 @@ public class Lineas  extends ActionBarActivity {
 		Bundle b = getIntent().getExtras();
 		ciudad = b.getString("ciudad");
 		transporte = b.getString("transporte");
+		pais = b.getString("pais");
 		
 		
 	
@@ -80,6 +90,7 @@ public class Lineas  extends ActionBarActivity {
 	                  .show();
 	                Intent i = new Intent(Lineas.this, Paradas.class);
 	                i.putExtra("ciudad", ciudad);
+	                i.putExtra("pais", pais);
 	                i.putExtra("transporte", transporte);
 	                i.putExtra("linea", itemValue);
 	                
@@ -89,9 +100,10 @@ public class Lineas  extends ActionBarActivity {
               }
 
          }); 
+        buscarLinea();
 	}
 	
-	void buscarParada() {
+	void buscarLinea() {
 
 		ProgressDialog progress = new ProgressDialog(this);
 		progress.setMessage("Buscando, por favor espere...");
@@ -119,8 +131,10 @@ private class LoadParadaTask extends AsyncTask<Void, Void, String> {
 		// TODO Auto-generated method stub
 			
 			HttpClient cliente = new DefaultHttpClient();
-			String url = constantes.lineas+transporte;
-			HttpPost peticion = new HttpPost(url);
+			String url = constantes.lineas+"ciudad="+ciudad+"&pais="+pais+
+					"&transporte="+transporte;
+			Log.d("url", url);
+			HttpGet peticion = new HttpGet(url);
 			// ejecuta una petición get
 			 InputStream is = null;
 			 String result = "";
@@ -160,12 +174,14 @@ private class LoadParadaTask extends AsyncTask<Void, Void, String> {
 		try {
 			//linea.setText(response);
 			progress.dismiss();
+			Log.d("String", response);
 			JSONObject json = new JSONObject(response);
 			JSONArray js = json.getJSONArray("nombres");
 			
 			for (int i = 0; i < js.length(); ++ i) {
 				JSONObject j = js.getJSONObject(i);
 				list.add(j.getString("nombre")); 
+				Log.d("lineas", list.get(i));
 			}
 	
 			String[] valores = new String[list.size()];
@@ -223,19 +239,53 @@ private static String convertInputtoString(InputStream is) {
 	return result;
 }
 
-private String espacio(String np) {
-	// TODO Auto-generated method stub
-	np.replaceAll(" ", "%20");
-	String res = "";
-	for (int i = 0; i < np.length(); ++i) {
-		if (np.charAt(i) != ' ') {
-			res += np.charAt(i);
-		}
-		else {
-			res += "%20";
-		}
-	}
-	return res;
-}
+
 	
+
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+// Inflate the menu; this adds items to the action bar if it is present.
+//	Toast.makeText(getApplicationContext(), "estoy en el menu", Toast.LENGTH_LONG).show();
+	getMenuInflater().inflate(R.menu.listas, menu);
+	SearchManager searchManager = (SearchManager)
+            getSystemService(Context.SEARCH_SERVICE);
+	MenuItem searchMenuItem = menu.findItem(R.id.menu_busqueda_list);
+	SearchView searchView = (SearchView) searchMenuItem.getActionView();
+	
+	searchView.setSearchableInfo(searchManager.
+	                getSearchableInfo(getComponentName()));
+	searchView.setOnQueryTextListener(this);
+
+	return true;
+}
+
+public boolean onOptionsItemSelected(MenuItem item) {
+
+	int id = item.getItemId();
+	switch (id) {
+		case( R.id.action_settings):
+			return true;
+		case (R.id.menu_busqueda_list):
+			
+			return true;
+
+		default:
+			return super.onOptionsItemSelected(item);
+	}
+}
+
+
+	@Override
+	public boolean onQueryTextChange(String arg0) {
+		// TODO Auto-generated method stub
+		 Lineas.this.adapt.getFilter().filter(arg0);
+		return true;
+	}
+	
+	@Override
+	public boolean onQueryTextSubmit(String arg0) {
+		// TODO Auto-generated method stub
+		Lineas.this.adapt.getFilter().filter(arg0);
+		return true;
+	}
 }

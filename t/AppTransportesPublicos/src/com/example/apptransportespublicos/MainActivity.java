@@ -56,6 +56,7 @@ import android.location.LocationProvider;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Xml.Encoding;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -89,9 +90,9 @@ public class MainActivity extends ActionBarActivity {
 	private String pais;
 	private MainActivity context;
 	private String transporte;
-	private List<Aparcamiento> apar = new ArrayList<Aparcamiento>();
-	private List<Bicicletas> bici = new ArrayList<Bicicletas>();
-	private List<EstructuraPublica> ep = new ArrayList<EstructuraPublica>();
+	private ArrayList<Aparcamiento> apar = new ArrayList<Aparcamiento>();
+	private ArrayList<Bicicletas> bici = new ArrayList<Bicicletas>();
+	private ArrayList<EstructuraPublica> ep = new ArrayList<EstructuraPublica>();
 	private String linea;
 	private Object parada;
 	private ArrayList<String> transportesList = new ArrayList<String>();
@@ -196,6 +197,7 @@ public class MainActivity extends ActionBarActivity {
 			else if (b.getString("Anterior").equals("transportes")){
 				ciudad = b.getString("ciudad");
 				transporte = b.getString("transporte");
+				pais = b.getString("pais");
 				Toast.makeText(getApplicationContext(), transporte, Toast.LENGTH_SHORT).show();
 			}
 			else if (b.get("Anterior").equals("busqueda")) {
@@ -283,6 +285,7 @@ public class MainActivity extends ActionBarActivity {
 					if (ciudad == null) {
 						ciudad = fromLocation.get(0).getLocality();
 						pais = fromLocation.get(0).getCountryName();
+						
 						añadirPunto();
 					}
 					else {
@@ -292,8 +295,7 @@ public class MainActivity extends ActionBarActivity {
 								obtenerLatLong();
 							}
 							else {
-								buscarParadas();
-								añadirParadas();
+								buscaTransportes(transporte);
 							}
 						}
 						else {
@@ -352,13 +354,31 @@ public class MainActivity extends ActionBarActivity {
 	private void añadirParadas() {
 		// TODO Auto-generated method stub
 		int icono = 0;
+		Log.d("para", "Estoy en añadir paradas");
 		if (transporte.equals("Aparcamiento")) {
+			Log.d("para", "Soy aparcamiento y "+apar.size());
 			icono = R.drawable.icono_parking;
+			fragment.getMap().setMyLocationEnabled(true);
 			for (int i = 0; i < apar.size(); i++) {
 				Aparcamiento a = apar.get(i);
 				double la = a.latitud;
 				double lo = a.longitud;
+				Geocoder g = new Geocoder(context);
+				
+				Log.d("lat", la+ " "+lo+" "+ a.direccion);
+				try {
+					List<Address> fromLocationName = g.getFromLocationName(a.direccion+", "+a.localidad, 1);
+					la = fromLocationName.get(0).getLatitude();
+					lo = fromLocationName.get(0).getLongitude();
+					pais = fromLocationName.get(0).getCountryName();
+					
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				LatLng l = new LatLng(la, lo);
+				
 				fragment.getMap().addMarker(new MarkerOptions().position(l)
 						.title(a.direccion).snippet("Plazas totales: "+String.valueOf(a.plazasTotales)+"/n Plazas libres"
 								+String.valueOf(a.plazasLibres))
@@ -414,18 +434,18 @@ public class MainActivity extends ActionBarActivity {
 
 	private void buscarParadas() {
 		// TODO Auto-generated method stub
-		Aparcamiento a = new Aparcamiento();
-		a.latitud = latitude;
-		a.longitud = longitude;
-		a.plazasLibres = 3;
-		a.plazasTotales = 300;
-		a.direccion= "Av. Meridiana 596";
-		a.localidad = "Barcelona";
-		a.region = "Barcelona";
-		a.pais = "España";
-		a.identificador = "A78";
-				
-		apar.add(a);
+//		Aparcamiento a = new Aparcamiento();
+//		a.latitud = latitude;
+//		a.longitud = longitude;
+//		a.plazasLibres = 3;
+//		a.plazasTotales = 300;
+//		a.direccion= "Av. Meridiana 596";
+//		a.localidad = "Barcelona";
+//		a.region = "Barcelona";
+//		a.pais = "España";
+//		a.identificador = "A78";
+//				
+//		apar.add(a);
 	}
 
 	private void añadirPunto() {
@@ -538,11 +558,7 @@ private  class FragmentMapa extends Fragment {
         rootView = inflater.inflate(R.layout.activity_fragment_mapa, container, false);
         
 		fragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-		if (fragment.getMap() == null) Log.d("fragment0", "is nullllllllll");
-		else Log.d("fragment0", "is not nullllllllllllll");
-		//      getSupportFragmentManager().beginTransaction()
-//              .add(android.R.id.content, fragment).commit();
-//        obtenerGeolocalizacion();
+
         return rootView;
     }
 	
@@ -579,7 +595,11 @@ private class LoadParadaTask extends AsyncTask<Void, Void, String> {
 				
 				HttpClient cliente = new DefaultHttpClient();
 
-				String url = constantes.transportes+ciudad;
+				String url;
+				if (nom.equals("Aparcamiento"))
+					url = constantes.aparcamiento+"ciudad="+ciudad+"&pais="+pais;
+				else
+					url = constantes.transportes+ciudad;
 				HttpGet peticion = new HttpGet(url);
 				Log.d("Url 1", url);
 				// ejecuta una petición get
@@ -625,30 +645,61 @@ private class LoadParadaTask extends AsyncTask<Void, Void, String> {
 				progress.dismiss();
 				
 				JSONObject json = new JSONObject(response);
-//				JSONObject jso = json.getJSONObject("data");
-				JSONArray js = json.getJSONArray("nombres");
-				for (int i = 0; i < js.length(); i++) {
-					JSONObject j = js.getJSONObject(i);
-					transportesList.add(j.getString("nombre"));
-					
-				}
-				
-				if(nom.equals("BusquedaParadas")) {
-			    	Intent i = new Intent(MainActivity.this, BusquedaParada.class);
-			    	i.putExtra("ciudad", ciudad);
-			    	i.putExtra("transportes", transportesList);
-				     startActivity(i);
+				if (nom.equals("Aparcamiento")) {
+					JSONArray js = json.getJSONArray("Aparcamientos");
+					for (int i = 0; i < js.length(); i++) {
+						JSONObject j = js.getJSONObject(i);
+						Aparcamiento a = new Aparcamiento();
+						if (!j.getString("descripcion").isEmpty())
+							a.descripcion = j.getString("descripcion");
+						if (!j.getString("latitud").isEmpty())
+							a.latitud = Double.valueOf(j.getString("latitud"));
+						if (!j.getString("longitud").isEmpty())
+							a.longitud = Double.valueOf(j.getString("longitud"));
+						if (!j.getString("pais").isEmpty())
+							a.pais = j.getString("pais");
+						if (!j.getString("localidad").isEmpty())
+							a.localidad = j.getString("localidad");
+						if (!j.getString("direccion").isEmpty())
+							a.direccion = j.getString("direccion");
+						if (!j.getString("telefono").isEmpty())
+							a.telefono = j.getString("telefono");
+						if (!j.getString("accesibilidad").isEmpty())
+							a.accesibilidad = Integer.valueOf(j.getString("accesibilidad"));
+						if (!j.getString("plazasLibres").isEmpty())
+							a.plazasLibres = Integer.valueOf(j.getString("plazasLibres"));
+						if (!j.getString("plazasTotales").isEmpty())
+							a.plazasTotales = Integer.valueOf(j.getString("plazasTotales"));
+						apar.add(a);
+					}
+					añadirParadas();
 				}
 				else {
-					Intent i = new Intent(MainActivity.this, Transportes.class);
-			    	i.putExtra("ciudad", ciudad);
-			    	i.putExtra("pais", pais);
-			    	i.putExtra("transportes", transportesList);
-			    	startActivity(i);
-			    	
-				}
+	//				JSONObject jso = json.getJSONObject("data");
+					JSONArray js = json.getJSONArray("nombres");
+					for (int i = 0; i < js.length(); i++) {
+						JSONObject j = js.getJSONObject(i);
+						transportesList.add(j.getString("nombre"));
+						
+					}
+					
+					if(nom.equals("BusquedaParadas")) {
+				    	Intent i = new Intent(MainActivity.this, BusquedaParada.class);
+				    	i.putExtra("ciudad", ciudad);
+				    	i.putExtra("transportes", transportesList);
+					     startActivity(i);
+					}
+					else {
+						Log.d("Main pais", pais);
+						Intent i = new Intent(MainActivity.this, Transportes.class);
+				    	i.putExtra("ciudad", ciudad);
+				    	i.putExtra("pais", pais);
+				    	i.putExtra("transportes", transportesList);
+				    	startActivity(i);
+				    	
+					}
 
-				
+				}
 //					
 //					Parada p;
 //					for (int i = 0; i < js.length(); ++ i) {
