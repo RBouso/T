@@ -60,15 +60,12 @@ public class Listas extends ActionBarActivity {
 		bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0033CD")));
 		lista = (ListView)findViewById(R.id.listView1);
 		list = new ArrayList<String>();
-		String [] valores = {"Barcelona", "Madrid", "Bilbao"};
-		Arrays.sort(valores);
+		
 		Bundle b = getIntent().getExtras();
 		String ciudad = b.getString("ciudad");
-		final int pos = buscarCiudad(ciudad, valores);
+		final int pos = -1;
 		
-		adapt = new ArrayAdapter<String>(this,
-	              R.layout.activity_nombre_listas, R.id.nom, valores) ;
-		lista.setAdapter(adapt);
+		
 	
 		
 		  // ListView Item Click Listener
@@ -99,6 +96,7 @@ public class Listas extends ActionBarActivity {
 	                  "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
 	                  .show();
 	                Intent i = new Intent(Listas.this, MainActivity.class);
+	                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	                i.putExtra("ciudad", itemValue);
 	                i.putExtra("Anterior", "ciudades");
 	                startActivity(i);
@@ -107,6 +105,7 @@ public class Listas extends ActionBarActivity {
               }
 
          }); 
+        buscarCiudad();
 	}
 	
 	private int buscarCiudad(String ciudad, String[] valores) {
@@ -124,7 +123,7 @@ public class Listas extends ActionBarActivity {
 	
 
 	
-	void buscarLinea() {
+	void buscarCiudad() {
 
 		ProgressDialog progress = new ProgressDialog(this);
 		progress.setMessage("Buscando, por favor espere...");

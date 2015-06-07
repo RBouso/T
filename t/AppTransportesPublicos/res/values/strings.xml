@@ -18,7 +18,7 @@
         <item>Transportes</item>
         <item>Buscar una parada</item>
         <item>Buscar paradas</item>
-        <item>Consultar transportes</item>
+        <item>Horarios</item>
         <item>Favoritos</item>
         <item>Acerca de nosotros</item>
     </array>
@@ -29,5 +29,11 @@
     <string name="title_activity_fragment_mapa">FragmentMapa</string>
     <string name="title_activity_listas">Listas</string>
     <string name="title_activity_nombre_listas">NombreListas</string>
+    <string name="title_activity_popup">Popup</string>
+    <string name="title_activity_busqueda_cercana">BusquedaCercana</string>
+    <string name="title_activity_info">Info</string>
+    <string name="title_activity_error">Error</string>
+    <string name="title_activity_horario">Horario</string>
+    <string name="title_activity_lista_horario">ListaHorario</string>
 
 </resources>

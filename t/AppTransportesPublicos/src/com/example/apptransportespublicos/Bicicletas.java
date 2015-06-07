@@ -8,6 +8,8 @@ public class Bicicletas {
 	public String localidad;
 	public String pais;
 	public String identificador;
+	public String descripcion;
+	public String telefono;
 	public int anclajes;
 	public int biciLibres;
 

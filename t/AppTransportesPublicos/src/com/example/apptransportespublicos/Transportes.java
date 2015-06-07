@@ -77,7 +77,7 @@ public class Transportes extends Activity implements OnQueryTextListener {
 	               if (itemValue.equals("Aparcamiento") || itemValue.equals("Bicicletas")
 	            		   || itemValue.equals("Taxi")) {
 	            	   Intent i = new Intent(Transportes.this,MainActivity.class);
-	            	   
+	            	   i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	            	   i.putExtra("Anterior", "transportes");
 	            	   i.putExtra("ciudad", ciudad);
 	            	   i.putExtra("pais", pais);

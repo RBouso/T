@@ -58,25 +58,10 @@ import android.widget.AdapterView.OnItemSelectedListener;
 public class BusquedaParada extends FragmentActivity {
 
 	private FragmentTabHost tabHost;
-	private boolean bus = false;
-	private boolean metro = false;
-	private boolean tran = false;
-	private boolean ferro = false;
-	private boolean funi = false;
-	private boolean tele = false;
-	private boolean taxi = false;
-	private boolean park = false;
-	private boolean bici = false;
-	private String transporte;
-	private String ciudad;
+
 	private ArrayList<String> transportes = new ArrayList<String>();
 	
 	
-	
-	public final static String URL = "http://192.168.1.130:8084/ServerSmart/transportesPublicos?wsdl";
-	public static final String NAMESPACE = "http://transportesPublicos";
-	public static final String SOAP_ACTION_PREFIX = "/";
-	 private static final String METHOD = "getCiudad";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +72,6 @@ public class BusquedaParada extends FragmentActivity {
 		//for color
 		bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#0033CD")));
 		Bundle b = getIntent().getExtras();
-		ciudad = b.getString("ciudad");
 		transportes = b.getStringArrayList("transportes");
 		
 		tabHost= (FragmentTabHost) findViewById(android.R.id.tabhost);
@@ -116,16 +100,6 @@ public class BusquedaParada extends FragmentActivity {
 		if (transportes.contains("Teleferico"))
 			tabHost.addTab(tabHost.newTabSpec("Teleferico").setIndicator("Teleferico"),
 			Tab.class, b);
-		if (taxi)
-			tabHost.addTab(tabHost.newTabSpec("Taxi").setIndicator("Taxi"),
-			Tab.class, null);
-		if (park)
-			tabHost.addTab(tabHost.newTabSpec("Aparcamiento").setIndicator("Aparcamiento"),
-			Tab.class, b);
-		if (bici)
-			tabHost.addTab(tabHost.newTabSpec("Bicicletas").setIndicator("Bicicletas"),
-			Tab.class, b);
-		
 	
 		}
 	

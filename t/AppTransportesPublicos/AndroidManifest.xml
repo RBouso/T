@@ -77,6 +77,18 @@
             android:label="@string/title_activity_tab" >
         </activity>
         <activity
+            android:name=".Favoritos"
+            android:label="Favoritos" >
+        </activity>
+        <activity
+            android:name=".TabHorarios"
+            android:label="Horarios" >
+        </activity>
+        <activity
+            android:name=".TabFavoritos"
+            android:label="TabFavoritos" >
+        </activity>
+        <activity
             android:name=".FragmentMapa"
             android:label="@string/title_activity_fragment_mapa" >
         </activity>
@@ -99,6 +111,30 @@
         <activity
             android:name=".Paradas"
             android:label="Paradas" >
+        </activity>
+        <activity
+            android:name=".Popup"
+            android:label="@string/title_activity_popup" >
+        </activity>
+        <activity
+            android:name=".BusquedaCercana"
+            android:label="@string/title_activity_busqueda_cercana" >
+        </activity>
+        <activity
+            android:name=".Info"
+            android:label="@string/title_activity_info" >
+        </activity>
+        <activity
+            android:name=".Error"
+            android:label="@string/title_activity_error" >
+        </activity>
+        <activity
+            android:name=".Horario"
+            android:label="@string/title_activity_horario" >
+        </activity>
+        <activity
+            android:name=".ListaHorario"
+            android:label="@string/title_activity_lista_horario" >
         </activity>
     </application>
 
