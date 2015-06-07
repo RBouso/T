@@ -29,30 +29,6 @@ Codigo linea;Descripcion linea;Sentido;Numero parada;Codigo parada;Parada;Zona;C
 01;ARANGOITI - PLAZA BIRIBILA;Gran Via - Arangoiti;14;1611;Monte Jata 4;Arangoiti-Egileor;
 01;ARANGOITI - PLAZA BIRIBILA;Gran Via - Arangoiti;15;1612;Monte Ganeta / Monte Jata;Arangoiti-Egileor;
 01;ARANGOITI - PLAZA BIRIBILA;Gran Via - Arangoiti;16;1604;Ganeta Mendia (7);Arangoiti-Egileor;
-03;PLAZA BIRIBILA - OTXARKOAGA;Plaza Biribila - Otxarkoaga;1;6127;Plaza Biribila / Navarra;Pl. Biribila-B.B.K.;A2,30
-03;PLAZA BIRIBILA - OTXARKOAGA;Plaza Biribila - Otxarkoaga;2;5103;Ernesto Erkoreka 8;Pl. Ernesto Erkoreka;A1,30,40,62
-03;PLAZA BIRIBILA - OTXARKOAGA;Plaza Biribila - Otxarkoaga;3;5111;Zumalacárregui / (T.Zubiria);Zumalacarregui-Grupo Panera;A1,30,40,62
-03;PLAZA BIRIBILA - OTXARKOAGA;Plaza Biribila - Otxarkoaga;4;4109;Zumalacárregui 38;Zumalacarregui-Parque;13,30,38
-03;PLAZA BIRIBILA - OTXARKOAGA;Plaza Biribila - Otxarkoaga;5;4104;Begoñako Basilika;Basilica de Begoña;30,38
-03;PLAZA BIRIBILA - OTXARKOAGA;Plaza Biribila - Otxarkoaga;6;3211;Jesús Galíndez / Txomin Garat;Txomin Garat-La Tortilla;
-03;PLAZA BIRIBILA - OTXARKOAGA;Plaza Biribila - Otxarkoaga;7;3212;Jesús Galíndez 24 / Gabriel Aresti;Jesus Galindez-Gabriel Aresti;
-03;PLAZA BIRIBILA - OTXARKOAGA;Plaza Biribila - Otxarkoaga;8;3204;Dr. Ornilla / Pau Casals;Jesus Galindez-Dr. Ornilla;34,38,43
-03;PLAZA BIRIBILA - OTXARKOAGA;Plaza Biribila - Otxarkoaga;9;3115;Zizeruena / Eliza;Pl. Kepa Enbeita-Iglesia;43
-03;PLAZA BIRIBILA - OTXARKOAGA;Plaza Biribila - Otxarkoaga;10;3116;Zizeruena 22;Zizeruene;
-03;PLAZA BIRIBILA - OTXARKOAGA;Plaza Biribila - Otxarkoaga;11;3101;Arbolantxa 18;Cº Arbolantxa;
-03;PLAZA BIRIBILA - OTXARKOAGA;Otxarkoaga - Plaza Biribila;1;3101;Arbolantxa 18;Cº Arbolantxa;
-03;PLAZA BIRIBILA - OTXARKOAGA;Otxarkoaga - Plaza Biribila;2;3106;Larratundu 21;Larratundu-Otxarkoaga;34
-03;PLAZA BIRIBILA - OTXARKOAGA;Otxarkoaga - Plaza Biribila;3;3103;Kepa Enbeita "Urretxindorra";Pl. Kepa Enbeita-Iglesia;34
-03;PLAZA BIRIBILA - OTXARKOAGA;Otxarkoaga - Plaza Biribila;4;3108;Pau Casals / Jesús Galíndez;Jesus Galindez-Dr. Ornilla;
-03;PLAZA BIRIBILA - OTXARKOAGA;Otxarkoaga - Plaza Biribila;5;3210;Jesús Galíndez / Adoratrices;Jesus Galindez-Gabriel Aresti;
-03;PLAZA BIRIBILA - OTXARKOAGA;Otxarkoaga - Plaza Biribila;6;3214;Jesús Galíndez 3 / Colegio Alemán;Jesus Galindez-Colegio Aleman;
-03;PLAZA BIRIBILA - OTXARKOAGA;Otxarkoaga - Plaza Biribila;7;3230;Zumalacárregui / (Makua);Zumalacarregui-Hotel Avenida;
-03;PLAZA BIRIBILA - OTXARKOAGA;Otxarkoaga - Plaza Biribila;8;2509;Zumalacárregui 121;Zumalacarregui-Parque;
-03;PLAZA BIRIBILA - OTXARKOAGA;Otxarkoaga - Plaza Biribila;9;2415;Zumalacárregui / T.Zubiria;Zumalacarregui-Grupo Panera;A1,A5,A7,22,26,28,30,62
-03;PLAZA BIRIBILA - OTXARKOAGA;Otxarkoaga - Plaza Biribila;10;2202;Kristo 1;Pl. Ernesto Erkoreka;A1,A5,A7,22,30,62
-03;PLAZA BIRIBILA - OTXARKOAGA;Otxarkoaga - Plaza Biribila;11;5108;Sendeja (5);Sendeja-Tinglados;A1,A7,11,22,26,28,30,71,72,77
-03;PLAZA BIRIBILA - OTXARKOAGA;Otxarkoaga - Plaza Biribila;12;5105;Puente del Arenal;Puente de el Arenal;A1,A2,A7,26,28,30,40,56,58,71,72,75,77,85
-03;PLAZA BIRIBILA - OTXARKOAGA;Otxarkoaga - Plaza Biribila;13;6127;Plaza Biribila / Navarra;Pl. Biribila-B.B.K.;A2,30
 10;ELORRIETA - PLAZA BIRIBILA;Elorrieta - Gran Via;1;1201;I. Ellacuria / Elorrieta;Lehendakari Aguirre-Pl. Levante;
 10;ELORRIETA - PLAZA BIRIBILA;Elorrieta - Gran Via;2;1105;L. Aguirre 179;Lehendakari Aguirre-Pl. Levante;13,18,71
 10;ELORRIETA - PLAZA BIRIBILA;Elorrieta - Gran Via;3;1103;L. Aguirre 161;Lehendakari Aguirre-San Ignacio;13,18,71
@@ -362,7 +338,7 @@ Codigo linea;Descripcion linea;Sentido;Numero parada;Codigo parada;Parada;Zona;C
 30;TXURDINAGA - MIRIBILLA;Miribilla - Txurdinaga;6;5802;Juan de Garay 11;Juan de Garay-Gobierno Militar;71,75,76
 30;TXURDINAGA - MIRIBILLA;Miribilla - Txurdinaga;7;6123;Juan de Garay 7;Juan de Garay-General Salazar;71,75,76
 30;TXURDINAGA - MIRIBILLA;Miribilla - Txurdinaga;8;6120;Hurtado Amézaga 15;Hurtado de Amezaga-Quinta Parroquia;E1,E2,71,75,85
-30;TXURDINAGA - MIRIBILLA;Miribilla - Txurdinaga;9;6127;Plaza Biribila / Navarra;Pl. Biribila-B.B.K.;A2,03
+30;TXURDINAGA - MIRIBILLA;Miribilla - Txurdinaga;9;6126;Plaza Biribila / Gran Vía;Pl. Biribila-La Granja;A2,03,40
 30;TXURDINAGA - MIRIBILLA;Miribilla - Txurdinaga;10;5103;Ernesto Erkoreka 8;Pl. Ernesto Erkoreka;A1,03,40,62
 30;TXURDINAGA - MIRIBILLA;Miribilla - Txurdinaga;11;5111;Zumalacárregui / (T.Zubiria);Zumalacarregui-Grupo Panera;A1,03,40,62
 30;TXURDINAGA - MIRIBILLA;Miribilla - Txurdinaga;12;4109;Zumalacárregui 38;Zumalacarregui-Parque;03,13,38
@@ -1008,22 +984,6 @@ A1;ASUNCION - PLAZA BIRIBILA;Ayala - Asunción;9;2705;Vía Vieja de Lezama 82;Mont
 A1;ASUNCION - PLAZA BIRIBILA;Ayala - Asunción;10;2701;Vía Vieja de Lezama (75) / Montaño;Monte Aldamiz;
 A1;ASUNCION - PLAZA BIRIBILA;Ayala - Asunción;11;2702;Vía Vieja de Lezama (85);Bº La Asuncion;
 A1;ASUNCION - PLAZA BIRIBILA;Ayala - Asunción;12;2303;Vía Vieja de Lezama 93;Bº La Asuncion;
-A2;SOLOKOETXE - PLAZA BIRIBILA;Solokoetxe - Plaza Biribila/Navarra;1;5302;Fika 22;;
-A2;SOLOKOETXE - PLAZA BIRIBILA;Solokoetxe - Plaza Biribila/Navarra;2;5304;Zabalbide (32);Zabalbide-Fica;
-A2;SOLOKOETXE - PLAZA BIRIBILA;Solokoetxe - Plaza Biribila/Navarra;3;5306;Zabalbide 7;Zabalbide-Fica;
-A2;SOLOKOETXE - PLAZA BIRIBILA;Solokoetxe - Plaza Biribila/Navarra;4;5106;Ribera / Merkatua;Mercado de la Ribera;11,22,40,56,58,72,75,77,85
-A2;SOLOKOETXE - PLAZA BIRIBILA;Solokoetxe - Plaza Biribila/Navarra;5;5105;Puente del Arenal;Puente de el Arenal;A1,A7,03,26,28,30,40,56,58,71,72,75,77,85
-A2;SOLOKOETXE - PLAZA BIRIBILA;Solokoetxe - Plaza Biribila/Navarra;6;6127;Plaza Biribila / Navarra;Pl. Biribila-B.B.K.;03,30
-A2;SOLOKOETXE - PLAZA BIRIBILA;Plaza Biribila/Navarra - Solokoetxe;1;6127;Plaza Biribila / Navarra;Pl. Biribila-B.B.K.;03,30
-A2;SOLOKOETXE - PLAZA BIRIBILA;Plaza Biribila/Navarra - Solokoetxe;2;5107;San Nicolás 4;Vda. Epalza-San Nicolas;A5
-A2;SOLOKOETXE - PLAZA BIRIBILA;Plaza Biribila/Navarra - Solokoetxe;3;5109;Unamuno;Iturribide;A5
-A2;SOLOKOETXE - PLAZA BIRIBILA;Plaza Biribila/Navarra - Solokoetxe;4;5204;Prim 22 Bis;Prim;A5
-A2;SOLOKOETXE - PLAZA BIRIBILA;Plaza Biribila/Navarra - Solokoetxe;5;5205;Prim 36;Prim;A5
-A2;SOLOKOETXE - PLAZA BIRIBILA;Plaza Biribila/Navarra - Solokoetxe;6;5203;Iturribide 53;FIKA;
-A2;SOLOKOETXE - PLAZA BIRIBILA;Plaza Biribila/Navarra - Solokoetxe;7;5202;Fika 2;FIKA;
-A2;SOLOKOETXE - PLAZA BIRIBILA;Plaza Biribila/Navarra - Solokoetxe;8;5303;Fika 8;FIKA;
-A2;SOLOKOETXE - PLAZA BIRIBILA;Plaza Biribila/Navarra - Solokoetxe;9;5301;Fika 18;FIKA;
-A2;SOLOKOETXE - PLAZA BIRIBILA;Plaza Biribila/Navarra - Solokoetxe;10;5302;Fika 22;;
 A3;OLABEAGA - MOYUA;Olabeaga - Moyua  2013;1;8212;San Nikolas Olabeaga 58;Olabeaga;
 A3;OLABEAGA - MOYUA;Olabeaga - Moyua  2013;2;8202;Alfonso Churruca 3;Olabeaga;
 A3;OLABEAGA - MOYUA;Olabeaga - Moyua  2013;3;8209;Olabeaga 30;Olabeaga;
@@ -1216,57 +1176,6 @@ G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga;12;3101;Arbolantxa
 G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga;13;3106;Larratundu 21;Larratundu-Otxarkoaga;03,34
 G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga;14;3117;Larratundu 1;;
 G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga;15;3222;Julián Gaiarre 61;Julian Gaiarre-Centro Civico;34,38,43
-G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV;1;7322;Karitateko Alaben (3);Xalbador-Rekalde;72
-G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV;2;7323;Karitateko Alaben 3;Xalbador-Rekalde;72
-G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV;3;7417;Karitateko Alaben (46);Cº Larraskitu-Iberdrola;72
-G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV;4;7408;Errekalde-Larraskitu / Kiroldegia;Polideportivo de Recalde;A8,72,76,77
-G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV;5;7404;Errekalde-Larraskitu (36);Ctra. Larraskitu-Parque;A8,72,76,77
-G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV;6;7307;Errekalde-Larraskitu 23;Ciudadela-Larraskitu;A8,72,76,77
-G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV;7;7306;Errekalde-Larraskitu 1;Ciudadela-Ambulatorio;A8,72,76,77
-G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV;8;7304;Ciudadela 1;Ciudadela-Iglesia;A8,72
-G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV;9;7311;Gordoniz 49A;Gordoniz-Jaen;A8,27,57,72,77
-G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV;10;7107;Gordoniz 39;Gordoniz-Pl. Guardia Civil;27,72,77
-G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV;11;7103;Autonomía 13;Autonomia-Estacion Autobuses;58,85
-G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV;12;7102;Autonomía 1;Pl. Zabalburu-Simago;30,58,85
-G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV;13;6120;Hurtado Amézaga 15;Hurtado de Amezaga-Quinta Parroquia;E1,E2,30,71,75,85
-G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV;14;6118;Hurtado Amézaga 1 / Geltokia-Estación;Hurtado de Amezaga-Estacion Abando;E1,E2,E3,71,75,85
-G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV;15;6130;Gran Vía 2;;A1,01,10,40
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;1;6130;Gran Vía 2;;A1,01,10,40
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;2;6117;Gran Vía 8;Gran Via-Corte Ingles;A7,01,26,28,56,72,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;3;6114;Gran Vía 36;Gran Via-Metro Moyua;A7,01,10,26,28,56,72,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;4;6116;Gran Vía 40;Gran Via-G. Civil;26,27,28,38,48,56,72,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;5;6211;Gregorio la Revilla 2;Gregorio de la Revilla-Pl. Campuzano;26,27,28,38,48,72,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;6;6212;Gregorio la Revilla 22;Gregorio de la Revilla-Part.Indautxu;26,27,28,38,48,72,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;7;6214;Gregorio la Revilla 36;Gregorio de la Revilla-Perez Galdos;27,38,48,72,77,88
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;8;7106;Gordoniz 22;Gordoniz-Pl. Guardia Civil;27,72,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;9;7310;Gordoniz 36;Gordoniz-Jaen;A8,27,57,72,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;10;7314;Goya 7;Gordoniz-Pl. Recalde;27,57
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;11;7303;Camilo Villabaso (27);Cº Villabaso;27
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;12;7501;Altube 12;;27
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;13;7508;Circunvalación 1;Betolaza-Circunvalacion;27
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;14;7509;Circunvalación 12;Betolaza-Circunvalacion;27
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;15;7510;Uretamendi / Plaza;Pl. Uretamendi;27
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;16;7503;Betolatza 51;Uretamendi-Betolaza;27
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;17;7502;Betolatza 41;Betolaza;27
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;18;7507;Circunvalación 1;Betolaza-Circunvalacion;27
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;19;7504;Circunvalación 12;Betolaza-Circunvalacion;27
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;20;7506;Uretamendi / Plaza;Pl. Uretamendi;27
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;21;7511;Armotxabidea;Gordoniz-Pl. Recalde;27
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;22;7601;Iturrigorribidea (45);Cº Iturrigorri;72,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;23;7605;Peñascal 16 / (Eliza);Cº Iturrigorri-Iglesia;72,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;24;7604;Peñascal (29);Bº El Peñascal;72,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;25;7701;Peñascal (146) / Rotonda;El Peñascal-Cantera;72,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;26;7606;Peñascal 29;Bº El Peñascal;72,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;27;7603;Peñascal (16) / Eliza;Cº Iturrigorri-Iglesia;72,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;28;7602;Iturrigorribidea 37;Cº Iturrigorri;27,72,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;29;7309;Gordoniz (90);Gordoniz-Pl. Belategi;27,76,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;30;7308;Gordoniz (54) / Pza Errekalde;Gordoniz-Pl. Recalde;27,76,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;31;7305;Ciudadela 2A;Ciudadela-Iglesia;A8,72,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;32;7409;Errekalde-Larraskitu 14;Ciudadela-Larraskitu;A8,72,76,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;33;7411;Errekalde-Larraskitu 36;Ctra. Larraskitu-Parque;A8,72,76,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;34;7408;Errekalde-Larraskitu / Kiroldegia;Polideportivo de Recalde;A8,72,76,77
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;35;7416;Karitateko Alaben 48;Cº Larraskitu-Iberdrola;72
-G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu;36;7322;Karitateko Alaben (3);Xalbador-Rekalde;72
 G4;LA PEÑA - PLAZA BIRIBILA;La Peña - Plaza Biribila/Ayala;1;5518;Zamacola 168;Zamacola-La Peña;50,56
 G4;LA PEÑA - PLAZA BIRIBILA;La Peña - Plaza Biribila/Ayala;2;5502;Abusu / Ibaieder;Zamacola-La Peña;40,50,56
 G4;LA PEÑA - PLAZA BIRIBILA;La Peña - Plaza Biribila/Ayala;3;5501;Abusu / Ibaialde;Zamacola-Iglesia;40,50,56
