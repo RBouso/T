@@ -111,6 +111,8 @@ public class BusquedaCercana extends ActionBarActivity {
 		                i.putExtra("pais", pais);
 		                i.putExtra("Anterior", "cercana");
 		                i.putExtra("direccion", nom+", "+num);
+		                i.putExtra("latitud", ad.get(0).getLatitude());
+		                i.putExtra("longitud", ad.get(0).getLongitude());
 		               
 		                startActivity(i);
 		                finish();

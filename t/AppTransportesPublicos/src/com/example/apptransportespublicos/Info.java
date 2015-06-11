@@ -97,8 +97,7 @@ public class Info extends Activity {
 	    			ciudad+"' AND e.pais = '" +pais+"' AND e.latitud = "+
 	    			lat+" AND e.longitud = "+lon, null);
 	        if (cu.moveToFirst()) {
-	        	Log.d("select", cu.getString(0)+" "+cu.getString(1)+" "+cu.getFloat(2)
-	        			+" "+cu.getFloat(3)+ " "+cu.getInt(4));
+	        
 	        	rb.setRating(cu.getInt(4));
 	        	if(cu.getInt(5) != -1) {
 	        		valoracion.setRating(cu.getInt(5));
@@ -212,7 +211,6 @@ public class Info extends Activity {
 				SQLiteDatabase db = bd.getWritableDatabase();
 				if(favorito == 0) {
 					favorito = 1;
-					Log.d("fav", "Pongo a 1");
 					
 			        //Si hemos abierto correctamente la base de datos
 			        if(db != null)
@@ -221,9 +219,9 @@ public class Info extends Activity {
 				    			ciudad+"' AND e.pais = '" +pais+"' AND e.latitud = "+
 				    			lat+" AND e.longitud = "+lon, null);
 						 if (cu.moveToFirst()) {
-				            	db.execSQL("UPDATE Estacion SET esFavorita = 1 WHERE e.ciudad = '"+
-				        			ciudad+"' AND e.pais = '" +pais+"' AND e.latitud = "+
-				        			lat+" AND e.longitud = "+lon);
+				            	db.execSQL("UPDATE Estacion SET esFavorita = 1 WHERE ciudad = '"+
+				        			ciudad+"' AND pais = '" +pais+"' AND latitud = "+
+				        			lat+" AND longitud = "+lon);
 				            }
 				        	
 				            else {
@@ -237,7 +235,6 @@ public class Info extends Activity {
 				}
 				else {
 					favorito = 0;
-					Log.d("fav", "Pongo a 0");
 					//Si hemos abierto correctamente la base de datos
 			        if(db != null)
 			        {
@@ -261,7 +258,6 @@ public class Info extends Activity {
 				}
 				//Cerramos la base de datos
 		        db.close();
-		        Log.d("fav", "Soy favorito "+ favorito);
 				rb.setRating(favorito);
 			}
 		});
@@ -277,46 +273,68 @@ public class Info extends Activity {
 //			public void onRatingChanged(RatingBar ratingBar, float rating,
 //					boolean fromUser) {
 				// TODO Auto-generated method stub
-        valoracion.setOnTouchListener(new OnTouchListener() {
+        valoracion.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
 			
 			@Override
-			public boolean onTouch(View v, MotionEvent event) {
+			public void onRatingChanged(RatingBar ratingBar, float rating,
+					boolean fromUser) {
 				// TODO Auto-generated method stub
-	
-
-				return true;
+				BaseDeDatos bd = new BaseDeDatos(getApplicationContext(), "DBEstacion", null, 1);
+				SQLiteDatabase db = bd.getWritableDatabase();
+				puntuacionN = (int) rating;
+				
+					
+			        //Si hemos abierto correctamente la base de datos
+			        if(db != null)
+			        {
+						Cursor cu = db.rawQuery("SELECT * FROM Estacion e WHERE e.ciudad = '"+
+				    			ciudad+"' AND e.pais = '" +pais+"' AND e.latitud = "+
+				    			lat+" AND e.longitud = "+lon, null);
+						 if (cu.moveToFirst()) {
+							 puntuacionA = cu.getInt(5);
+				            	
+				            }
+						 cu.close();
+			        }       	
+		        db.close();
+				rb.setRating(puntuacionN);
+				
 			}
 		});
+       
         valorar = (Button) findViewById(R.id.buttonValorar);
         valorar.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				puntuacionN = (int) valoracion.getRating();
+				
 				BaseDeDatos bd = new BaseDeDatos(getApplicationContext(), "DBEstacion", null, 1);
 				SQLiteDatabase db = bd.getWritableDatabase();
 
-				if(puntuacionA != -1) {
+				
 					if(db != null)
 			        {
+						boolean existe = false;
 						Cursor cu = db.rawQuery("SELECT * FROM Estacion e WHERE e.ciudad = '"+
 				    			ciudad+"' AND e.pais = '" +pais+"' AND e.latitud = "+
 				    			lat+" AND e.longitud = "+lon, null);
 						 if (cu.moveToFirst()) {
+							 existe = true;
 				            	db.execSQL("UPDATE Estacion SET puntuacion = "+puntuacionN+" WHERE ciudad = '"+
 				        			ciudad+"' AND pais = '" +pais+"' AND latitud = "+
 				        			lat+" AND longitud = "+lon);
 				            }
+						 else {
+							 db.execSQL("INSERT INTO Estacion (ciudad, pais, latitud, longitud, esFavorita, puntuacion) " +
+			                           "VALUES ('" + ciudad + "', '" + pais +"', "+lat+", "+lon+", 0, "+puntuacionN+")");
+						 }
 						 cu.close();
+						 if(existe) buscarValoracion("modificar");
+						 else buscarValoracion("añadir");
 			        }
-					buscarValoracion("modificar");
-				}
-				else {
-					db.execSQL("INSERT INTO Estacion (ciudad, pais, latitud, longitud, esFavorita, puntuacion) " +
-	                           "VALUES ('" + ciudad + "', '" + pais +"', "+lat+", "+lon+", 0, "+puntuacionN+")");
-					buscarValoracion("añadir");
-				}
+				
+				
 				db.close();
 			}
 		});
@@ -380,7 +398,7 @@ public class Info extends Activity {
 				String url;
 				if (selec.equals("media"))url = constantes.media+"ciudad="+ciudad+"&pais="+pais+"&latitud="+lat+"&longitud="+lon;
 				else if (selec.equals("añadir"))url = constantes.valoraciones+"ciudad="+ciudad+"&pais="+pais+"&latitud="+lat+"&longitud="+lon+"&puntuacion="+puntuacionN;
-				else url = constantes.valoraciones+"ciudad="+ciudad+"&pais="+pais+"&latitud="+lat+"&longitud="+lon+"&puntuacionNueva"+puntuacionN+"&puntuacionAntigua"+puntuacionA;
+				else url = constantes.valoraciones+"ciudad="+ciudad+"&pais="+pais+"&latitud="+lat+"&longitud="+lon+"&puntuacionNueva="+puntuacionN+"&puntuacionAntigua="+puntuacionA;
 				Log.d("url", url);
 				HttpGet peticion = new HttpGet(url);
 				// ejecuta una petición get
@@ -425,7 +443,8 @@ public class Info extends Activity {
 				Log.d("String", response);
 				
 				if(!response.equals("-1.0")) {
-					val.setText(response);
+					double media = Math.round(Double.valueOf(response)*100)/100.0;
+					val.setText(String.valueOf(media));
 				}
 				else 
 					val.setText("Esta parada no ha sido valorada");

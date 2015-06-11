@@ -50,6 +50,7 @@ public class Listas extends ActionBarActivity {
 	private ListView lista;
 	private ArrayAdapter<String> adapt;
 	private ArrayList<String> list;
+	private AsyncTask<Void, Void, String> par;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -111,9 +112,7 @@ public class Listas extends ActionBarActivity {
 	private int buscarCiudad(String ciudad, String[] valores) {
 		// TODO Auto-generated method stub
 		int pos = -1;
-		Toast.makeText(getApplicationContext(),
-                "Position :"+ciudad , Toast.LENGTH_LONG)
-                .show();
+
 		for (int i = 0; i < valores.length && pos == -1; i++) 
 			if(valores[i].equals(ciudad))
 				pos = i;
@@ -127,7 +126,7 @@ public class Listas extends ActionBarActivity {
 
 		ProgressDialog progress = new ProgressDialog(this);
 		progress.setMessage("Buscando, por favor espere...");
-		new LoadParadaTask(progress).execute();
+		par = new LoadParadaTask(progress).execute();
 	//}
 }
 

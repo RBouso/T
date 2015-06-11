@@ -46,7 +46,7 @@ public class TabFavoritos extends Fragment{
 		        	Cursor cu = db.rawQuery("SELECT * FROM Estacion e WHERE e.esFavorita = 1", null);
 		            if (cu.moveToFirst()) {
 		            	do {
-		            		list.add(String.valueOf(cu.getDouble(2)));
+		            		list.add("Av. Sarrià,50");
 		            		Log.d("bd", cu.getDouble(2)+" "+ cu.getDouble(3));
 		            	}while(cu.moveToNext());
 		            }

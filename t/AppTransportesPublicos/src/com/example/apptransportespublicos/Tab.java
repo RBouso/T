@@ -160,9 +160,7 @@ public class Tab extends Fragment{
 			public void onItemSelected(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
-				Toast.makeText(parent.getContext(), 
-						"OnItemSelectedListener2 : " + parent.getItemAtPosition(position).toString(),
-						Toast.LENGTH_SHORT).show();
+
 			}
 
 			@Override
@@ -287,7 +285,8 @@ public class Tab extends Fragment{
 						estaciones = new ArrayList<EstructuraPublica>();
 						for (int i = 0; i < js.length(); i++) {
 							JSONObject j = js.getJSONObject(i);
-							paradas.add(j.getString("descripcion"));
+							
+							if(!paradas.contains(j.getString("descripcion"))) paradas.add(j.getString("descripcion"));
 							EstructuraPublica a = new EstructuraPublica();
 							if (!j.getString("descripcion").isEmpty())
 								a.descripcion = j.getString("descripcion");

@@ -37,9 +37,11 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -99,6 +101,8 @@ public class MainActivity extends ActionBarActivity {
 	private ArrayList<EstructuraPublica> estructuras = new ArrayList<EstructuraPublica>();
 
 	private RatingBar rb;
+
+	private String linea;
 	
 	@SuppressLint("NewApi")
 	@Override
@@ -206,13 +210,14 @@ public class MainActivity extends ActionBarActivity {
 				ciudad = b.getString("ciudad");
 				transporte = b.getString("transporte");
 				pais = b.getString("pais");
-				Toast.makeText(getApplicationContext(), transporte, Toast.LENGTH_SHORT).show();
+//				Toast.makeText(getApplicationContext(), transporte, Toast.LENGTH_SHORT).show();
 			}
 			else if (b.getString("Anterior").equals("cercana")){
 				ciudad = b.getString("ciudad");
 				pais = b.getString("pais");
 				direccion = b.getString("direccion");
-				
+				latitude = b.getDouble("latitud");
+				longitude = b.getDouble("longitud");
 			}
 			else if (b.get("Anterior").equals("busqueda")) {
 				ciudad = b.getString("ciudad");
@@ -235,18 +240,22 @@ public class MainActivity extends ActionBarActivity {
 					estructura.telefono = b.getString("telefono");
 				
 			}
+			else if (b.getString("Anterior").equals("Lineas")){
+				Log.d("s", "anterior");
+				ciudad = b.getString("ciudad");
+				pais = b.getString("pais");
+				transporte = b.getString("transporte");
+				linea = b.getString("linea");
+				Log.d("s", linea);
+			}
+			
 			
 		}
 	    
        if (savedInstanceState == null) {
             selectItem(0);
         }
-//       obtenerGeolocalizacion();
-//        //Obtenemos una referencia al control MapView
-//        mapa = (MapView)findViewById(R.id.map);
-// 
-//        //Mostramos los controles de zoom sobre el mapa
-//        mapa.setBuiltInZoomControls(true);
+
 	}
 
 
@@ -307,13 +316,16 @@ public class MainActivity extends ActionBarActivity {
 				longitude = location.getLongitude();
 				Geocoder g = new Geocoder(context);
 				try {
-					List<Address> fromLocation = g.getFromLocation(latitude, longitude, 1);
-					if (ciudad == null) {
-						ciudad = fromLocation.get(0).getLocality();
-						pais = fromLocation.get(0).getCountryName();
 					
-						añadirPunto();
-						buscaTransportes("direccion");
+					if (ciudad == null) {
+						
+							List<Address> fromLocation = g.getFromLocation(latitude, longitude, 1);
+							ciudad = fromLocation.get(0).getLocality();
+							pais = fromLocation.get(0).getCountryName();
+						
+							añadirPunto();
+							buscaTransportes("direccion");
+						
 					}
 					else {
 						
@@ -324,6 +336,10 @@ public class MainActivity extends ActionBarActivity {
 								latitude = estructura.latitud;
 								longitude = estructura.longitud;
 								añadirParadas();
+							}
+							else if (linea != null){
+								
+								buscaTransportes("linea");
 							}
 							else {
 								buscaTransportes(transporte);
@@ -340,14 +356,31 @@ public class MainActivity extends ActionBarActivity {
 									pais = fromLocationName.get(0).getCountryName();
 									buscaTransportes("direccion");
 							}
-							else 
+							
+							else  {
 								añadirPunto();
 								buscaTransportes("direccion");
+							}
+								
 						}
 					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+					
+					builder.setMessage("La WIFI de su teléfono móvil no esta activa. Por favor, active la WIFI e intente acceder de nuevo a la aplicación más tarde.")
+					        .setTitle("Sin conexión a Intenet")
+					        .setCancelable(false)
+					        .setNeutralButton("Aceptar",
+					                new DialogInterface.OnClickListener() {
+					                    public void onClick(DialogInterface dialog, int id) {
+					                        dialog.cancel();
+					                        finish();
+					                    }
+					                });
+					AlertDialog alert = builder.create();
+					alert.show();
+					//e.printStackTrace();
 				}
 				
 				
@@ -375,10 +408,11 @@ public class MainActivity extends ActionBarActivity {
 			@Override
 			public void onProviderDisabled(String provider) {
 				// TODO Auto-generated method stub
-				
+				Log.d("", "Estoy desactivado");
 			}
              
         };
+        
         if (locManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
         	locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10,   locListener);
         else
@@ -424,7 +458,9 @@ public class MainActivity extends ActionBarActivity {
 				String acces = "No";
 				if(a.accesibilidad == 1) acces = "Si";
 				fragment.getMap().addMarker(new MarkerOptions().position(l)
-						.title(a.direccion).snippet("Telefono: "+a.telefono+" Descripcion: "+a.descripcion+" Latitud: "+ latitude+" Longitud: "+ longitude+" Accesibilidad: "+acces+", Plazas totales: "+String.valueOf(a.plazasTotales)+", Plazas libres: "
+						.title(a.direccion).snippet("Telefono: "+a.telefono+" Descripcion: "+
+								a.descripcion+" Latitud: "+ latitude+" Longitud: "+ longitude+" Accesibilidad: "
+								+acces+", Plazas totales: "+String.valueOf(a.plazasTotales)+", Plazas libres: "
 								+String.valueOf(a.plazasLibres)).alpha(1F).anchor(0.2F,0.2F)
 						.icon(BitmapDescriptorFactory.fromResource(icono)));
 				
@@ -567,9 +603,58 @@ public class MainActivity extends ActionBarActivity {
 				double lo = a.longitud;
 				LatLng l = new LatLng(la, lo);
 				fragment.getMap().addMarker(new MarkerOptions().position(l)
-						.title(a.direccion).alpha(1F).anchor(0.2F,0.2F)
+						.title(a.direccion).snippet("Telefono: "+a.telefono+" Descripcion: "+a.descripcion+" Latitud: "+ 
+				latitude+" Longitud: "+ longitude).alpha(1F).anchor(0.2F,0.2F)
 						.icon(BitmapDescriptorFactory.fromResource(icono)));
 				
+fragment.getMap().setInfoWindowAdapter(new InfoWindowAdapter() {
+					
+					@Override
+					public View getInfoWindow(Marker marker) {
+						// TODO Auto-generated method stub
+						return null;
+					}
+					
+					@Override
+					public View getInfoContents(Marker marker) {
+						// TODO Auto-generated method stub
+						View popup = getLayoutInflater().inflate(R.layout.activity_popup, null);
+						TextView tv=(TextView)popup.findViewById(R.id.title);
+						tv.setText(marker.getTitle());
+						tv=(TextView)popup.findViewById(R.id.snippet);
+						tv.setText(marker.getSnippet().substring(marker.getSnippet().indexOf("Nº"), marker.getSnippet().lastIndexOf(",")+1));
+						tv=(TextView)popup.findViewById(R.id.snippet1);
+						tv.setText(marker.getSnippet().substring(marker.getSnippet().lastIndexOf(",")+1));
+//						infoRatingListener.setMarker(marker);
+//						if(rb.getRating() == 0) rb.setRating(1);
+						
+						rb = (RatingBar) popup.findViewById(R.id.ratingBar1);
+						rb.setEnabled(true);
+						Double lat = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Latitud")+9,marker.getSnippet().indexOf("Longitud")));
+						Double lon = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Longitud")+10,marker.getSnippet().indexOf("Nº")));
+						BaseDeDatos bd =
+					            new BaseDeDatos(getApplicationContext(), "DBEstacion", null, 1);
+					 
+					        SQLiteDatabase db = bd.getWritableDatabase();
+//					        bd.onUpgrade(db, 1, 2);
+					        //Si hemos abierto correctamente la base de datos
+					        if(db != null)
+					        {
+					        	Cursor cu = db.rawQuery("SELECT * FROM Estacion e WHERE e.latitud = "+lat+" and e.longitud = "+lon, null);
+					            if (cu.moveToFirst()) {
+					            	do {
+					            		rb.setRating(cu.getInt(4));
+					            	}while(cu.moveToNext());
+					            }
+					        
+					           cu.close();
+					            //Cerramos la base de datos
+					            db.close();
+					        }
+						
+						return(popup);
+					}
+				});
 				
 			}
 			
@@ -581,8 +666,8 @@ public class MainActivity extends ActionBarActivity {
 	        	String direccion = marker.getTitle();
 				String telefono = marker.getSnippet().substring(9,marker.getSnippet().indexOf("Descripcion"));
 	        	String descripcion = marker.getSnippet().substring(marker.getSnippet().indexOf("Descripcion")+12,marker.getSnippet().indexOf("Latitud"));
-	        	 Double lat = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Latitud")+9,marker.getSnippet().indexOf("Longitud")));
-				Double lon = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Longitud")+10,marker.getSnippet().indexOf("Accesibilidad")));
+	        	Double lat = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Latitud")+9,marker.getSnippet().indexOf("Longitud")));
+				
 				i.putExtra("transporte", transporte);
 				i.putExtra("ciudad", ciudad);
 				i.putExtra("pais", pais);
@@ -591,8 +676,10 @@ public class MainActivity extends ActionBarActivity {
 				else i.putExtra("telefono", "-1");
 	            i.putExtra("direccion", direccion);
 	            i.putExtra("latitud", lat);
-	            i.putExtra("longitud", lon);
+
 				if (transporte.equals("Aparcamiento")) {
+					Double lon = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Longitud")+10,marker.getSnippet().indexOf("Accesibilidad")));
+					i.putExtra("longitud", lon);
 					String acces = marker.getSnippet().substring(marker.getSnippet().indexOf("Accesibilidad")+15, marker.getSnippet().indexOf(", Plazas totales"));
 					int total = Integer.parseInt(marker.getSnippet().substring(marker.getSnippet().indexOf("totales")+9, marker.getSnippet().indexOf(", Plazas libres")));
 		            int libres = Integer.parseInt(marker.getSnippet().substring(marker.getSnippet().indexOf("libres")+8));
@@ -601,19 +688,24 @@ public class MainActivity extends ActionBarActivity {
 		            i.putExtra("total", total);
 		            i.putExtra("libres", libres);
 				}
-				if (transporte.equals("Bicicletas")) {
-					
-					int anclajes = Integer.parseInt(marker.getSnippet().substring(marker.getSnippet().indexOf("anclajes")+10, marker.getSnippet().indexOf(", Plazas libres")));
+				else if (transporte.equals("Bicicletas")) {
+					Double lon = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Longitud")+10,marker.getSnippet().indexOf("Nº")));
+					i.putExtra("longitud", lon);
+					int anclajes = Integer.parseInt(marker.getSnippet().substring(marker.getSnippet().indexOf("Anclajes")+9, marker.getSnippet().indexOf(", Plazas libres")));
 		            int libres = Integer.parseInt(marker.getSnippet().substring(marker.getSnippet().indexOf("libres")+8));
 	            
 		            i.putExtra("anclajes", anclajes);
 		            i.putExtra("bicis", libres);
 				}
+				else {
+					Double lon = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Longitud")+10));
+					i.putExtra("longitud", lon);
+				}
 	            startActivity(i);
 	        }
 	    });
 //		fragment.getMap().setOnInfoWindowClickListener((OnInfoWindowClickListener) this);
-		 Toast.makeText(getApplicationContext(), latitude+ " "+ longitude, Toast.LENGTH_LONG).show();
+//		 Toast.makeText(getApplicationContext(), latitude+ " "+ longitude, Toast.LENGTH_LONG).show();
 		fragment.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom((new LatLng(latitude, longitude)), 14));
 	}
 
@@ -768,13 +860,15 @@ private class LoadParadaTask extends AsyncTask<Void, Void, String> {
 				else if (nom.equals("Taxi"))
 					url = constantes.taxi+"ciudad="+ciudad+"&pais="+pais;
 				else if (nom.equals("direccion")) { 
-					if(direccion != null)
-						url = constantes.cercanas+"ciudad="+ciudad+"&pais="
-							+pais+"&direccion="+espacio(direccion);
-					else 
+//					if(direccion != null)
+//						url = constantes.cercanas+"ciudad="+ciudad+"&pais="
+//							+pais+"&direccion="+espacio(direccion);
+//					else 
 						url = constantes.cercanas+"ciudad="+ciudad+"&pais="
 								+pais+"&latitud="+latitude+"&longitud="+longitude;
 				}
+				else if (nom.equals("linea"))
+					url = constantes.paradas+"ciudad="+ciudad+"&pais="+pais+"&transporte="+transporte+"&linea="+espacio(linea);
 				else if (nom.equals("Horarios")) 
 					url = constantes.horario+"ciudad="+ciudad+"&pais="
 							+pais;
@@ -788,25 +882,31 @@ private class LoadParadaTask extends AsyncTask<Void, Void, String> {
 				try {
 
 					HttpResponse respuesta = cliente.execute(peticion);
-					
-					is = respuesta.getEntity().getContent();
-					if (is != null) {
-						result = convertInputtoString(is);
-						
-						
-						
-						
+					Log.d("",respuesta.getStatusLine().getStatusCode()+"");
+					int status = respuesta.getStatusLine().getStatusCode();
+					if (status == 0) {
+						result = "No ha conectado con el servidor";
 					}
 					else {
-						result = "No ha funcionado";
+						is = respuesta.getEntity().getContent();
+						if (is != null) {
+							result = convertInputtoString(is);
+							
+							
+							
+							
+						}
+						else {
+							result = "No ha funcionado";
+						}
 					}
 					is.close();
 					return result;
 				
 				} catch (ClientProtocolException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-					return null;
+					
+					return "No ha conectado con el servidor";
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -824,17 +924,108 @@ private class LoadParadaTask extends AsyncTask<Void, Void, String> {
 				//linea.setText(response);
 				progress.cancel();
 				progress.dismiss();
-				
-				JSONObject json = new JSONObject(response);
-				Log.d("f", nom);
-				if (nom.equals("direccion")) {
-					JSONArray js = json.getJSONArray("Estaciones");
+				if(response == null || response.equals("No ha conectado con el servidor")){
+					AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 					
-					for (int i = 0; i < js.length(); i++) {
-						JSONObject j = js.getJSONObject(i);
-						ep = new ArrayList<EstructuraPublica>();
-							EstructuraPublica a = new EstructuraPublica();
-							a.transporte = j.getString("transporte");
+					builder.setMessage("En estos momentos el servidor no se encuentra disponible. Por favor, intente acceder a la aplicación más tarde.")
+					        .setTitle("Conexión fallida")
+					        .setCancelable(false)
+					        .setNeutralButton("Aceptar",
+					                new DialogInterface.OnClickListener() {
+					                    public void onClick(DialogInterface dialog, int id) {
+					                        dialog.cancel();
+					                        finish();
+					                    }
+					                });
+					AlertDialog alert = builder.create();
+					alert.show();
+				}
+				else {	
+					Log.d("f", response);
+					JSONObject json = new JSONObject(response);
+					
+					if (nom.equals("direccion") || nom.equals("linea")) {
+						JSONArray js = json.getJSONArray("Estaciones");
+						
+						for (int i = 0; i < js.length(); i++) {
+							JSONObject j = js.getJSONObject(i);
+							ep = new ArrayList<EstructuraPublica>();
+								EstructuraPublica a = new EstructuraPublica();
+								if(nom.equals("direccion"))a.transporte = j.getString("transporte");
+								else a.transporte = transporte;
+								if (!j.getString("descripcion").isEmpty())
+									a.descripcion = j.getString("descripcion");
+								if (!j.getString("latitud").isEmpty())
+									a.latitud = Double.valueOf(j.getString("latitud"));
+								if (!j.getString("longitud").isEmpty())
+									a.longitud = Double.valueOf(j.getString("longitud"));
+								if (!j.getString("pais").isEmpty())
+									a.pais = j.getString("pais");
+								if (!j.getString("localidad").isEmpty())
+									a.localidad = j.getString("localidad");
+								if (!j.getString("direccion").isEmpty())
+									a.direccion = j.getString("direccion");
+								if (!j.getString("telefono").isEmpty())
+									a.telefono = j.getString("telefono");
+								if (a.transporte.equals("Aparcamiento") ) {
+									Aparcamiento ap = new Aparcamiento();
+									if (!j.getString("accesibilidad").isEmpty())
+										ap.accesibilidad = Integer.valueOf(j.getString("accesibilidad"));
+									if (!j.getString("plazasLibres").isEmpty())
+										ap.plazasLibres = Integer.valueOf(j.getString("plazasLibres"));
+									if (!j.getString("plazasTotales").isEmpty())
+										ap.plazasTotales = Integer.valueOf(j.getString("plazasTotales"));
+									a.aparcamiento = ap;
+								}
+								else if (a.transporte.equals("Bicicleta")) {
+									Bicicletas b = new Bicicletas();
+									if (!j.getString("anclajes").isEmpty())
+										b.anclajes = Integer.valueOf(j.getString("anclajes"));
+									if (!j.getString("biciLibres").isEmpty())
+										b.biciLibres = Integer.valueOf(j.getString("biciLibres"));
+									a.bicis = b;
+								}
+								
+								transporte = a.transporte;
+								if (transporte.equals("Aparcamiento")) {
+									apar = new ArrayList<Aparcamiento>();
+									Aparcamiento ap = a.aparcamiento;
+									ap.descripcion = a.descripcion;
+									ap.direccion = a.direccion;
+									ap.latitud = a.latitud;
+									ap.longitud = a.longitud;
+									ap.localidad = a.localidad;
+									ap.pais = a.pais;
+									ap.region = a.region;
+									ap.telefono =a.telefono;
+									apar.add(ap);
+								}
+								else if (transporte.equals("Bicicleta")) {
+									apar = new ArrayList<Aparcamiento>();
+									Bicicletas ap = a.bicis;
+									ap.descripcion = a.descripcion;
+									ap.direccion = a.direccion;
+									ap.latitud = a.latitud;
+									ap.longitud = a.longitud;
+									ap.localidad = a.localidad;
+									ap.pais = a.pais;
+									ap.region = a.region;
+									ap.telefono = a.telefono;
+									bici.add(ap);
+								}
+								else {
+								
+									ep.add(a);
+								}
+								añadirParadas();
+								
+							}
+					}
+					else if (nom.equals("Aparcamiento")) {
+						JSONArray js = json.getJSONArray("Aparcamientos");
+						for (int i = 0; i < js.length(); i++) {
+							JSONObject j = js.getJSONObject(i);
+							Aparcamiento a = new Aparcamiento();
 							if (!j.getString("descripcion").isEmpty())
 								a.descripcion = j.getString("descripcion");
 							if (!j.getString("latitud").isEmpty())
@@ -849,197 +1040,121 @@ private class LoadParadaTask extends AsyncTask<Void, Void, String> {
 								a.direccion = j.getString("direccion");
 							if (!j.getString("telefono").isEmpty())
 								a.telefono = j.getString("telefono");
-							if (a.transporte.equals("Aparcamiento") ) {
-								Aparcamiento ap = new Aparcamiento();
-								if (!j.getString("accesibilidad").isEmpty())
-									ap.accesibilidad = Integer.valueOf(j.getString("accesibilidad"));
-								if (!j.getString("plazasLibres").isEmpty())
-									ap.plazasLibres = Integer.valueOf(j.getString("plazasLibres"));
-								if (!j.getString("plazasTotales").isEmpty())
-									ap.plazasTotales = Integer.valueOf(j.getString("plazasTotales"));
-								a.aparcamiento = ap;
-							}
-							else if (a.transporte.equals("Bicicleta")) {
-								Bicicletas b = new Bicicletas();
-								if (!j.getString("anclajes").isEmpty())
-									b.anclajes = Integer.valueOf(j.getString("anclajes"));
-								if (!j.getString("biciLibres").isEmpty())
-									b.biciLibres = Integer.valueOf(j.getString("biciLibres"));
-								a.bicis = b;
-							}
+							if (!j.getString("accesibilidad").isEmpty())
+								a.accesibilidad = Integer.valueOf(j.getString("accesibilidad"));
+							if (!j.getString("plazasLibres").isEmpty())
+								a.plazasLibres = Integer.valueOf(j.getString("plazasLibres"));
+							if (!j.getString("plazasTotales").isEmpty())
+								a.plazasTotales = Integer.valueOf(j.getString("plazasTotales"));
+							apar.add(a);
+						}
+						obtenerVistaCiudad();
+						añadirParadas();
+					}
+					else if (nom.equals("Bicicletas")) {
+						JSONArray js = json.getJSONArray("Bicicletas");
+						for (int i = 0; i < js.length(); i++) {
+							JSONObject j = js.getJSONObject(i);
+							Bicicletas a = new Bicicletas();
+							if (!j.getString("descripcion").isEmpty())
+								a.descripcion = j.getString("descripcion");
+							if (!j.getString("latitud").isEmpty())
+								a.latitud = Double.valueOf(j.getString("latitud"));
+							if (!j.getString("longitud").isEmpty())
+								a.longitud = Double.valueOf(j.getString("longitud"));
+							if (!j.getString("pais").isEmpty())
+								a.pais = j.getString("pais");
+							if (!j.getString("localidad").isEmpty())
+								a.localidad = j.getString("localidad");
+							if (!j.getString("direccion").isEmpty())
+								a.direccion = j.getString("direccion");
+							if (!j.getString("telefono").isEmpty())
+								a.telefono = j.getString("telefono");
 							
-							transporte = a.transporte;
-							if (transporte.equals("Aparcamiento")) {
-								apar = new ArrayList<Aparcamiento>();
-								Aparcamiento ap = a.aparcamiento;
-								ap.descripcion = a.descripcion;
-								ap.direccion = a.direccion;
-								ap.latitud = a.latitud;
-								ap.longitud = a.longitud;
-								ap.localidad = a.localidad;
-								ap.pais = a.pais;
-								ap.region = a.region;
-								ap.telefono =a.telefono;
-								apar.add(ap);
-							}
-							else if (transporte.equals("Bicicleta")) {
-								apar = new ArrayList<Aparcamiento>();
-								Bicicletas ap = a.bicis;
-								ap.descripcion = a.descripcion;
-								ap.direccion = a.direccion;
-								ap.latitud = a.latitud;
-								ap.longitud = a.longitud;
-								ap.localidad = a.localidad;
-								ap.pais = a.pais;
-								ap.region = a.region;
-								ap.telefono = a.telefono;
-								bici.add(ap);
-							}
-							else {
-							
-								ep.add(a);
-							}
-							añadirParadas();
+							if (!j.getString("anclajes").isEmpty())
+								a.anclajes = Integer.valueOf(j.getString("anclajes"));
+							if (!j.getString("biciLibres").isEmpty())
+								a.biciLibres = Integer.valueOf(j.getString("biciLibres"));
+							bici.add(a);
+						}
+						obtenerVistaCiudad();
+						añadirParadas();
+					}
+					else if (nom.equals("Taxi")) {
+						JSONArray js = json.getJSONArray("Taxi");
+						for (int i = 0; i < js.length(); i++) {
+							JSONObject j = js.getJSONObject(i);
+							EstructuraPublica a = new EstructuraPublica();
+							if (!j.getString("descripcion").isEmpty())
+								a.descripcion = j.getString("descripcion");
+							if (!j.getString("latitud").isEmpty())
+								a.latitud = Double.valueOf(j.getString("latitud"));
+							if (!j.getString("longitud").isEmpty())
+								a.longitud = Double.valueOf(j.getString("longitud"));
+							if (!j.getString("pais").isEmpty())
+								a.pais = j.getString("pais");
+							if (!j.getString("localidad").isEmpty())
+								a.localidad = j.getString("localidad");
+							if (!j.getString("direccion").isEmpty())
+								a.direccion = j.getString("direccion");
+							if (!j.getString("telefono").isEmpty())
+								a.telefono = j.getString("telefono");
+							ep.add(a);
+						}
+						obtenerVistaCiudad();
+						añadirParadas();
+					}
+					else {
+						JSONArray js = json.getJSONArray("nombres");
+						transportesList = new ArrayList<String>();
+						for (int i = 0; i < js.length(); i++) {
+							JSONObject j = js.getJSONObject(i);
+							transportesList.add(j.getString("nombre"));
 							
 						}
-				}
-				else if (nom.equals("Aparcamiento")) {
-					JSONArray js = json.getJSONArray("Aparcamientos");
-					for (int i = 0; i < js.length(); i++) {
-						JSONObject j = js.getJSONObject(i);
-						Aparcamiento a = new Aparcamiento();
-						if (!j.getString("descripcion").isEmpty())
-							a.descripcion = j.getString("descripcion");
-						if (!j.getString("latitud").isEmpty())
-							a.latitud = Double.valueOf(j.getString("latitud"));
-						if (!j.getString("longitud").isEmpty())
-							a.longitud = Double.valueOf(j.getString("longitud"));
-						if (!j.getString("pais").isEmpty())
-							a.pais = j.getString("pais");
-						if (!j.getString("localidad").isEmpty())
-							a.localidad = j.getString("localidad");
-						if (!j.getString("direccion").isEmpty())
-							a.direccion = j.getString("direccion");
-						if (!j.getString("telefono").isEmpty())
-							a.telefono = j.getString("telefono");
-						if (!j.getString("accesibilidad").isEmpty())
-							a.accesibilidad = Integer.valueOf(j.getString("accesibilidad"));
-						if (!j.getString("plazasLibres").isEmpty())
-							a.plazasLibres = Integer.valueOf(j.getString("plazasLibres"));
-						if (!j.getString("plazasTotales").isEmpty())
-							a.plazasTotales = Integer.valueOf(j.getString("plazasTotales"));
-						apar.add(a);
-					}
-					obtenerVistaCiudad();
-					añadirParadas();
-				}
-				else if (nom.equals("Bicicletas")) {
-					JSONArray js = json.getJSONArray("Bicicletas");
-					for (int i = 0; i < js.length(); i++) {
-						JSONObject j = js.getJSONObject(i);
-						Bicicletas a = new Bicicletas();
-						if (!j.getString("descripcion").isEmpty())
-							a.descripcion = j.getString("descripcion");
-						if (!j.getString("latitud").isEmpty())
-							a.latitud = Double.valueOf(j.getString("latitud"));
-						if (!j.getString("longitud").isEmpty())
-							a.longitud = Double.valueOf(j.getString("longitud"));
-						if (!j.getString("pais").isEmpty())
-							a.pais = j.getString("pais");
-						if (!j.getString("localidad").isEmpty())
-							a.localidad = j.getString("localidad");
-						if (!j.getString("direccion").isEmpty())
-							a.direccion = j.getString("direccion");
-						if (!j.getString("telefono").isEmpty())
-							a.telefono = j.getString("telefono");
 						
-						if (!j.getString("anclajes").isEmpty())
-							a.anclajes = Integer.valueOf(j.getString("anclajes"));
-						if (!j.getString("biciLibres").isEmpty())
-							a.biciLibres = Integer.valueOf(j.getString("biciLibres"));
-						bici.add(a);
-					}
-					obtenerVistaCiudad();
-					añadirParadas();
-				}
-				else if (nom.equals("Taxi")) {
-					JSONArray js = json.getJSONArray("Taxi");
-					for (int i = 0; i < js.length(); i++) {
-						JSONObject j = js.getJSONObject(i);
-						EstructuraPublica a = new EstructuraPublica();
-						if (!j.getString("descripcion").isEmpty())
-							a.descripcion = j.getString("descripcion");
-						if (!j.getString("latitud").isEmpty())
-							a.latitud = Double.valueOf(j.getString("latitud"));
-						if (!j.getString("longitud").isEmpty())
-							a.longitud = Double.valueOf(j.getString("longitud"));
-						if (!j.getString("pais").isEmpty())
-							a.pais = j.getString("pais");
-						if (!j.getString("localidad").isEmpty())
-							a.localidad = j.getString("localidad");
-						if (!j.getString("direccion").isEmpty())
-							a.direccion = j.getString("direccion");
-						if (!j.getString("telefono").isEmpty())
-							a.telefono = j.getString("telefono");
-						ep.add(a);
-					}
-					obtenerVistaCiudad();
-					añadirParadas();
-				}
-				else {
-					JSONArray js = json.getJSONArray("nombres");
-					transportesList = new ArrayList<String>();
-					for (int i = 0; i < js.length(); i++) {
-						JSONObject j = js.getJSONObject(i);
-						transportesList.add(j.getString("nombre"));
-						
-					}
-					
-					if(nom.equals("BusquedaParadas")) {
-				    	Intent i = new Intent(MainActivity.this, BusquedaParada.class);
-				    	i.putExtra("ciudad", ciudad);
-				    	i.putExtra("pais", pais);
-				    	i.putExtra("transportes", transportesList);
-					     startActivity(i);
-					}
-					else if(nom.equals("Horarios")) {
-						if (transportesList.isEmpty()) {
-							Intent i  = new Intent(MainActivity.this, Error.class);
-							i.putExtra("ciudad", ciudad);
-					    	i.putExtra("pais", pais);
-					    	i.putExtra("Anterior", "MainActivity");
-					    	i.putExtra("error", "No hay horarios disponibles para ningun transporte de esta ciudad.");
-					    	startActivity(i);
-						}
-						else {	
-					    	Intent i = new Intent(MainActivity.this, TabHorarios.class);
+						if(nom.equals("BusquedaParadas")) {
+					    	Intent i = new Intent(MainActivity.this, BusquedaParada.class);
 					    	i.putExtra("ciudad", ciudad);
 					    	i.putExtra("pais", pais);
 					    	i.putExtra("transportes", transportesList);
 						     startActivity(i);
 						}
+						else if(nom.equals("Horarios")) {
+							if (transportesList.isEmpty()) {
+								Intent i  = new Intent(MainActivity.this, Error.class);
+								i.putExtra("ciudad", ciudad);
+						    	i.putExtra("pais", pais);
+						    	i.putExtra("Anterior", "MainActivity");
+						    	i.putExtra("error", "No hay horarios disponibles para ningun transporte de esta ciudad.");
+						    	startActivity(i);
+							}
+							else {	
+						    	Intent i = new Intent(MainActivity.this, TabHorarios.class);
+						    	i.putExtra("ciudad", ciudad);
+						    	i.putExtra("pais", pais);
+						    	i.putExtra("transportes", transportesList);
+							     startActivity(i);
+							}
+						}
+						else {
+							Log.d("Main pais", pais);
+							Intent i = new Intent(MainActivity.this, Transportes.class);
+					    	i.putExtra("ciudad", ciudad);
+					    	i.putExtra("pais", pais);
+					    	i.putExtra("transportes", transportesList);
+					    	startActivity(i);
+					    	
+						}
+	
 					}
-					else {
-						Log.d("Main pais", pais);
-						Intent i = new Intent(MainActivity.this, Transportes.class);
-				    	i.putExtra("ciudad", ciudad);
-				    	i.putExtra("pais", pais);
-				    	i.putExtra("transportes", transportesList);
-				    	startActivity(i);
-				    	
-					}
-
 				}
-
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
-				Log.e("Error nuestro", e.toString());	
+				Log.e("Error nuestro", e.getMessage());	
 			}
-			catch (Exception e) {
-				// TODO Auto-generated catch block
-				Log.e("Error nuestro", e.toString());
-			}
+			
 		}
 	}
 	

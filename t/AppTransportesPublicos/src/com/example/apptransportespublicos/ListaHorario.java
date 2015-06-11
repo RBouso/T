@@ -126,32 +126,23 @@ private class LoadParadaTask extends AsyncTask<Void, Void, String> {
 
 	@Override
 	protected String doInBackground(Void... params) {
-		// TODO Auto-generated method stub
-			
+		// TODO Auto-generated method stub	
 			HttpClient cliente = new DefaultHttpClient();
 			String url = constantes.horario+"ciudad="+ciudad+"&pais="+pais+
 					"&transporte="+transporte+"&linea="+linea+"&sentido="+espacio(sentido)+"&fecha="+fecha.replace("/", "-");
-			Log.d("url", url);
 			HttpGet peticion = new HttpGet(url);
-			// ejecuta una petición get
 			 InputStream is = null;
 			 String result = "";
 			try {
-
 				HttpResponse respuesta = cliente.execute(peticion);
-
 				is = respuesta.getEntity().getContent();
 				if (is != null) {
-					result = convertInputtoString(is);
-					
-					
-					
+					result = convertInputtoString(is);				
 				}
 				else {
 					result = "No ha funcionado";
 				}
 				return result;
-			
 			} catch (ClientProtocolException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -160,10 +151,7 @@ private class LoadParadaTask extends AsyncTask<Void, Void, String> {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return null;
-			}
-			
-//			return HttpRequest.get(params[0]).accept("application/json").body();
-		
+			}		
 	}
 
 

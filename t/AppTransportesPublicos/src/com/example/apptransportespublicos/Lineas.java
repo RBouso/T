@@ -83,19 +83,18 @@ public class Lineas  extends Activity implements OnQueryTextListener{
 	               // ListView Clicked item value
 	               String  itemValue    = (String) lista.getItemAtPosition(position);
 	                  
+ 
 	               
-	                // Show Alert 
-	                Toast.makeText(getApplicationContext(),
-	                  "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
-	                  .show();
-	                Intent i = new Intent(Lineas.this, Paradas.class);
+	                Intent i = new Intent(Lineas.this, MainActivity.class);
+	                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 	                i.putExtra("ciudad", ciudad);
 	                i.putExtra("pais", pais);
 	                i.putExtra("transporte", transporte);
 	                i.putExtra("linea", itemValue);
-	                
+	                i.putExtra("Anterior", "Lineas");
 	                startActivity(i);
-	                
+	                finish();
             	
               }
 
@@ -200,10 +199,7 @@ private class LoadParadaTask extends AsyncTask<Void, Void, String> {
 			// TODO Auto-generated catch block
 			Log.e("Error nuestro", e.toString());
 		}
-//		List<Parada> paradas = getParadas(h);
-//		if (!paradas.isEmpty()) {
-//			mostrarParada(paradas.get(0));
-//		}
+
 	}
 }
 
