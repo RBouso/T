@@ -6,6 +6,7 @@
 package Transportes.Controlador.Datos.Interficie;
 
 import Transportes.Ficheros.EstructurasPublicas;
+import Transportes.Ficheros.Lugar;
 import java.util.ArrayList;
 
 /**
@@ -15,4 +16,6 @@ import java.util.ArrayList;
 public interface CtrlEstructurasPublicas {
     public ArrayList<EstructurasPublicas> getParadasCercanas(String ciudad, 
             String pais, String direccion,  Double lat, Double lon);
+
+//    public void getSiguienteParada(Lugar destino);
 }

@@ -285,22 +285,19 @@ public class ControladorTransportes extends Controlador{
     }
    
     public ArrayList<AccionViajar> getTrayectos(String ciudad, String pais, 
-            String origen, String destino) {
-        try {
+            double latOr, double longOr, double latDest, double longDest) {
+
             CtrlFactoriaDatos cfd = new CtrlFactoriaDatos();
             ArrayList<EstacionCivica> ec = new ArrayList<>();
             ArrayList<AccionViajar> av = new ArrayList<>();
             AccionViajar mejor = new AccionViajar();
-            ArrayList<Estructuras> epOrigen = getEstacionesCercana(ciudad, pais, origen,0.0,0.0);
-            ArrayList<Estructuras> epDestino = getEstacionesCercana(ciudad, pais, destino,0.0,0.0);
-            Geocoding g = new Geocoding();
-            Point2D.Double orig = g.getCoordinates(origen);
-            Point2D.Double dest = g.getCoordinates(destino);
-            latitudOr = orig.x;
-            longitudOr = orig.y;
-            latitudDest = dest.x;
-            longitudDest = dest.y;
+            ArrayList<Estructuras> epOrigen = getEstacionesCercana(ciudad, pais, "",latOr,longOr);
+            ArrayList<Estructuras> epDestino = getEstacionesCercana(ciudad, pais, "",latDest,longDest);
             
+            latitudOr = latOr;
+            longitudOr = longOr;
+            latitudDest = latDest;
+            longitudDest = longOr;
             
             Comparator<AccionViajar> comparator = new EstructurasPublicasComparator();
 
@@ -338,22 +335,27 @@ public class ControladorTransportes extends Controlador{
                 abiertos.poll();
                 //Est_cerrados.insertar(Actual)
                 cerrados.add(actual);
-                System.out.println(actual.toString());
+                
                 //hijos←generar_sucesores(Actual)
-//                ArrayList<EstructurasPublicas> hijos = getEstacionesCercana(ciudad, 
-//                        pais, null,actual.getDestino().getGeo().getLatitud(),actual.getDestino().getGeo().getLongitud());
-//                //hijos←tratar_repetidos(Hijos, Est_cerrados, Est_abiertos)
-//               hijos = tratarRepetidos(hijos, cerrados, abiertos);
-//               //Est_abiertos.insertar(Hijos)
-//               for (int i = 0; i < hijos.size(); i++) {
-//                   AccionViajar copiar = new AccionViajar();
-//                   copiar.setOrigen(actual.getOrigen());
-//                   copiar.setDestino(hijos.get(i));
-//                   ArrayList<EstacionCivica> cl = actual.getEstacionCivica();
-//                   copiar.setEstacionCivica(cl);
-//                   copiar.setDistancia(distancia(copiar,latitudOr,longitudOr));
-//                   abiertos.add(copiar);
-//               }
+                ArrayList<Estructuras> hijos = new ArrayList<Estructuras>();
+                //hijos.add(getProximaParada(actual));
+                hijos.addAll(getEstacionesCercana(ciudad, 
+                        pais, null,actual.getDestino().getGeo().getLatitud(),actual.getDestino().getGeo().getLongitud()));
+                //hijos←tratar_repetidos(Hijos, Est_cerrados, Est_abiertos)
+               hijos = tratarRepetidos(hijos, cerrados, abiertos);
+               //Est_abiertos.insertar(Hijos)
+               for (int i = 0; i < hijos.size(); i++) {
+                   for(int j = 0; j < hijos.get(i).estaciones.size(); j++) {
+                        AccionViajar copiar = new AccionViajar();
+                        copiar.setOrigen(actual.getOrigen());
+                        copiar.setDestino(hijos.get(i).estaciones.get(j));
+                        ArrayList<EstacionCivica> cl = actual.getEstacionCivica();
+                        cl.add((EstacionCivica) hijos.get(i).estaciones.get(j));
+                        copiar.setEstacionCivica(cl);
+                        copiar.setDistancia(distancia(copiar,latitudOr,longitudOr));
+                        abiertos.add(copiar);
+                   }
+               }
                //Actual←Est_abiertos.primero
                 if(!abiertos.isEmpty())actual = abiertos.peek();
                 fin = esFinal(actual, epDestino);
@@ -362,35 +364,38 @@ public class ControladorTransportes extends Controlador{
             if(!fin) System.out.println("Soy final ");
             av.add(actual);
             return av;
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(ControladorTransportes.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(ControladorTransportes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        
     }
 
-    private ArrayList<EstructurasPublicas> tratarRepetidos(ArrayList<EstructurasPublicas> hijos, 
+    private ArrayList<Estructuras> tratarRepetidos(ArrayList<Estructuras> hijos, 
             ArrayList<AccionViajar> cerrados, PriorityQueue<AccionViajar> abiertos) {
-        ArrayList<EstructurasPublicas> result = new ArrayList<>();
+        ArrayList<Estructuras> result = new ArrayList<>();
         for (int i = 0; i < hijos.size(); i++) {
-            int encontrado = 0;
-            for (int j = 0; j < cerrados.size() && encontrado < 1; j++) {
-                AccionViajar av = cerrados.get(j);
-                for (int k = 0; k < av.getEstacionCivica().size() && encontrado < 1; k++) {
-                    if(av.getEstacionCivica().get(k).getGeo().equals(hijos.get(i).getGeo()))
-                        encontrado++;
+            Estructuras est = new Estructuras();
+            est.transporte = hijos.get(i).transporte;
+            for (int l = 0; l < hijos.get(i).estaciones.size(); l++) {
+                int encontrado = 0;
+                for (int j = 0; j < cerrados.size() && encontrado < 1; j++) {
+                    AccionViajar av = cerrados.get(j);
+                    for (int k = 0; k < av.getEstacionCivica().size() && encontrado < 1; k++) {
+
+                        if(av.getEstacionCivica().get(k).getGeo().equals(hijos.get(i).estaciones.get(l).getGeo()))
+                            encontrado++;
+                    }
                 }
-            }
-            Iterator<AccionViajar> it = abiertos.iterator();
-           
-            while(it.hasNext() && encontrado < 2) {
-                AccionViajar av = it.next();
-                for (int k = 0; k < av.getEstacionCivica().size() && encontrado < 2; k++) {
-                    if(av.getEstacionCivica().get(k).getGeo().equals(hijos.get(i).getGeo()))
-                        encontrado++;
+          
+                Iterator<AccionViajar> it = abiertos.iterator();
+
+                while(it.hasNext() && encontrado < 1) {
+                    AccionViajar av = it.next();
+                    for (int k = 0; k < av.getEstacionCivica().size() && encontrado < 2; k++) {
+                        if(av.getEstacionCivica().get(k).getGeo().equals(hijos.get(i).estaciones.get(l).getGeo()))
+                            encontrado++;
+                    }
                 }
+                if (encontrado == 0) est.estaciones.add( hijos.get(i).estaciones.get(l));
             }
+            result.add(est);
         }
         return result;
     }
@@ -437,6 +442,14 @@ public class ControladorTransportes extends Controlador{
                 return true;
         }
         return false;
+    }
+
+    private Estructuras getProximaParada(AccionViajar actual) {
+        Estructuras est = new Estructuras();
+        CtrlFactoriaDatos cfd = new CtrlFactoriaDatos();
+        CtrlEstructurasPublicas cep = cfd.getCtrlEstructurasPublicas(actual.getDestino().transporte);
+       // cep.getSiguienteParada(actual.getDestino());
+        return est;
     }
 
 

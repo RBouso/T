@@ -381,8 +381,12 @@ public class GenericResource {
         String ciudad = "Barcelona";
         String pais = "España";
         String direccion = "Av. Meridiana, 596, Barcelona";
+        Double latOr = 41.44331;
+        Double longOr = 2.187180000000012;
         String destino = "Plaza cataluña, Barcelona";
+        Double latDest = 41.379947;
+        Double longDest = 2.1783167999999478;
         ControladorTransportes ct = new ControladorTransportes();
-        return ct.getTrayectos(ciudad, pais, direccion, destino).get(0);
+        return ct.getTrayectos(ciudad, pais, latOr, longOr, latDest, longDest).get(0);
     }
 }

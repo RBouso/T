@@ -18,6 +18,6 @@ public interface CtrlEstacionValorada {
 
     public EstacionValorada getEstacionValorada(Double latitud, double longitud, String ciudad, String pais);
 
-
+    public boolean existeValoracion(double latitud, double longitud, String ciudad, String pais);
     
 }

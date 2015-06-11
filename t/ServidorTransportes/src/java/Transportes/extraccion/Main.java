@@ -31,6 +31,7 @@ public class Main {
         public static void main(String[] args) {
             //extractor e = new extractor();
             GenericResource t = new GenericResource();
+
 //            AccionViajar l = t.getParadasCercanas1();
 //            System.out.println(l.getDestino().getGeo().getLatitud());
 //            t.getParadasCercanas("Barcelona", "España","Av. Meridiana, 596, Barcelona");
@@ -49,23 +50,25 @@ public class Main {
                     
             
             
-////
-//            CtrlUrlDatos cfd = new CtrlUrlDatos();
-//            cfd.anadirURL("Bilbao", "España", "TiempoEsperaBilbaoCSV","http://www.bilbao.net/autobuses/jsp/od_horarios.jsp?idioma=c&formato=csv&tipo=espera");
 
-//            cfd.anadirURL("Bilbao", "España", "BicicletasBilbaoXML","http://www.bilbao.net/WebServicesBilbao/WSBilbao?s=ODPRESBICI&u=OPENDATA&p0=A&p1=A");
-//            cfd.anadirURL("Madrid", "España", "AutobusesMadridRDF","http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/EMT/2015/EMT_2015_04.rdf");
-//            cfd.anadirURL("Madrid", "España", "MetroMadridRDF","http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/Metro/2015/Metro_2015_04.rdf");
-//            cfd.anadirURL("Madrid", "España", "TaxiMadridRDF","http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/Paradas_Taxi/2015/Paradas_Taxi_2015_04.rdf");
-//            cfd.anadirURL("Barcelona", "España", "TaxiBarcelonaCSV","http://bismartopendata.blob.core.windows.net/opendata/opendata/paradestaxi_0_opendata_paradestaxi.csv");
-//            cfd.anadirURL("Barcelona", "España", "AutobusesBarcelonaCSV","http://bismartopendata.blob.core.windows.net/opendata/opendata/estacionsbus_0_opendata_estacionsbus.csv");
-//            cfd.anadirURL("Barcelona", "España", "TransportesBarcelonaCSV","http://bismartopendata.blob.core.windows.net/opendata/opendata/transports_0_opendata_transports.csv");
-            
-//            cfd.anadirURL("Barcelona", "España", "AparcamientosBarcelonaCSV", "http://bismartopendata.blob.core.windows.net/opendata/opendata/aparcaments_0_opendata_aparcaments.csv");
-//            cfd.anadirURL("Madrid", "España", "CercaniasMadridRDF", "http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/Cercanias/2015/Cercanias_2015_04.rdf");
-//            cfd.anadirURL("Madrid", "España", "AparcamientosMadridRDF", "http://datos.madrid.es/egob/catalogo/202625-0-aparcamientos-publicos.rdf");
+//            CtrlUrlDatos cfd = new CtrlUrlDatos();
+//
+//            cfd.anadirURL("Bilbao", "España", "BicicletasBilbaoXML","http://www.bilbao.net/WebServicesBilbao/WSBilbao?s=ODPRESBICI&u=OPENDATA&p0=A&p1=A",
+//            "2015/06/08","mensual");
+//            cfd.anadirURL("Madrid", "España", "AutobusesMadridRDF","http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/EMT/2015/EMT_2015_04.rdf",
+//            "2015/06/08","trimestral");
+//
+//            cfd.anadirURL("Madrid", "España", "MetroMadridRDF","http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/Metro/2015/Metro_2015_04.rdf","2015/06/08","trimestral");
+//            cfd.anadirURL("Madrid", "España", "TaxiMadridRDF","http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/Paradas_Taxi/2015/Paradas_Taxi_2015_04.rdf","2015/06/08","trimestral");
+//            cfd.anadirURL("Barcelona", "España", "TaxiBarcelonaCSV","http://bismartopendata.blob.core.windows.net/opendata/opendata/paradestaxi_0_opendata_paradestaxi.csv","2015/06/08","mensual");
+//            cfd.anadirURL("Barcelona", "España", "AutobusesBarcelonaCSV","http://bismartopendata.blob.core.windows.net/opendata/opendata/estacionsbus_0_opendata_estacionsbus.csv","2015/06/08","mensual");
+//            cfd.anadirURL("Barcelona", "España", "TransportesBarcelonaCSV","http://bismartopendata.blob.core.windows.net/opendata/opendata/transports_0_opendata_transports.csv","2015/06/08","mensual");
 //            
- //cfd.anadirURL("Madrid", "España", "AparcamientosMadridCSV","http://datos.madrid.es/egob/catalogo/202625-0-aparcamientos-publicos.csv");
+//            cfd.anadirURL("Barcelona", "España", "AparcamientosBarcelonaCSV", "http://bismartopendata.blob.core.windows.net/opendata/opendata/aparcaments_0_opendata_aparcaments.csv","2015/06/08","mensual");
+//            cfd.anadirURL("Madrid", "España", "CercaniasMadridRDF", "http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/Cercanias/2015/Cercanias_2015_04.rdf","2015/06/08","trimestral");
+//            cfd.anadirURL("Madrid", "España", "AparcamientosMadridRDF", "http://datos.madrid.es/egob/catalogo/202625-0-aparcamientos-publicos.rdf","2015/06/08","anual");
+//            
+// cfd.anadirURL("Madrid", "España", "AparcamientosMadridCSV","http://datos.madrid.es/egob/catalogo/202625-0-aparcamientos-publicos.csv");
             Controlador c = new ControladorExtraccion();
             c.executar();
 //            Formato f = new RDF()

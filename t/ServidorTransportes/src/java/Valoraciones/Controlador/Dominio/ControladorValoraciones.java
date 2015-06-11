@@ -28,6 +28,16 @@ public class ControladorValoraciones {
                 return val.getMedia();
             }
         }
+    
+    public boolean existeValoracion(double latitud, double longitud,
+            String ciudad, String pais) {
+            
+                CtrlFactoriaDatos cfd = new CtrlFactoriaDatos();
+                CtrlEstacionValorada cev = cfd.getEstacionValorada();
+                
+
+                return cev.existeValoracion(latitud, longitud, ciudad, pais);
+        }
 
     
     public Double modificarPuntuacion(int puntuacionNueva, int puntuacionAntigua, 

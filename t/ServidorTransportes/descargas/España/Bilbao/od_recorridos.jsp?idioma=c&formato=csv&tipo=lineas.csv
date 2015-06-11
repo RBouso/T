@@ -391,24 +391,44 @@ Codigo linea;Descripcion linea;Sentido;Numero parada;Codigo parada;Parada;Zona;C
 38;OTXARKOAGA - BASURTU/TERMIBUS;Otxarkoaga - Basurtu/Termibus obras;19;8107;Gurtubay / Ospitalea;Av. Montevideo-Hospital;28,80
 38;OTXARKOAGA - BASURTU/TERMIBUS;Otxarkoaga - Basurtu/Termibus obras;20;8126;Termibús / Metro;Autonomia-Pl. Aita Donosti;80
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;1;8126;Termibús / Metro;Autonomia-Pl. Aita Donosti;80
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;1;8126;Termibús / Metro;Autonomia-Pl. Aita Donosti;80
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;2;8123;Basurto / Aita Donostia;Autonomia-Pl. Aita Donosti;18,48,57,58,85,88
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;2;8123;Basurto / Aita Donostia;Autonomia-Pl. Aita Donosti;18,48,57,58,85,88
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;3;7104;Autonomía 43;Autonomia-Escuelas;18,48,58,85,88
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;3;7104;Autonomía 43;Autonomia-Escuelas;18,48,58,85,88
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;4;6213;Gregorio la Revilla 35;Gregorio de la Revilla-Perez Galdos;27,48,72,77,88
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;4;6213;Gregorio la Revilla 35;Gregorio de la Revilla-Perez Galdos;27,48,72,77,88
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;5;6210;Gregorio la Revilla 17;Gregorio de la Revilla-Part.Indautxu;27,48,72,76,77
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;5;6210;Gregorio la Revilla 17;Gregorio de la Revilla-Part.Indautxu;27,48,72,76,77
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;6;6209;Gregorio la Revilla 1;Gregorio de la Revilla-Pl. Campuzano;27,48,72,76,77
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;6;6209;Gregorio la Revilla 1;Gregorio de la Revilla-Pl. Campuzano;27,48,72,76,77
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;7;6205;Gran Vía 41;Gran Via-G. Civil;27,48
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;7;6205;Gran Vía 41;Gran Via-G. Civil;27,48
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;8;6103;Alda Recalde 31;Al. Recalde-Pl. Moyua;13,27,48
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;8;6103;Alda Recalde 31;Al. Recalde-Pl. Moyua;13,27,48
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;9;6101;Alda Recalde 11;Al. Recalde-Puente La Salve;13,27,48
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;9;6101;Alda Recalde 11;Al. Recalde-Puente La Salve;13,27,48
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;10;2403;Maurice Ravel / (Mirador);Maurice Ravel-Ciudad Jardin;13,27,48
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;10;2403;Maurice Ravel / (Mirador);Maurice Ravel-Ciudad Jardin;13,27,48
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;11;2406;Maurice Ravel 7 / (Telefónica);Maurice Ravel-Telefonica;13,27,48
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;11;2406;Maurice Ravel 7 / (Telefónica);Maurice Ravel-Telefonica;13,27,48
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;12;2407;Músico Guridi;;13,27,48
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;12;2407;Músico Guridi;;13,27,48
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;13;4109;Zumalacárregui 38;Zumalacarregui-Parque;03,13,30
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;13;4109;Zumalacárregui 38;Zumalacarregui-Parque;03,13,30
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;14;4104;Begoñako Basilika;Basilica de Begoña;03,30
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;14;4104;Begoñako Basilika;Basilica de Begoña;03,30
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;15;3226;Txomin Garat 4;Txomin Garat-La Tortilla;30
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;15;3226;Txomin Garat 4;Txomin Garat-La Tortilla;30
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;16;3206;Gabriel Aresti / (Anbulatorioa);Txomin Garat-Ambulatorio;
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;16;3206;Gabriel Aresti / (Anbulatorioa);Txomin Garat-Ambulatorio;
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;17;3207;Gabriel Aresti / Jesús Galíndez;Jesus Galindez-Gabriel Aresti;
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;17;3213;Jesús Galíndez 26;Jesus Galindez-Gabriel Aresti;03,43
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;18;3204;Dr. Ornilla / Pau Casals;Jesus Galindez-Dr. Ornilla;03,34,43
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;18;3204;Dr. Ornilla / Pau Casals;Jesus Galindez-Dr. Ornilla;03,34,43
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;19;3109;Pau Casals 16;Pl. Kepa Enbeita-Iglesia;34,43
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;19;3109;Pau Casals 16;Pl. Kepa Enbeita-Iglesia;34,43
+38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga adoratrices;20;3222;Julián Gaiarre 61;Julian Gaiarre-Centro Civico;34,43
 38;OTXARKOAGA - BASURTU/TERMIBUS;Basurtu/Termibus - Otxarkoaga obras;20;3222;Julián Gaiarre 61;Julian Gaiarre-Centro Civico;34,43
 40;LA PEÑA - PLAZA BIRIBILA;Zamakola - Ayala;1;5501;Abusu / Ibaialde;Zamacola-Iglesia;50,56
 40;LA PEÑA - PLAZA BIRIBILA;Zamakola - Ayala;2;5502;Abusu / Ibaieder;Zamacola-La Peña;50,56
@@ -447,27 +467,27 @@ Codigo linea;Descripcion linea;Sentido;Numero parada;Codigo parada;Parada;Zona;C
 40;LA PEÑA - PLAZA BIRIBILA;Ayala - Zamakola;14;4309;Camino del Ponton/ Avda. Miraflores;Zamacola-La Peña;
 40;LA PEÑA - PLAZA BIRIBILA;Ayala - Zamakola;15;5502;Abusu / Ibaieder;Zamacola-La Peña;50,56
 40;LA PEÑA - PLAZA BIRIBILA;Ayala - Zamakola;16;5501;Abusu / Ibaialde;Zamacola-Iglesia;50,56
-43;GARAIZAR - SANTUTXU;Garaizar - Santutxu;1;3208;Garaizar (16);Garaizar;
-43;GARAIZAR - SANTUTXU;Garaizar - Santutxu;2;3209;Garaizar / Ikastola;Garaizar;
-43;GARAIZAR - SANTUTXU;Garaizar - Santutxu;3;3213;Jesús Galíndez 26;Jesus Galindez-Gabriel Aresti;
-43;GARAIZAR - SANTUTXU;Garaizar - Santutxu;4;3204;Dr. Ornilla / Pau Casals;Jesus Galindez-Dr. Ornilla;03,34,38
-43;GARAIZAR - SANTUTXU;Garaizar - Santutxu;5;3109;Pau Casals 16;Pl. Kepa Enbeita-Iglesia;34,38
-43;GARAIZAR - SANTUTXU;Garaizar - Santutxu;6;3222;Julián Gaiarre 61;Julian Gaiarre-Centro Civico;34,38
-43;GARAIZAR - SANTUTXU;Garaizar - Santutxu;7;3221;Julián Gaiarre 39 / Artalandio;Julian Gaiarre-Artalandio;34,38
-43;GARAIZAR - SANTUTXU;Garaizar - Santutxu;8;3218;Julián Gaiarre 23;Julian Gaiarre-Ondarroa;34
-43;GARAIZAR - SANTUTXU;Garaizar - Santutxu;9;3216;Julián Gaiarre (6);Julian Gaiarre-DYA;34
-43;GARAIZAR - SANTUTXU;Garaizar - Santutxu;10;4202;Circo Amateur / Kiroldegia;Club Deportivo;13,34
-43;GARAIZAR - SANTUTXU;Garaizar - Santutxu;11;4208;Iturriaga 58 / L. Briñas Eskola;Iturriaga-Colg. Luis Briñas;34,48
-43;GARAIZAR - SANTUTXU;Garaizar - Santutxu;12;4203;Enrique Ibarreta 2;Mazustegi-Zabalbide;34
-43;GARAIZAR - SANTUTXU;Santutxu - Garaizar;1;4203;Enrique Ibarreta 2;Mazustegi-Zabalbide;34
-43;GARAIZAR - SANTUTXU;Santutxu - Garaizar;2;3202;Dr. Ornilla (12);Dr. Ornilla-Comisaria Ertzaintza;34
-43;GARAIZAR - SANTUTXU;Santutxu - Garaizar;3;3203;Dr. Ornilla / Artalandio;Jesus Galindez-Dr. Ornilla;34
-43;GARAIZAR - SANTUTXU;Santutxu - Garaizar;4;3215;Julián Gaiarre (39) / Artalandio;Julian Gaiarre-Artalandio;
-43;GARAIZAR - SANTUTXU;Santutxu - Garaizar;5;3102;Julián Gaiarre (61);Julian Gaiarre-Artalandio;
-43;GARAIZAR - SANTUTXU;Santutxu - Garaizar;6;3115;Zizeruena / Eliza;Pl. Kepa Enbeita-Iglesia;03
-43;GARAIZAR - SANTUTXU;Santutxu - Garaizar;7;3114;Ugarte 2;Larratundu-Otxarkoaga;
-43;GARAIZAR - SANTUTXU;Santutxu - Garaizar;8;3113;Ugarte (7);Garaizar;
-43;GARAIZAR - SANTUTXU;Santutxu - Garaizar;9;3208;Garaizar (16);Garaizar;
+43;GARAIZAR - SANTUTXU;Jesus Galindez - Santutxu;1;3213;Jesús Galíndez 26;Jesus Galindez-Gabriel Aresti;03,38
+43;GARAIZAR - SANTUTXU;Jesus Galindez - Santutxu;2;3204;Dr. Ornilla / Pau Casals;Jesus Galindez-Dr. Ornilla;03,34,38
+43;GARAIZAR - SANTUTXU;Jesus Galindez - Santutxu;3;3109;Pau Casals 16;Pl. Kepa Enbeita-Iglesia;34,38
+43;GARAIZAR - SANTUTXU;Jesus Galindez - Santutxu;4;3222;Julián Gaiarre 61;Julian Gaiarre-Centro Civico;34,38
+43;GARAIZAR - SANTUTXU;Jesus Galindez - Santutxu;5;3221;Julián Gaiarre 39 / Artalandio;Julian Gaiarre-Artalandio;34,38
+43;GARAIZAR - SANTUTXU;Jesus Galindez - Santutxu;6;3218;Julián Gaiarre 23;Julian Gaiarre-Ondarroa;34
+43;GARAIZAR - SANTUTXU;Jesus Galindez - Santutxu;7;3216;Julián Gaiarre (6);Julian Gaiarre-DYA;34
+43;GARAIZAR - SANTUTXU;Jesus Galindez - Santutxu;8;4202;Circo Amateur / Kiroldegia;Club Deportivo;13,34
+43;GARAIZAR - SANTUTXU;Jesus Galindez - Santutxu;9;4208;Iturriaga 58 / L. Briñas Eskola;Iturriaga-Colg. Luis Briñas;34,48
+43;GARAIZAR - SANTUTXU;Jesus Galindez - Santutxu;10;4203;Enrique Ibarreta 2;Mazustegi-Zabalbide;34
+43;GARAIZAR - SANTUTXU;Santutxu - Jesus Galindez;1;4203;Enrique Ibarreta 2;Mazustegi-Zabalbide;34
+43;GARAIZAR - SANTUTXU;Santutxu - Jesus Galindez;2;3202;Dr. Ornilla (12);Dr. Ornilla-Comisaria Ertzaintza;34
+43;GARAIZAR - SANTUTXU;Santutxu - Jesus Galindez;3;3203;Dr. Ornilla / Artalandio;Jesus Galindez-Dr. Ornilla;34
+43;GARAIZAR - SANTUTXU;Santutxu - Jesus Galindez;4;3215;Julián Gaiarre (39) / Artalandio;Julian Gaiarre-Artalandio;
+43;GARAIZAR - SANTUTXU;Santutxu - Jesus Galindez;5;3102;Julián Gaiarre (61);Julian Gaiarre-Artalandio;
+43;GARAIZAR - SANTUTXU;Santutxu - Jesus Galindez;6;3115;Zizeruena / Eliza;Pl. Kepa Enbeita-Iglesia;03
+43;GARAIZAR - SANTUTXU;Santutxu - Jesus Galindez;7;3114;Ugarte 2;Larratundu-Otxarkoaga;
+43;GARAIZAR - SANTUTXU;Santutxu - Jesus Galindez;8;3113;Ugarte (7);Garaizar;
+43;GARAIZAR - SANTUTXU;Santutxu - Jesus Galindez;9;3208;Garaizar (16);Garaizar;
+43;GARAIZAR - SANTUTXU;Santutxu - Jesus Galindez;10;3209;Garaizar / Ikastola;Garaizar;
+43;GARAIZAR - SANTUTXU;Santutxu - Jesus Galindez;11;3213;Jesús Galíndez 26;Jesus Galindez-Gabriel Aresti;03,38
 48;SANTUTXU - LEZEAGA;Santutxu - Lezeaga arriba;1;4208;Iturriaga 58 / L. Briñas Eskola;Iturriaga-Colg. Luis Briñas;34,43
 48;SANTUTXU - LEZEAGA;Santutxu - Lezeaga arriba;2;4209;Santa Klara (12);;
 48;SANTUTXU - LEZEAGA;Santutxu - Lezeaga arriba;3;4106;Masustegi (21);Mazustegi-Begoña;
@@ -1161,21 +1181,72 @@ G2;OTXARKOAGA - PLAZA BIRIBILA;Otxarkoaga - PL Biribila/Ayala;12;2202;Kristo 1;P
 G2;OTXARKOAGA - PLAZA BIRIBILA;Otxarkoaga - PL Biribila/Ayala;13;5108;Sendeja (5);Sendeja-Tinglados;A1,A7,03,11,22,26,28,30,71,72,77
 G2;OTXARKOAGA - PLAZA BIRIBILA;Otxarkoaga - PL Biribila/Ayala;14;5105;Puente del Arenal;Puente de el Arenal;A1,A2,A7,03,26,28,30,40,56,58,71,72,75,77,85
 G2;OTXARKOAGA - PLAZA BIRIBILA;Otxarkoaga - PL Biribila/Ayala;15;6129;Ayala(2);Gran Via-Metro Moyua;A1,40
-G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga;1;6129;Ayala(2);Gran Via-Metro Moyua;A1,40
-G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga;2;5103;Ernesto Erkoreka 8;Pl. Ernesto Erkoreka;A1,03,30,40,62
-G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga;3;5111;Zumalacárregui / (T.Zubiria);Zumalacarregui-Grupo Panera;A1,03,30,40,62
-G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga;4;4109;Zumalacárregui 38;Zumalacarregui-Parque;03,13,30,38
-G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga;5;4104;Begoñako Basilika;Basilica de Begoña;03,30,38
-G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga;6;3226;Txomin Garat 4;Txomin Garat-La Tortilla;30,38
-G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga;7;3206;Gabriel Aresti / (Anbulatorioa);Txomin Garat-Ambulatorio;38
-G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga;8;3207;Gabriel Aresti / Jesús Galíndez;Jesus Galindez-Gabriel Aresti;38
-G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga;9;3204;Dr. Ornilla / Pau Casals;Jesus Galindez-Dr. Ornilla;03,34,38,43
-G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga;10;3115;Zizeruena / Eliza;Pl. Kepa Enbeita-Iglesia;03,43
-G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga;11;3116;Zizeruena 22;Zizeruene;03
-G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga;12;3101;Arbolantxa 18;Cº Arbolantxa;03
-G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga;13;3106;Larratundu 21;Larratundu-Otxarkoaga;03,34
-G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga;14;3117;Larratundu 1;;
-G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga;15;3222;Julián Gaiarre 61;Julian Gaiarre-Centro Civico;34,38,43
+G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga Adoratrices;1;6129;Ayala(2);Gran Via-Metro Moyua;A1,40
+G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga Adoratrices;2;5103;Ernesto Erkoreka 8;Pl. Ernesto Erkoreka;A1,03,30,40,62
+G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga Adoratrices;3;5111;Zumalacárregui / (T.Zubiria);Zumalacarregui-Grupo Panera;A1,03,30,40,62
+G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga Adoratrices;4;4109;Zumalacárregui 38;Zumalacarregui-Parque;03,13,30,38
+G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga Adoratrices;5;4104;Begoñako Basilika;Basilica de Begoña;03,30,38
+G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga Adoratrices;6;3226;Txomin Garat 4;Txomin Garat-La Tortilla;30,38
+G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga Adoratrices;7;3206;Gabriel Aresti / (Anbulatorioa);Txomin Garat-Ambulatorio;38
+G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga Adoratrices;8;3213;Jesús Galíndez 26;Jesus Galindez-Gabriel Aresti;03,38,43
+G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga Adoratrices;9;3204;Dr. Ornilla / Pau Casals;Jesus Galindez-Dr. Ornilla;03,34,38,43
+G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga Adoratrices;10;3115;Zizeruena / Eliza;Pl. Kepa Enbeita-Iglesia;03,43
+G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga Adoratrices;11;3116;Zizeruena 22;Zizeruene;03
+G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga Adoratrices;12;3101;Arbolantxa 18;Cº Arbolantxa;03
+G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga Adoratrices;13;3106;Larratundu 21;Larratundu-Otxarkoaga;03,34
+G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga Adoratrices;14;3117;Larratundu 1;;
+G2;OTXARKOAGA - PLAZA BIRIBILA;PL Biribila/Ayala - Otxarkoaga Adoratrices;15;3222;Julián Gaiarre 61;Julian Gaiarre-Centro Civico;34,38,43
+G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV ord;1;7322;Karitateko Alaben (3);Xalbador-Rekalde;72
+G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV ord;2;7323;Karitateko Alaben 3;Xalbador-Rekalde;72
+G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV ord;3;7417;Karitateko Alaben (46);Cº Larraskitu-Iberdrola;72
+G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV ord;4;7408;Errekalde-Larraskitu / Kiroldegia;Polideportivo de Recalde;A8,72,76,77
+G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV ord;5;7404;Errekalde-Larraskitu (36);Ctra. Larraskitu-Parque;A8,72,76,77
+G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV ord;6;7307;Errekalde-Larraskitu 23;Ciudadela-Larraskitu;A8,72,76,77
+G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV ord;7;7306;Errekalde-Larraskitu 1;Ciudadela-Ambulatorio;A8,72,76,77
+G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV ord;8;7304;Ciudadela 1;Ciudadela-Iglesia;A8,72
+G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV ord;9;7311;Gordoniz 49A;Gordoniz-Jaen;A8,27,57,72,77
+G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV ord;10;7107;Gordoniz 39;Gordoniz-Pl. Guardia Civil;27,72,77
+G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV ord;11;7103;Autonomía 13;Autonomia-Estacion Autobuses;58,85
+G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV ord;12;7102;Autonomía 1;Pl. Zabalburu-Simago;30,58,85
+G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV ord;13;6120;Hurtado Amézaga 15;Hurtado de Amezaga-Quinta Parroquia;E1,E2,30,71,75,85
+G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV ord;14;6118;Hurtado Amézaga 1 / Geltokia-Estación;Hurtado de Amezaga-Estacion Abando;E1,E2,E3,71,75,85
+G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV ord;15;6130;Gran Vía 2;;A1,01,10,40
+G3;LARRASKITU - PLAZA BIRIBILA;Larraskitu - P.Biribila/GV ord;16;6117;Gran Vía 8;Gran Via-Corte Ingles;A7,01,26,28,56,72,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;1;6117;Gran Vía 8;Gran Via-Corte Ingles;A7,01,26,28,56,72,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;2;6114;Gran Vía 36;Gran Via-Metro Moyua;A7,01,10,26,28,56,72,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;3;6116;Gran Vía 40;Gran Via-G. Civil;26,27,28,38,48,56,72,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;4;6211;Gregorio la Revilla 2;Gregorio de la Revilla-Pl. Campuzano;26,27,28,38,48,72,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;5;6212;Gregorio la Revilla 22;Gregorio de la Revilla-Part.Indautxu;26,27,28,38,48,72,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;6;6214;Gregorio la Revilla 36;Gregorio de la Revilla-Perez Galdos;27,38,48,72,77,88
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;7;7106;Gordoniz 22;Gordoniz-Pl. Guardia Civil;27,72,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;8;7310;Gordoniz 36;Gordoniz-Jaen;A8,27,57,72,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;9;7314;Goya 7;Gordoniz-Pl. Recalde;27,57
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;10;7303;Camilo Villabaso (27);Cº Villabaso;27
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;11;7501;Altube 12;;27
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;12;7508;Circunvalación 1;Betolaza-Circunvalacion;27
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;13;7509;Circunvalación 12;Betolaza-Circunvalacion;27
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;14;7510;Uretamendi / Plaza;Pl. Uretamendi;27
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;15;7503;Betolatza 51;Uretamendi-Betolaza;27
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;16;7502;Betolatza 41;Betolaza;27
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;17;7507;Circunvalación 1;Betolaza-Circunvalacion;27
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;18;7504;Circunvalación 12;Betolaza-Circunvalacion;27
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;19;7506;Uretamendi / Plaza;Pl. Uretamendi;27
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;20;7511;Armotxabidea;Gordoniz-Pl. Recalde;27
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;21;7601;Iturrigorribidea (45);Cº Iturrigorri;72,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;22;7605;Peñascal 16 / (Eliza);Cº Iturrigorri-Iglesia;72,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;23;7604;Peñascal (29);Bº El Peñascal;72,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;24;7701;Peñascal (146) / Rotonda;El Peñascal-Cantera;72,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;25;7606;Peñascal 29;Bº El Peñascal;72,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;26;7603;Peñascal (16) / Eliza;Cº Iturrigorri-Iglesia;72,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;27;7602;Iturrigorribidea 37;Cº Iturrigorri;27,72,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;28;7309;Gordoniz (90);Gordoniz-Pl. Belategi;27,76,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;29;7308;Gordoniz (54) / Pza Errekalde;Gordoniz-Pl. Recalde;27,76,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;30;7305;Ciudadela 2A;Ciudadela-Iglesia;A8,72,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;31;7409;Errekalde-Larraskitu 14;Ciudadela-Larraskitu;A8,72,76,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;32;7411;Errekalde-Larraskitu 36;Ctra. Larraskitu-Parque;A8,72,76,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;33;7408;Errekalde-Larraskitu / Kiroldegia;Polideportivo de Recalde;A8,72,76,77
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;34;7416;Karitateko Alaben 48;Cº Larraskitu-Iberdrola;72
+G3;LARRASKITU - PLAZA BIRIBILA;P.Biribila/GV - Larraskitu-ord;35;7322;Karitateko Alaben (3);Xalbador-Rekalde;72
 G4;LA PEÑA - PLAZA BIRIBILA;La Peña - Plaza Biribila/Ayala;1;5518;Zamacola 168;Zamacola-La Peña;50,56
 G4;LA PEÑA - PLAZA BIRIBILA;La Peña - Plaza Biribila/Ayala;2;5502;Abusu / Ibaieder;Zamacola-La Peña;40,50,56
 G4;LA PEÑA - PLAZA BIRIBILA;La Peña - Plaza Biribila/Ayala;3;5501;Abusu / Ibaialde;Zamacola-Iglesia;40,50,56
@@ -1202,113 +1273,136 @@ G4;LA PEÑA - PLAZA BIRIBILA;Plaza Biribila/Ayala - La Peña;12;5515;Zamacola / Es
 G4;LA PEÑA - PLAZA BIRIBILA;Plaza Biribila/Ayala - La Peña;13;5516;Zamacola 116;Zamacola-Campa Ibaizabal;40,50,56
 G4;LA PEÑA - PLAZA BIRIBILA;Plaza Biribila/Ayala - La Peña;14;5517;Zamacola 150 / Eliza;Zamacola-Iglesia;40,50,56
 G4;LA PEÑA - PLAZA BIRIBILA;Plaza Biribila/Ayala - La Peña;15;5518;Zamacola 168;Zamacola-La Peña;50,56
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;S.Adrián/Miribilla - P.Biribila/HA;1;5804;Rotonda Juan de Garay;Av. San Adrian-Juan Garay;57,71,75,76
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;S.Adrián/Miribilla - P.Biribila/HA;2;5803;Juan de Garay 33;Juan de Garay-Iberdrola;71,76
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;S.Adrián/Miribilla - P.Biribila/HA;3;5802;Juan de Garay 11;Juan de Garay-Gobierno Militar;30,71,75,76
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;S.Adrián/Miribilla - P.Biribila/HA;4;6123;Juan de Garay 7;Juan de Garay-General Salazar;30,71,75,76
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;S.Adrián/Miribilla - P.Biribila/HA;5;6120;Hurtado Amézaga 15;Hurtado de Amezaga-Quinta Parroquia;E1,E2,30,71,75,85
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;S.Adrián/Miribilla - P.Biribila/HA;6;6118;Hurtado Amézaga 1 / Geltokia-Estación;Hurtado de Amezaga-Estacion Abando;E1,E2,E3,71,75,85
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/HA - S.Adrián/Miribilla;1;6118;Hurtado Amézaga 1 / Geltokia-Estación;Hurtado de Amezaga-Estacion Abando;E1,E2,E3,71,75,85
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/HA - S.Adrián/Miribilla;2;6121;Hurtado Amézaga 50;Hurtado de Amezaga-Lutxana;E1,E2,E3,30,71
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/HA - S.Adrián/Miribilla;3;7108;Pedro Martínez Artola 2;Martinez Artola-Pl. Zabalburu;75,76
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/HA - S.Adrián/Miribilla;4;7203;Irala (19);Irala-Av.Kirikiño;75,76
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/HA - S.Adrián/Miribilla;5;7205;Irala 28;Irala-Final;57,75,76
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/HA - S.Adrián/Miribilla;6;7204;Irala (53) / Eskurtze;Irala-Eskurtze;57,75,76
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/HA - S.Adrián/Miribilla;7;7209;Rotonda Eskurtze;Torre Urizar;57,75,76
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/HA - S.Adrián/Miribilla;8;5913;San Adrián 2;Av. San Adrian-Juan Garay;57,71,75,76
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/HA - S.Adrián/Miribilla;9;5914;San Adrián 36;Av. San Adrian-Iglesia;57,71,75,76
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/HA - S.Adrián/Miribilla;10;5906;Goiko Torre 12;Bº San Adrian-Goiko Torre;57,71,75
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/HA - S.Adrián/Miribilla;11;5908;La Floresta;Bº San Adrian-Goiko Torre;57,71,75
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/HA - S.Adrián/Miribilla;12;5907;Julián Zugazagoitia 13;Miribilla;57,71
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/HA - S.Adrián/Miribilla;13;5904;Gernika 23;Miribilla;E2,E3,30,57,71
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/HA - S.Adrián/Miribilla;14;5903;Gernika 11;Miribilla;30,57
-G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/HA - S.Adrián/Miribilla;15;5804;Rotonda Juan de Garay;Av. San Adrian-Juan Garay;57,71,75,76
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV;1;8509;Zorrotza-Kastrexana 25;Zorrotza-Kastrexana-Astillero;18,85,88
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV;2;8317;Montevideo / (Olabeaga);Av. Montevideo-Frente Hospital;18,85,88
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV;3;8113;Montevideo / Santa Ana;Av. Montevideo-Bº Santa Ana;18,85,88
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV;4;8111;Montevideo / (Ospitalea);Av. Montevideo-Frente Hospital;18,85,88
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV;5;8123;Basurto / Aita Donostia;Autonomia-Pl. Aita Donosti;18,38,48,57,58,85,88
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV;6;7104;Autonomía 43;Autonomia-Escuelas;18,38,48,58,85,88
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV;7;6213;Gregorio la Revilla 35;Gregorio de la Revilla-Perez Galdos;27,38,48,72,77,88
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV;8;6210;Gregorio la Revilla 17;Gregorio de la Revilla-Part.Indautxu;27,38,48,72,76,77
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV;9;6209;Gregorio la Revilla 1;Gregorio de la Revilla-Pl. Campuzano;27,38,48,72,76,77
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV;10;6206;Gran Vía 43;Gran Via-Edif. Sota;A3,26,28,56,62,72,76,77
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV;11;6115;Gran Vía 37;Gran Via-Metro Moyua;01,10,26,28,56,62,72,77
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV;12;6113;Gran Vía 7;Gran Via-Corte Ingles;A5,01,10,26,28,56,62,72,77
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV;13;6130;Gran Vía 2;;A1,01,10,40
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;1;6130;Gran Vía 2;;A1,01,10,40
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;2;6117;Gran Vía 8;Gran Via-Corte Ingles;A7,01,26,28,56,72,77
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;3;6114;Gran Vía 36;Gran Via-Metro Moyua;A7,01,10,26,28,56,72,77
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;4;6116;Gran Vía 40;Gran Via-G. Civil;26,27,28,38,48,56,72,77
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;5;6211;Gregorio la Revilla 2;Gregorio de la Revilla-Pl. Campuzano;26,27,28,38,48,72,77
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;6;6212;Gregorio la Revilla 22;Gregorio de la Revilla-Part.Indautxu;26,27,28,38,48,72,77
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;7;6214;Gregorio la Revilla 36;Gregorio de la Revilla-Perez Galdos;27,38,48,72,77,88
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;8;6203;Autonomía 50;Autonomia-Escuelas;18,38,48,58,85,88
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;9;8122;Basurto / Briñas;Basurtu-Kastrexana;18,28,38,48,57,58,80,85,88
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;10;8114;Ospitalea;Av. Montevideo-Hospital;28,48,57,58,80
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;11;8104;Basurtubekoa / Iparralde;Basurtu-Kastrexana-Bentazarra;48,58
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;12;8305;Basurtugorta 1;Basurtu-Kastrexana-Bentazarra;48,58
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;13;8301;Auntzetxeta (18);Basurtu-Kastrexana-Bentazarra;48,58
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;14;8304;Auntzetxeta 7;Basurtu-Kastrexana-Bentazarra;48,58
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;15;8309;Lezeaga 9;Basurtu-Kastrexana-Bentazarra;58
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;16;8105;Basurtu-Kastrexana (65);Basurtu-Kastrexana-Bentazarra;28,58,80
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;17;8401;Basurtu-Kastrexana (123) / Albergue;Basurtu-Kastrexana;28,58,80
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;18;8602;Basurtu-Kastrexana / (Altamira);Bº Altamira-Entrada;28,58,80
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;19;8601;Altamira;Bº Altamira;2828RF,58,80
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;20;8507;Zorrotzabaso (12);Mendigain-Siete Campas;18,85
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;21;8505;Zazpilanda / Pinadia;Mendigain-Siete Campas;18,85
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;22;8503;Zazpilanda / Bidegain;Grupo Zazpi-Landa;18,85
-G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV - Altamira/Zorrotza;23;8509;Zorrotza-Kastrexana 25;Zorrotza-Kastrexana-Astillero;18,85,88
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;S.Adrián/Miribilla - P.Biribila/GV;1;5804;Rotonda Juan de Garay;Av. San Adrian-Juan Garay;57,71,75,76
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;S.Adrián/Miribilla - P.Biribila/GV;2;5803;Juan de Garay 33;Juan de Garay-Iberdrola;71,76
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;S.Adrián/Miribilla - P.Biribila/GV;3;5802;Juan de Garay 11;Juan de Garay-Gobierno Militar;30,71,75,76
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;S.Adrián/Miribilla - P.Biribila/GV;4;6123;Juan de Garay 7;Juan de Garay-General Salazar;30,71,75,76
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;S.Adrián/Miribilla - P.Biribila/GV;5;6120;Hurtado Amézaga 15;Hurtado de Amezaga-Quinta Parroquia;E1,E2,30,71,75,85
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;S.Adrián/Miribilla - P.Biribila/GV;6;6126;Plaza Biribila / Gran Vía;Pl. Biribila-La Granja;A2,03,30,40
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/GV - S.Adrián/Miribilla;1;6126;Plaza Biribila / Gran Vía;Pl. Biribila-La Granja;A2,03,30,40
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/GV - S.Adrián/Miribilla;2;6121;Hurtado Amézaga 50;Hurtado de Amezaga-Lutxana;E1,E2,E3,30,71
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/GV - S.Adrián/Miribilla;3;7108;Pedro Martínez Artola 2;Martinez Artola-Pl. Zabalburu;75,76
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/GV - S.Adrián/Miribilla;4;7203;Irala (19);Irala-Av.Kirikiño;75,76
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/GV - S.Adrián/Miribilla;5;7205;Irala 28;Irala-Final;57,75,76
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/GV - S.Adrián/Miribilla;6;7204;Irala (53) / Eskurtze;Irala-Eskurtze;57,75,76
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/GV - S.Adrián/Miribilla;7;7209;Rotonda Eskurtze;Torre Urizar;57,75,76
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/GV - S.Adrián/Miribilla;8;5913;San Adrián 2;Av. San Adrian-Juan Garay;57,71,75,76
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/GV - S.Adrián/Miribilla;9;5914;San Adrián 36;Av. San Adrian-Iglesia;57,71,75,76
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/GV - S.Adrián/Miribilla;10;5906;Goiko Torre 12;Bº San Adrian-Goiko Torre;57,71,75
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/GV - S.Adrián/Miribilla;11;5908;La Floresta;Bº San Adrian-Goiko Torre;57,71,75
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/GV - S.Adrián/Miribilla;12;5907;Julián Zugazagoitia 13;Miribilla;57,71
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/GV - S.Adrián/Miribilla;13;5904;Gernika 23;Miribilla;E2,E3,30,57,71
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/GV - S.Adrián/Miribilla;14;5903;Gernika 11;Miribilla;30,57
+G5;SAN ADRIAN / MIRIBILLA - PLAZA BIRIBILA;P.Biribila/GV - S.Adrián/Miribilla;15;5804;Rotonda Juan de Garay;Av. San Adrian-Juan Garay;57,71,75,76
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV8;1;8509;Zorrotza-Kastrexana 25;Zorrotza-Kastrexana-Astillero;18,85,88
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV8;2;8317;Montevideo / (Olabeaga);Av. Montevideo-Frente Hospital;18,85,88
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV8;3;8113;Montevideo / Santa Ana;Av. Montevideo-Bº Santa Ana;18,85,88
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV8;4;8111;Montevideo / (Ospitalea);Av. Montevideo-Frente Hospital;18,85,88
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV8;5;8123;Basurto / Aita Donostia;Autonomia-Pl. Aita Donosti;18,38,48,57,58,85,88
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV8;6;7104;Autonomía 43;Autonomia-Escuelas;18,38,48,58,85,88
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV8;7;6213;Gregorio la Revilla 35;Gregorio de la Revilla-Perez Galdos;27,38,48,72,77,88
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV8;8;6210;Gregorio la Revilla 17;Gregorio de la Revilla-Part.Indautxu;27,38,48,72,76,77
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV8;9;6209;Gregorio la Revilla 1;Gregorio de la Revilla-Pl. Campuzano;27,38,48,72,76,77
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV8;10;6206;Gran Vía 43;Gran Via-Edif. Sota;A3,26,28,56,62,72,76,77
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV8;11;6115;Gran Vía 37;Gran Via-Metro Moyua;01,10,26,28,56,62,72,77
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV8;12;6113;Gran Vía 7;Gran Via-Corte Ingles;A5,01,10,26,28,56,62,72,77
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Altamira/Zorrotza - Plaza Biribila/GV8;13;6117;Gran Vía 8;Gran Via-Corte Ingles;A7,01,26,28,56,72,77
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;1;6117;Gran Vía 8;Gran Via-Corte Ingles;A7,01,26,28,56,72,77
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;2;6114;Gran Vía 36;Gran Via-Metro Moyua;A7,01,10,26,28,56,72,77
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;3;6116;Gran Vía 40;Gran Via-G. Civil;26,27,28,38,48,56,72,77
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;4;6211;Gregorio la Revilla 2;Gregorio de la Revilla-Pl. Campuzano;26,27,28,38,48,72,77
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;5;6212;Gregorio la Revilla 22;Gregorio de la Revilla-Part.Indautxu;26,27,28,38,48,72,77
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;6;6214;Gregorio la Revilla 36;Gregorio de la Revilla-Perez Galdos;27,38,48,72,77,88
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;7;6203;Autonomía 50;Autonomia-Escuelas;18,38,48,58,85,88
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;8;8122;Basurto / Briñas;Basurtu-Kastrexana;18,28,38,48,57,58,80,85,88
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;9;8114;Ospitalea;Av. Montevideo-Hospital;28,48,57,58,80
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;10;8104;Basurtubekoa / Iparralde;Basurtu-Kastrexana-Bentazarra;48,58
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;11;8305;Basurtugorta 1;Basurtu-Kastrexana-Bentazarra;48,58
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;12;8301;Auntzetxeta (18);Basurtu-Kastrexana-Bentazarra;48,58
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;13;8304;Auntzetxeta 7;Basurtu-Kastrexana-Bentazarra;48,58
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;14;8309;Lezeaga 9;Basurtu-Kastrexana-Bentazarra;58
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;15;8105;Basurtu-Kastrexana (65);Basurtu-Kastrexana-Bentazarra;28,58,80
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;16;8401;Basurtu-Kastrexana (123) / Albergue;Basurtu-Kastrexana;28,58,80
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;17;8602;Basurtu-Kastrexana / (Altamira);Bº Altamira-Entrada;28,58,80
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;18;8601;Altamira;Bº Altamira;2828RF,58,80
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;19;8507;Zorrotzabaso (12);Mendigain-Siete Campas;18,85
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;20;8505;Zazpilanda / Pinadia;Mendigain-Siete Campas;18,85
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;21;8503;Zazpilanda / Bidegain;Grupo Zazpi-Landa;18,85
+G6;ALTAMIRA/ZORROTZA - PLAZA BIRIBILA;Plaza Biribila/GV8 - Altamira/Zorrotza;22;8509;Zorrotza-Kastrexana 25;Zorrotza-Kastrexana-Astillero;18,85,88
+G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV2;1;4305;Sagarmínaga 32 / Eskola;Sagarminaga-Mina del Morro;40
 G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV;1;4305;Sagarmínaga 32 / Eskola;Sagarminaga-Mina del Morro;40
 G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV;2;4002;Santa Lucia 2;;
+G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV2;2;4002;Santa Lucia 2;;
+G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV2;3;4208;Iturriaga 58 / L. Briñas Eskola;Iturriaga-Colg. Luis Briñas;34,43,48
 G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV;3;4208;Iturriaga 58 / L. Briñas Eskola;Iturriaga-Colg. Luis Briñas;34,43,48
 G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV;4;4209;Santa Klara (12);;48
+G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV2;4;4209;Santa Klara (12);;48
 G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV;5;5305;Zabalbide 41;Zabalbide-Telefonica;40,48
+G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV2;5;5305;Zabalbide 41;Zabalbide-Telefonica;40,48
 G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV;6;5304;Zabalbide (32);Zabalbide-Fica;A2
+G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV2;6;5304;Zabalbide (32);Zabalbide-Fica;A2
 G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV;7;5306;Zabalbide 7;Zabalbide-Fica;A2
+G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV2;7;5306;Zabalbide 7;Zabalbide-Fica;A2
 G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV;8;5106;Ribera / Merkatua;Mercado de la Ribera;A2,11,22,40,56,58,72,75,77,85
+G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV2;8;5106;Ribera / Merkatua;Mercado de la Ribera;A2,11,22,40,56,58,72,75,77,85
+G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV2;9;5105;Puente del Arenal;Puente de el Arenal;A1,A2,A7,03,26,28,30,40,56,58,71,72,75,77,85
 G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV;9;5105;Puente del Arenal;Puente de el Arenal;A1,A2,A7,03,26,28,30,40,56,58,71,72,75,77,85
 G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV;10;6117;Gran Vía 8;Gran Via-Corte Ingles;A7,01,26,28,56,72,77
+G7;MINA DEL MORRO - PLAZA BIRIBILA;Mina del Morro - P. Biribila/GV2;10;6130;Gran Vía 2;;A1,01,10,40
 G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV -  Mina del Morro;1;6117;Gran Vía 8;Gran Via-Corte Ingles;A7,01,26,28,56,72,77
+G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV2 -  Mina del Morro;1;6130;Gran Vía 2;;A1,01,10,40
+G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV2 -  Mina del Morro;2;6117;Gran Vía 8;Gran Via-Corte Ingles;A7,01,26,28,56,72,77
 G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV -  Mina del Morro;2;6129;Ayala(2);Gran Via-Metro Moyua;A1,40
+G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV2 -  Mina del Morro;3;6129;Ayala(2);Gran Via-Metro Moyua;A1,40
 G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV -  Mina del Morro;3;5102;Arenal / Arriaga;Puente de el Arenal;56,75,77,85
+G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV2 -  Mina del Morro;4;5102;Arenal / Arriaga;Puente de el Arenal;56,75,77,85
 G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV -  Mina del Morro;4;5704;Muelle de la Merced 3;Conde Mirasol con Marzana;11,22,56,72,75,77,85
 G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV -  Mina del Morro;5;5701;Cortes (2);Pl. Corazon de Maria;11,22,56,58,72,75,77,85
+G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV2 -  Mina del Morro;5;5704;Muelle de la Merced 3;Conde Mirasol con Marzana;11,22,56,72,75,77,85
 G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV -  Mina del Morro;6;5601;Olano (4);;11,22,56,58,72,75,77,85
+G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV2 -  Mina del Morro;6;5701;Cortes (2);Pl. Corazon de Maria;11,22,56,58,72,75,77,85
 G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV -  Mina del Morro;7;5406;Santos Juanes 4;Pl. Santos Juanes;77
+G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV2 -  Mina del Morro;7;5601;Olano (4);;11,22,56,58,72,75,77,85
 G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV -  Mina del Morro;8;5401;Atxuri (15) / Geltokia-Estación;Atxuri;77
+G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV2 -  Mina del Morro;8;5406;Santos Juanes 4;Pl. Santos Juanes;77
+G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV2 -  Mina del Morro;9;5401;Atxuri (15) / Geltokia-Estación;Atxuri;77
 G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV -  Mina del Morro;9;5402;Atxuri (49);Atxuri;77
+G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV2 -  Mina del Morro;10;5402;Atxuri (49);Atxuri;77
 G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV -  Mina del Morro;10;4206;Indalecio Prieto 16;Mina del Morro;77
+G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV2 -  Mina del Morro;11;4206;Indalecio Prieto 16;Mina del Morro;77
 G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV -  Mina del Morro;11;4305;Sagarmínaga 32 / Eskola;Sagarminaga-Mina del Morro;40
-G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV;1;1604;Ganeta Mendia (7);Arangoiti-Egileor;01
-G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV;2;1605;Miramarbidea / Eskola;Arangoiti-Colegio;A6,01
-G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV;3;1702;Miramarbidea (47);Arangoiti-Colegio;A6,01
-G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV;4;1703;Miramarbidea / Aranekobidea;Arangoiti-Colegio;A6,01
-G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV;5;1306;Ugarteko / Ibarrekolanda;Lehendakari Aguirre-Sarriko;01
-G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV;6;1414;L. Aguirre / (Bidarte);Lehendakari Aguirre-Bidarte;A4,01,10,11,13,18,71
-G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV;7;1413;L. Aguirre / Hizkuntza Eskola;Lehendakari Aguirre-Pl. S. Pedro;01,10,13,18,71
-G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV;8;1405;Botika Zaharra / Deustuko Zubia;Botica Vieja-Bajos Puente Deusto;11,71
-G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV;9;1426;Unibertsitate (24);Av. Universidades-Universidad;11,71
-G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV;10;2109;La Salve / Igogailua;Campo Volantin-Pte.La Salve;11,71
-G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV;11;2101;Campo Volantín (21);Campo Volantin-Hotel Nervion;11,71
-G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV;12;2102;Campo Volantín (4);Campo Volantin-Ayuntamiento;11,26,28,71,72,77
-G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV;13;5108;Sendeja (5);Sendeja-Tinglados;A1,A7,03,11,22,26,28,30,71,72,77
-G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV;14;5105;Puente del Arenal;Puente de el Arenal;A1,A2,A7,03,26,28,30,40,56,58,71,72,75,77,85
-G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV;15;6117;Gran Vía 8;Gran Via-Corte Ingles;A7,01,26,28,56,72,77
-G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV - Arangoiti;1;6117;Gran Vía 8;Gran Via-Corte Ingles;A7,01,26,28,56,72,77
-G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV - Arangoiti;2;5110;Viuda de Epalza 1 / San Nicolás;Vda. Epalza-San Nicolas;11,22,62,72,77
-G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV - Arangoiti;3;2108;Ernesto Erkoreka / Udaletxea;Campo Volantin-Ayuntamiento;11,22,26,28,71,72,77
-G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV - Arangoiti;4;2104;Campo Volantín 13;Campo Volantin-Hotel Nervion;22,26,28,72,77
-G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV - Arangoiti;5;2107;Castaños / Funikularra;Castaños-Funicular;72,77
-G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV - Arangoiti;6;2111;Tristán de Leguizamón 5;Huertas de la Villa;72,77
-G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV - Arangoiti;7;2103;Campo Volantín / La Salve;Campo Volantin-Pte.La Salve;11,71
-G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV - Arangoiti;8;1427;Unibertsitate 24;Av. Universidades-Universidad;11,71
-G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV - Arangoiti;9;1410;Hermanos Aguirre / Unibertsitatea;Hermanos Aguirre;71
-G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV - Arangoiti;10;1423;San Pedro / Eliza;Lehendakari Aguirre-Pl. S. Pedro;A6,A7,01,10,13,18,71
-G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV - Arangoiti;11;1415;L. Aguirre 42 / Bidarte;Lehendakari Aguirre-Bidarte;A7,01,10,13,18,71
-G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV - Arangoiti;12;1411;Ibarrekolanda 19;Lehendakari Aguirre-Sarriko;A7,01
-G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV - Arangoiti;13;1701;Aranekobidea / Cementerio;Arangoiti-Colegio;A6,01
-G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV - Arangoiti;14;1401;Araneko (22);Arangoiti-Araneko;A6,01
-G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV - Arangoiti;15;1601;Araneko 17;Arangoiti-Araneko;A6,01
-G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV - Arangoiti;16;1603;Egileor 4;Arangoiti-Egileor;01
-G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV - Arangoiti;17;1604;Ganeta Mendia (7);Arangoiti-Egileor;01
+G7;MINA DEL MORRO - PLAZA BIRIBILA;P.Biribila/GV2 -  Mina del Morro;12;4305;Sagarmínaga 32 / Eskola;Sagarminaga-Mina del Morro;40
+G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV2;1;1604;Ganeta Mendia (7);Arangoiti-Egileor;01
+G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV2;2;1605;Miramarbidea / Eskola;Arangoiti-Colegio;A6,01
+G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV2;3;1702;Miramarbidea (47);Arangoiti-Colegio;A6,01
+G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV2;4;1703;Miramarbidea / Aranekobidea;Arangoiti-Colegio;A6,01
+G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV2;5;1306;Ugarteko / Ibarrekolanda;Lehendakari Aguirre-Sarriko;01
+G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV2;6;1414;L. Aguirre / (Bidarte);Lehendakari Aguirre-Bidarte;A4,01,10,11,13,18,71
+G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV2;7;1413;L. Aguirre / Hizkuntza Eskola;Lehendakari Aguirre-Pl. S. Pedro;01,10,13,18,71
+G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV2;8;1405;Botika Zaharra / Deustuko Zubia;Botica Vieja-Bajos Puente Deusto;11,71
+G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV2;9;1426;Unibertsitate (24);Av. Universidades-Universidad;11,71
+G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV2;10;2109;La Salve / Igogailua;Campo Volantin-Pte.La Salve;11,71
+G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV2;11;2101;Campo Volantín (21);Campo Volantin-Hotel Nervion;11,71
+G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV2;12;2102;Campo Volantín (4);Campo Volantin-Ayuntamiento;11,26,28,71,72,77
+G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV2;13;5108;Sendeja (5);Sendeja-Tinglados;A1,A7,03,11,22,26,28,30,71,72,77
+G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV2;14;5105;Puente del Arenal;Puente de el Arenal;A1,A2,A7,03,26,28,30,40,56,58,71,72,75,77,85
+G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV2;15;6117;Gran Vía 8;Gran Via-Corte Ingles;A7,01,26,28,56,72,77
+G8;ARANGOITI - PLAZA BIRIBILA;Arangoiti - Plaza Biribila/GV2;16;6130;Gran Vía 2;;A1,01,10,40
+G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV2 - Arangoiti;1;6130;Gran Vía 2;;A1,01,10,40
+G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV2 - Arangoiti;2;6117;Gran Vía 8;Gran Via-Corte Ingles;A7,01,26,28,56,72,77
+G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV2 - Arangoiti;3;5110;Viuda de Epalza 1 / San Nicolás;Vda. Epalza-San Nicolas;11,22,62,72,77
+G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV2 - Arangoiti;4;2108;Ernesto Erkoreka / Udaletxea;Campo Volantin-Ayuntamiento;11,22,26,28,71,72,77
+G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV2 - Arangoiti;5;2104;Campo Volantín 13;Campo Volantin-Hotel Nervion;22,26,28,72,77
+G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV2 - Arangoiti;6;2107;Castaños / Funikularra;Castaños-Funicular;72,77
+G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV2 - Arangoiti;7;2111;Tristán de Leguizamón 5;Huertas de la Villa;72,77
+G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV2 - Arangoiti;8;2103;Campo Volantín / La Salve;Campo Volantin-Pte.La Salve;11,71
+G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV2 - Arangoiti;9;1427;Unibertsitate 24;Av. Universidades-Universidad;11,71
+G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV2 - Arangoiti;10;1410;Hermanos Aguirre / Unibertsitatea;Hermanos Aguirre;71
+G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV2 - Arangoiti;11;1423;San Pedro / Eliza;Lehendakari Aguirre-Pl. S. Pedro;A6,A7,01,10,13,18,71
+G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV2 - Arangoiti;12;1415;L. Aguirre 42 / Bidarte;Lehendakari Aguirre-Bidarte;A7,01,10,13,18,71
+G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV2 - Arangoiti;13;1411;Ibarrekolanda 19;Lehendakari Aguirre-Sarriko;A7,01
+G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV2 - Arangoiti;14;1701;Aranekobidea / Cementerio;Arangoiti-Colegio;A6,01
+G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV2 - Arangoiti;15;1401;Araneko (22);Arangoiti-Araneko;A6,01
+G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV2 - Arangoiti;16;1601;Araneko 17;Arangoiti-Araneko;A6,01
+G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV2 - Arangoiti;17;1603;Egileor 4;Arangoiti-Egileor;01
+G8;ARANGOITI - PLAZA BIRIBILA;Plaza Biribila/GV2 - Arangoiti;18;1604;Ganeta Mendia (7);Arangoiti-Egileor;01

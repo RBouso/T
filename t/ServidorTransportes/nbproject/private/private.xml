@@ -4,6 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/raquel/NetBeansProjects/ServidorTransportes/src/java/Transportes/Ficheros/AccionViajar.java</file>
+            <file>file:/home/raquel/NetBeansProjects/ServidorTransportes/src/java/Transportes/extraccion/RDF.java</file>
             <file>file:/home/raquel/NetBeansProjects/ServidorTransportes/src/java/s1transportes/AparcamientosMessage.java</file>
             <file>file:/home/raquel/NetBeansProjects/ServidorTransportes/src/java/Transportes/Ficheros/Constantes.java</file>
             <file>file:/home/raquel/NetBeansProjects/ServidorTransportes/src/java/Transportes/Controlador/Datos/Clases/CtrlMetroDatos.java</file>
@@ -20,6 +21,7 @@
             <file>file:/home/raquel/NetBeansProjects/ServidorTransportes/src/java/Transportes/Ficheros/HorarioApertura.java</file>
             <file>file:/home/raquel/NetBeansProjects/ServidorTransportes/src/java/Valoraciones/Controlador/Dominio/ControladorValoraciones.java</file>
             <file>file:/home/raquel/NetBeansProjects/ServidorTransportes/src/java/Transportes/extraccion/Formato.java</file>
+            <file>file:/home/raquel/NetBeansProjects/ServidorTransportes/src/java/Transportes/Controlador/Datos/Interficie/CtrlEstructurasPublicas.java</file>
             <file>file:/home/raquel/NetBeansProjects/ServidorTransportes/src/java/Transportes/Controlador/Datos/Clases/CtrlTelefericoDatos.java</file>
             <file>file:/home/raquel/NetBeansProjects/ServidorTransportes/src/java/Transportes/Controlador/Datos/Clases/CtrlEstacionCivicaDatos.java</file>
             <file>file:/home/raquel/NetBeansProjects/ServidorTransportes/src/java/Transportes/Controlador/Datos/Clases/CtrlCiudadDatos.java</file>

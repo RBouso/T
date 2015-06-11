@@ -55,7 +55,7 @@ public abstract class CtrlEstacionCivicaDatos extends CtrlEstructurasPublicasDat
             ArrayList<String> result = new ArrayList<>();
            
             Document htmlFile = Jsoup.parse(new File(fichero), "UTF-8");
-//            List<Node> childNodes = htmlFile.body().childNodes();
+
            
             Elements select = htmlFile.select("span[itemprop=line]");
             

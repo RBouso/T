@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+ <head></head>
+ <body> 
+  <div itemscope itemtype="http://schema.org/URL"> 
+   <span itemprop="reference"> BicicletasBilbaoXML</span> 
+   <span itemprop="url"> http://www.bilbao.net/WebServicesBilbao/WSBilbao?s=ODPRESBICI&amp;u=OPENDATA&amp;p0=A&amp;p1=A</span> 
+   <span itemprop="date">2015/06/08</span> 
+   <span itemprop="period">mensual</span> 
+  </div>   
+ </body>
+</html>

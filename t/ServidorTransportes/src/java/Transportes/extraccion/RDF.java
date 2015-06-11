@@ -79,13 +79,12 @@ public class RDF extends Formato{
                 //para cada propidad, obtenemos el nombre de la variable y el valor
                 while (listProperties.hasNext()) {
                     Statement state = listProperties.nextStatement();
-
+                    
                     super.obtenerDatos(state.getPredicate().getLocalName(), state.getObject().toString());
                 }
                 //guardamos los datos
-                if (referencia.contains("Tiempo"))
-                    ;//super.integrarTiempos();
-                else 
+ 
+               
                     super.integrarDatos(i, ultimo-1);
                 i++;
             }

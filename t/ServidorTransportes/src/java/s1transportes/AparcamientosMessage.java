@@ -194,14 +194,19 @@ public class AparcamientosMessage implements MessageBodyWriter<ArrayList<Object>
             else if(type1.getTypeName().contains("ArrayList<Transportes.Ficheros.EstacionCivica>") ||
                     type1.getTypeName().contains("ArrayList<Transportes.Ficheros.EstructurasPublicas>")) {
                 buffer = buffer.append(" {\"Estaciones\":[");
+                int ultimo = 0;
                 for (int i = 0; i < t.size(); i++) {
                     EstructurasPublicas apar = new EstructurasPublicas();
                     EstacionCivica apar1 = new EstacionCivica();
                     if (type1.getTypeName().contains("EstacionCivica")) 
                         apar = (EstacionCivica) t.get(i);
                     else apar = (EstructurasPublicas) t.get(i);
-                    
+                    if(apar != null) { 
+                      boolean pintar =false;  
+                    if (ultimo != 0)  buffer = buffer.append(",");
+                    ultimo++;
                     buffer = buffer.append("{");
+                    
                     if( type1.getTypeName().contains("ArrayList<Transportes.Ficheros.EstructurasPublicas>")){
                         buffer = buffer.append("\"transporte\":\"").append(apar.transporte);
                         buffer = buffer.append("\",");
@@ -307,27 +312,30 @@ public class AparcamientosMessage implements MessageBodyWriter<ArrayList<Object>
                             }
                        }
                     }
-//                   else {
-//                        buffer = buffer.append("\",");
-//                        buffer = buffer.append("\"lineas\":\"");
-//                        apar1 = (EstacionCivica) t.get(i);
-//                        if (apar1 != null) {
-//                            if(apar1.getLineas()!= null) {
-//                                buffer = buffer.append("[\"");
-//                                for (int j = 0; j < apar1.getLineas().size(); j++) {
-//                                    if (j != 0) buffer = buffer.append(", \"");
-//                                    buffer = buffer.append(apar1.getLineas().get(j).getNumLinea());
-//                                    buffer = buffer.append("\"");
-//                                }
-//                                buffer = buffer.append("]");
-//                            }
-//                        }
+                   else {
+                        buffer = buffer.append("\",");
+                        buffer = buffer.append("\"lineas\":");
+                        apar1 = (EstacionCivica) t.get(i);
+                        
+                        if (apar1 != null) {
+                            if(apar1.getLineas()!= null) {
+                                buffer = buffer.append("[\"");
+                                for (int j = 0; j < apar1.getLineas().size(); j++) {
+                                    if (j != 0) buffer = buffer.append(", \"");
+                                    buffer = buffer.append(apar1.getLineas().get(j).getNumLinea());
+                                    buffer = buffer.append("\"");
+                                }
+                                buffer = buffer.append("]");
+                                pintar = true;
+                            }
+                        }
 //                            
-//                   }
+                   }
                     
-                    buffer = buffer.append("\"}");
-
-                    if(i < t.size()-1) buffer = buffer.append(",");
+                   if(!pintar) buffer = buffer.append("\"}");
+                   else buffer = buffer.append("}");
+                    
+                }
                 }
                 buffer = buffer.append("]}");
             }

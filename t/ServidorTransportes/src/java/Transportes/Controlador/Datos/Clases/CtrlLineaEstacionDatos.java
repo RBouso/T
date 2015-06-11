@@ -52,6 +52,7 @@ public class CtrlLineaEstacionDatos implements CtrlLineaEstacion{
                     LineaEstacion el = new LineaEstacion();
                     ArrayList<Linea> lin = new ArrayList<>();
                     Linea linea = new Linea();
+                    boolean esta = false;
                     for (int j = 0; j < he.size(); j++) {
                         Element helem = he.get(j);
 
@@ -88,16 +89,18 @@ public class CtrlLineaEstacionDatos implements CtrlLineaEstacion{
                             lin.add(l);
                             if (helem.text().equals(nomLinea)) {
                                 
-                                
+                                esta = true;
                                 linea.setNumLinea(helem.text());
                                
 
                             }
                                 
                         }
-                        el.setLinea(linea);
-                        estacion.setLineas(lin);
-                        el.setEstacion(estacion);
+                        if( esta) {
+                            el.setLinea(linea);
+                            estacion.setLineas(lin);
+                            el.setEstacion(estacion);
+                        }
                         
                         ec.add(el);
 

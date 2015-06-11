@@ -10,6 +10,7 @@ package Transportes.Ficheros;
  * @author raquel
  */
 public class Lugar extends Cosa{
+    public String transporte;
     private CoordinadasGeo geo;
     private DireccionPostal direccion;
     private String telefono;

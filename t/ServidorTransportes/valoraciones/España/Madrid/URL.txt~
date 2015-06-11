@@ -1,3 +1,5 @@
-nomReferencia: BicicletasMadridXLS url: http://datos.madrid.es/egob/catalogo/208327-0-transporte-bicicletas-bicimad.xls
-nomReferencia: AparcamientosMadridCSV url: http://datos.madrid.es/egob/catalogo/202625-0-aparcamientos-publicos.csv
-nomReferencia: CercaniasMadridRDF url: http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/Cercanias/2015/Cercanias_2015_04.rdf
+nomReferencia: AutobusesMadridRDF url: http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/EMT/2015/EMT_2015_04.rdf fechaActualizacion: 2015/06/08 actualizacion: trimestral
+nomReferencia: MetroMadridRDF url: http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/Metro/2015/Metro_2015_04.rdf fechaActualizacion: 2015/06/08 actualizacion: trimestral
+nomReferencia: TaxiMadridRDF url: http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/Paradas_Taxi/2015/Paradas_Taxi_2015_04.rdf fechaActualizacion: 2015/06/08 actualizacion: trimestral
+nomReferencia: CercaniasMadridRDF url: http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/Cercanias/2015/Cercanias_2015_04.rdf fechaActualizacion: 2015/06/08 actualizacion: trimestral
+nomReferencia: AparcamientosMadridRDF url: http://datos.madrid.es/egob/catalogo/202625-0-aparcamientos-publicos.rdf fechaActualizacion: 2015/06/08 actualizacion: anual

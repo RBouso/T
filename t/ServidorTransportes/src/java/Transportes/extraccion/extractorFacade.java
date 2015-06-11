@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  * @author raquel
  */
 public class extractorFacade {
-    private String tipo[] = {"application/vnd.ms-excel","application/rdf+xml","application/xml","text/csv"};
+    private String tipo[] = {"application/vnd.ms-excel","application/rdf+xml","application/xml","text/csv","text/xml"};
     
     public void extraerDatos(String nomFichero, String url, String referencia, String ciudad, String pais) {
         try {
@@ -39,14 +39,15 @@ public class extractorFacade {
             else if (tipo[1].equals(formato)){
                 f = new RDF();
             }
-            else if (tipo[2].equals(formato)){
+            else if (tipo[2].equals(formato) || tipo[4].equals(formato)){
                 f = new XML();
             }
             else if (tipo[3].equals(formato)){
                 f = new CSV();
                // csv.extraerDatos(nomFichero, referencia, url, ciudad, pais); 
             }
-           f.extraerDatos(nomFichero, referencia, url, ciudad, pais); 
+           if (f!= null)
+            f.extraerDatos(nomFichero, referencia, url, ciudad, pais); 
         } catch (IOException ex) {
             Logger.getLogger(extractorFacade.class.getName()).log(Level.SEVERE, null, ex);
         }

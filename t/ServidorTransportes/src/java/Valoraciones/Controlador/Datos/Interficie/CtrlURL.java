@@ -25,5 +25,6 @@ import java.util.logging.Logger;
  */
 public interface CtrlURL {
     public ArrayList<URL> getURLs(String ciudad, String pais) ;
-    public void anadirURL(String ciudad, String pais, String nomReferencia, String url);
+    public void anadirURL(String ciudad, String pais, String nomReferencia, 
+            String url, String fecha, String actual);
 }

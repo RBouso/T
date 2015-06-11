@@ -12,12 +12,32 @@ package Valoraciones.Ficheros;
 public class URL {
     private String url;
     private String nombreReferencia;
+    private String fechaActualizacion;
+    private String actualizacion;
+
+    public String getFechaActualizacion() {
+        return fechaActualizacion;
+    }
+
+    public void setFechaActualizacion(String fechaActualizacion) {
+        this.fechaActualizacion = fechaActualizacion;
+    }
+
+    public String getActualizacion() {
+        return actualizacion;
+    }
+
+    public void setActualizacion(String actualizacion) {
+        this.actualizacion = actualizacion;
+    }
     
     public URL(){}
 
-    public URL(String url, String nombreReferencia) {
+    public URL(String url, String nombreReferencia, String fecha, String actual) {
         this.url = url;
         this.nombreReferencia = nombreReferencia;
+        this.fechaActualizacion= fecha;
+        this.actualizacion = actual;
     }
 
     public String getUrl() {

@@ -38,6 +38,7 @@ public class CSV extends Formato{
             super.referencia = referencia;
             super.fichero = super.fichero+pais+"/"+ciudad;
             folder = folder+pais+"/"+ciudad+"/"+nomFichero;
+            
             CsvReader f = new CsvReader(folder, ';');
             //leer archivo
             f.readHeaders();
@@ -45,7 +46,6 @@ public class CSV extends Formato{
             int ultimo = f.getHeaderCount();
             int j = 0;
             while (f.readRecord()){
-                
                 super.inicializar_variables();
                 
                 for (int i = 0; i < ultimo; i++) {
@@ -53,9 +53,7 @@ public class CSV extends Formato{
                     String valor = f.get(i);
                     super.obtenerDatos(header, valor);
                 }
-                if (referencia.contains("Tiempo"))
-                    ;//super.integrarTiempos();
-                else 
+
                     super.integrarDatos(j, ultimo-1);
                  j++;
             }

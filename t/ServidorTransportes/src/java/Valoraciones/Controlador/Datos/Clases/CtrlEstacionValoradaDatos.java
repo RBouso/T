@@ -120,7 +120,7 @@ public class CtrlEstacionValoradaDatos implements CtrlEstacionValorada{
         return ev;
     }
 
-    private boolean existeValoracion(double latitud, double longitud, String ciudad, String pais) {
+    public boolean existeValoracion(double latitud, double longitud, String ciudad, String pais) {
         try {
             File fichero = new File (cons.valoraciones+pais+"/"+ciudad+"/EstacionValorada.html");
             Document htmlFile = Jsoup.parse(fichero, "UTF-8");

@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+ <head></head> 
+ <body> 
+  <div itemscope itemtype="http://schema.org/URL"> 
+   <span itemprop="reference"> TaxiBarcelonaCSV</span> 
+   <span itemprop="url"> http://bismartopendata.blob.core.windows.net/opendata/opendata/paradestaxi_0_opendata_paradestaxi.csv</span> 
+   <span itemprop="date">2015/06/08</span> 
+   <span itemprop="period">mensual</span> 
+  </div> 
+  <div itemscope itemtype="http://schema.org/URL"> 
+   <span itemprop="reference"> AutobusesBarcelonaCSV</span> 
+   <span itemprop="url"> http://bismartopendata.blob.core.windows.net/opendata/opendata/estacionsbus_0_opendata_estacionsbus.csv</span> 
+   <span itemprop="date">2015/05/08</span> 
+   <span itemprop="period">mensual</span> 
+  </div> 
+  <div itemscope itemtype="http://schema.org/URL"> 
+   <span itemprop="reference"> TransportesBarcelonaCSV</span> 
+   <span itemprop="url"> http://bismartopendata.blob.core.windows.net/opendata/opendata/transports_0_opendata_transports.csv</span> 
+   <span itemprop="date">2015/06/08</span> 
+   <span itemprop="period">mensual</span> 
+  </div> 
+  <div itemscope itemtype="http://schema.org/URL"> 
+   <span itemprop="reference"> AparcamientosBarcelonaCSV</span> 
+   <span itemprop="url"> http://bismartopendata.blob.core.windows.net/opendata/opendata/aparcaments_0_opendata_aparcaments.csv</span> 
+   <span itemprop="date">2015/06/08</span> 
+   <span itemprop="period">mensual</span> 
+  </div> 
+  <div itemscope itemtype="http://schema.org/URL"> 
+   <span itemprop="reference"> BicicletasBarcelonaXML</span> 
+   <span itemprop="url"> http://wservice.viabicing.cat/v1/getstations.php?v=1</span> 
+   <span itemprop="date">2015/5/9</span> 
+   <span itemprop="period">continuamente</span> 
+  </div>  
+ </body>
+</html>

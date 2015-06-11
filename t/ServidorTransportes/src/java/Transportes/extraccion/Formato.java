@@ -5,6 +5,7 @@
  */
 package Transportes.extraccion;
 
+import Valoraciones.Controlador.Dominio.ControladorValoraciones;
 import java.awt.geom.Point2D;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -71,6 +72,8 @@ public abstract class Formato {
     protected String tipoDia = "";
     protected ArrayList<String> horaSalida = new ArrayList<>();
     protected String sentido  = "";
+    protected int zonaNumero = 0;
+    protected char zonaLetra;
     
     /**
      * Lista de nombres que pueden aparecer en un archivo con respecto al lugar 
@@ -210,10 +213,9 @@ public abstract class Formato {
            
             
             if (i == 0 ) {
-                if (referencia.contains("RDF")) System.out.println("Soy i = 0 y existe el fichero");
+                
                 if (f.exists())
                     f.delete();
-                    if (referencia.contains("RDF")) System.out.println("creo el fichero");
                 f.createNewFile();}
             bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fichero+nomFichero,true), "UTF-8"));
             if (i == 0 ) {
@@ -234,11 +236,12 @@ public abstract class Formato {
             bw.append("URL: <span itemprop=\"url\"> "+furl+"</span>\n");
             if (lat.isEmpty() && !coordx.isEmpty() && longitud.isEmpty() && 
                 !coordy.isEmpty()) {
-                //System.out.println("entro" );
-
+                //System.out.println("entro" )
+                getZonaCoordenadas();
+                
                 coordx = coordx.replace(',', '.');
                 coordy = coordy.replace(',', '.');
-                UTM utm = UTM.valueOf(31, 'T', Double.parseDouble(coordx), Double.parseDouble(coordy), METER);
+                UTM utm = UTM.valueOf(zonaNumero, zonaLetra, Double.parseDouble(coordx), Double.parseDouble(coordy), METER);
 
                 CoordinatesConverter<UTM, LatLong> utmToLatLong = UTM.CRS
                         .getConverterTo(LatLong.CRS);
@@ -249,11 +252,12 @@ public abstract class Formato {
             }
             if (lat.isEmpty() && longitud.isEmpty()) {
                 if(!referencia.contains("Horarios"))
-                getLatLong();
+                    getLatLong();
             }
             if (!lat.isEmpty() && !longitud.isEmpty()) {
                 lat = lat.replace(',', '.');
                 longitud = longitud.replace(',', '.');
+               
                 bw.append("geo: <div itemprop=\"geo\" itemscope itemtype=\"http://schema.org/GeoCoordinates\" > \n");
                 bw.append("latitud: <meta itemprop=\"latitude\" content=\""+lat+"\" /> \n");
                 bw.append("longitud: <meta itemprop=\"longitude\" content=\""+longitud+"\" />\n");
@@ -337,6 +341,7 @@ public abstract class Formato {
             }
                 bw.close();
             }
+
         } catch (IOException ex) {
             Logger.getLogger(Formato.class.getName()).log(Level.SEVERE, null, ex);
         } 
@@ -681,5 +686,16 @@ private void crear_ficheros(String folder, String pais, String ciudad) {
         } catch (IOException ex) {
             Logger.getLogger(Formato.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void getZonaCoordenadas() {
+        if( ciudad.equals("Barcelona")){
+                    zonaNumero = 31;
+                    zonaLetra = 'T';
+                }
+                else if( ciudad.equals("Madrid")&& ciudad.equals("Bilbaod")){
+                    zonaNumero = 30;
+                    zonaLetra = 'T';
+                }
     }
 }

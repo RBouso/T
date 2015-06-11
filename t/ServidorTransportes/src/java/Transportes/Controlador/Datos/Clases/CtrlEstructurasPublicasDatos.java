@@ -20,6 +20,9 @@ import Transportes.Ficheros.Linea;
 import Transportes.Ficheros.Metro;
 import Transportes.Ficheros.Teleferico;
 import Transportes.Ficheros.Tranvia;
+import com.google.code.geocoder.Geocoder;
+import com.google.code.geocoder.model.GeocoderRequest;
+import com.google.code.geocoder.model.GeocoderResult;
 import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.IOException;
@@ -50,13 +53,16 @@ public abstract class CtrlEstructurasPublicasDatos implements CtrlEstructurasPub
             String direccion, Double lat, Double lon) throws Exception {
         try {
             Geocoding ge = new Geocoding();
+           
+            
             if(lat == 0.0 && lon == 0.0) {
-                Point2D.Double coordinates = ge.getCoordinates(direccion);
 
-                if (coordinates.equals(new Point2D.Double(0.0,0.0))) {
-                        Exception e = new Exception("la dirección no es valida.");
-                        throw e;
-                }
+                Point2D.Double coordinates = ge.getCoordinates(direccion);
+                System.out.println(coordinates.x);
+//                if (coordinates.equals(new Point2D.Double(0.0,0.0))) {
+//                        Exception e = new Exception("la dirección no es valida.");
+//                        throw e;
+//                }
                 lat = coordinates.x;
                 lon = coordinates.y;
             }

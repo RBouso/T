@@ -10,7 +10,7 @@ package Transportes.Ficheros;
  * @author raquel
  */
 public class EstructurasPublicas extends Lugar{
-    public String transporte;
+    
     private EstacionAlquilerBicicletas eab;
     private EstacionAparcamiento ea;
     private EstacionCivica ec;
