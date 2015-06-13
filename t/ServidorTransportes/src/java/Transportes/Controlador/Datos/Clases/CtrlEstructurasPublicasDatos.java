@@ -58,17 +58,18 @@ public abstract class CtrlEstructurasPublicasDatos implements CtrlEstructurasPub
             if(lat == 0.0 && lon == 0.0) {
 
                 Point2D.Double coordinates = ge.getCoordinates(direccion);
-                System.out.println(coordinates.x);
-//                if (coordinates.equals(new Point2D.Double(0.0,0.0))) {
-//                        Exception e = new Exception("la dirección no es valida.");
-//                        throw e;
-//                }
-                lat = coordinates.x;
-                lon = coordinates.y;
+
+                if (coordinates.equals(new Point2D.Double(0.0,0.0))) {
+                        Exception e = new Exception("la dirección no es valida.");
+                        throw e;
+                }
+                else {
+                    lat = coordinates.x;
+                    lon = coordinates.y;
+                }
             }
            
             ArrayList<EstructurasPublicas> result = new ArrayList<>();
-            System.out.println(lat+" "+lon);
             Document htmlFile = Jsoup.parse(new File(fichero), "UTF-8");
             Elements elementos = htmlFile.body().children();
             
@@ -79,10 +80,8 @@ public abstract class CtrlEstructurasPublicasDatos implements CtrlEstructurasPub
                 if( select.size() > 0) {
                     Double la = Double.parseDouble(select.get(0).children().first().attributes().get("content"));
                     Double lo = Double.parseDouble(select.get(0).children().last().attributes().get("content"));
-                    System.out.println(la+" "+lo);
                     if (la >= (lat - medida) && la <= (lat + medida) && lo >= (lon - medida) 
                             && lo <= (lon +medida)) {
-                        System.out.println("entro");
                         Elements elements = elemento.children();
                         EstructurasPublicas ea = construir(fichero);
                         ea.transporte = transporte;
@@ -98,16 +97,21 @@ public abstract class CtrlEstructurasPublicasDatos implements CtrlEstructurasPub
                         for (int j = 0; j < elements.size(); j++) {
                             Element el = elements.get(j);
                             String atributo = el.attributes().toString();
-                            if (atributo.contains("itemprop=\"name\"")) 
+                            if (atributo.contains("itemprop=\"name\"")) {
                                 ea.setNombre(el.text());
-                            else if (atributo.contains("itemprop=\"description\""))
+                                ec.setNombre(el.text());
+                            }
+                            else if (atributo.contains("itemprop=\"description\"")) {
                                 ea.setDescripcion(el.text());
+                                ec.setDescripcion(el.text());
+                            }
                             else if (atributo.contains("itemprop=\"geo\"")){
                                 Elements geo = el.children();
                                 CoordinadasGeo g = new CoordinadasGeo();
                                 g.setLatitud(Double.parseDouble(geo.get(0).attributes().get("content")));
                                 g.setLongitud(Double.parseDouble(geo.get(1).attributes().get("content")));
                                 ea.setGeo(g);
+                                ec.setGeo(g);
                             }
                             else if (atributo.contains("itemprop=\"address\"")){
                                 Elements dir = el.children();
@@ -117,10 +121,12 @@ public abstract class CtrlEstructurasPublicasDatos implements CtrlEstructurasPub
                                 dp.setRegion(dir.get(2).text());
                                 dp.setDireccion(dir.get(3).text());
                                 ea.setDireccion(dp);
+                                ec.setDireccion(dp);
                             }
-                            else if (atributo.contains("itemprop=\"telephone\""))
+                            else if (atributo.contains("itemprop=\"telephone\"")) {
                                 ea.setTelefono(el.text());
-
+                                ec.setTelefono(el.text());
+                            }
                             else if (atributo.contains("itemprop=\"accessibility\"")) {
                                 ap.setAccesibilidad(Integer.parseInt(el.text()));
                                 acces = true;
@@ -141,7 +147,7 @@ public abstract class CtrlEstructurasPublicasDatos implements CtrlEstructurasPub
                                 b.setBiciLibres(Integer.parseInt(el.text()));
                                 libresb = true;
                             }
-                             else if (atributo.contains("itemprop=\"lines\"")) {
+                             else if (atributo.contains("itemprop=\"line\"")) {
                                 Linea l = new Linea();
                                 l.setNumLinea(el.text());
                                 lin.add(l);

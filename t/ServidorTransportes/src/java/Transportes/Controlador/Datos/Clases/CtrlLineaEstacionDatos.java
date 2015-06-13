@@ -53,6 +53,7 @@ public class CtrlLineaEstacionDatos implements CtrlLineaEstacion{
                     ArrayList<Linea> lin = new ArrayList<>();
                     Linea linea = new Linea();
                     boolean esta = false;
+                    estacion.transporte = transporte;
                     for (int j = 0; j < he.size(); j++) {
                         Element helem = he.get(j);
 
@@ -83,7 +84,8 @@ public class CtrlLineaEstacionDatos implements CtrlLineaEstacion{
                         }
                         else if(helem.toString().contains("itemprop=\"telephone\""))
                             estacion.setTelefono(helem.text());
-                        else if(helem.toString().contains("itemprop=\"line\"")) {
+                        else if(helem.toString().contains("itemprop=\"line\"") &&
+                                !helem.text().equals("")) {
                             Linea l = new Linea();
                             l.setNumLinea(helem.text());
                             lin.add(l);
@@ -96,16 +98,17 @@ public class CtrlLineaEstacionDatos implements CtrlLineaEstacion{
                             }
                                 
                         }
-                        if( esta) {
+                        
+
+
+                    }
+                    if( esta) {
                             el.setLinea(linea);
                             estacion.setLineas(lin);
                             el.setEstacion(estacion);
                         }
                         
                         ec.add(el);
-
-
-                    }
                 }
                 
                 

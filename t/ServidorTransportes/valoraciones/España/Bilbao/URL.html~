@@ -1,12 +1,24 @@
-<!doctype html>
 <html>
  <head></head>
- <body> 
+ <body>
   <div itemscope itemtype="http://schema.org/URL"> 
-   <span itemprop="reference"> BicicletasBilbaoXML</span> 
-   <span itemprop="url"> http://www.bilbao.net/WebServicesBilbao/WSBilbao?s=ODPRESBICI&amp;u=OPENDATA&amp;p0=A&amp;p1=A</span> 
-   <span itemprop="date">2015/06/08</span> 
-   <span itemprop="period">mensual</span> 
-  </div>   
+   <span itemprop="reference"> HorariosAutobusBilbaoCSV</span> 
+   <span itemprop="url"> http://www.bilbao.net/autobuses/jsp/od_horarios.jsp?idioma=c&amp;formato=csv&amp;tipo=cabecera</span> 
+   <span itemprop="date"> 2015/05/010</span> 
+   <span itemprop="period"> continuamente</span> 
+  </div> 
+ </body>
+</html>cope itemtype="http://schema.org/URL"> 
+   <span itemprop="reference"> AutobusesBilbaoCSV</span> 
+   <span itemprop="url"> http://www.bilbao.net/autobuses/jsp/od_recorridos.jsp?idioma=c&amp;formato=csv&amp;tipo=lineas</span> 
+   <span itemprop="date">2015/05/010</span> 
+   <span itemprop="period">continuamente</span> 
+  </div> 
+  <div itemscope itemtype="http://schema.org/URL"> 
+   <span itemprop="reference"> HorariosAutobusBilbaoCSV</span> 
+   <span itemprop="url"> http://www.bilbao.net/autobuses/jsp/od_horarios.jsp?idioma=c&amp;formato=csv&amp;tipo=cabecera</span> 
+   <span itemprop="date">2015/05/010</span> 
+   <span itemprop="period">continuamente</span> 
+  </div>  
  </body>
 </html>

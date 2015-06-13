@@ -294,9 +294,9 @@ public class AparcamientosMessage implements MessageBodyWriter<ArrayList<Object>
                             buffer = buffer.append(b.getBiciLibres());
                         }
                        }
-                       else {
+                       else if (!apar.transporte.equals("Taxi")){
                             buffer = buffer.append("\", ");
-                            buffer = buffer.append("\"lineas\":\"");
+                            buffer = buffer.append("\"lineas\":");
                             if(apar.getEc() != null) {
                                 if(apar.getEc().getLineas() != null) {
                                     if(apar.getEc().getLineas()!= null) {
@@ -307,12 +307,13 @@ public class AparcamientosMessage implements MessageBodyWriter<ArrayList<Object>
                                             buffer = buffer.append("\"");
                                         }
                                     buffer = buffer.append("]");
+                                     pintar = true;
                                     }
                                 }
                             }
                        }
                     }
-                   else {
+                   else if (!apar.transporte.equals("Taxi")){
                         buffer = buffer.append("\",");
                         buffer = buffer.append("\"lineas\":");
                         apar1 = (EstacionCivica) t.get(i);

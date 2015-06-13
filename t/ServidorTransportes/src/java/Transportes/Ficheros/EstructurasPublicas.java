@@ -13,15 +13,7 @@ public class EstructurasPublicas extends Lugar{
     
     private EstacionAlquilerBicicletas eab;
     private EstacionAparcamiento ea;
-    private EstacionCivica ec;
-
-    public EstacionCivica getEc() {
-        return ec;
-    }
-
-    public void setEc(EstacionCivica ec) {
-        this.ec = ec;
-    }
+    
 
 
  

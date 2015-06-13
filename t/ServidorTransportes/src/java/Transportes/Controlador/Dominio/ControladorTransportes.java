@@ -312,15 +312,22 @@ public class ControladorTransportes extends Controlador{
                     copiar.setDestino(epOrigen.get(i).estaciones.get(j));
                     if (epOrigen.get(i).estaciones.get(j).getEc() != null && epOrigen.get(i).estaciones.get(j).getEc().getLineas() != null)
                         for (int k = 0; k < epOrigen.get(i).estaciones.get(j).getEc().getLineas().size(); k++) {
-                            if (contieneLinea(lineas,epOrigen.get(i).estaciones.get(j).getEc().getLineas().get(k).getNumLinea()))
-                                getParadas(ciudad, pais, epOrigen.get(i).estaciones.get(j).transporte,
-                                    epOrigen.get(i).estaciones.get(j).getEc().getLineas().get(k).getNumLinea());
+                            if (!contieneLinea(lineas,epOrigen.get(i).estaciones.get(j).getEc().getLineas().get(k).getNumLinea())) {
+                                ArrayList<EstacionCivica> ecec = getParadas(ciudad, pais, epOrigen.get(i).estaciones.get(j).transporte,
+                                        epOrigen.get(i).estaciones.get(j).getEc().getLineas().get(k).getNumLinea());
+                                Lineas l = new Lineas();
+                                l.estaciones.addAll(ecec);
+                                
+                                l.Linea = epOrigen.get(i).estaciones.get(j).getEc().getLineas().get(k).getNumLinea();
+                                lineas.add(l);
+                            }
                         }
 
                     lista.add((EstacionCivica) epOrigen.get(i).estaciones.get(j));
                     copiar.setDistancia(0.0);
     //                System.out.println("");
-                    abiertos.add(copiar);
+                    abiertos.add(copiar);System.out.println(copiar.getOrigen().getDescripcion());
+                    
                 }
             }
             ArrayList<AccionViajar> cerrados = new ArrayList<>();
@@ -339,11 +346,12 @@ public class ControladorTransportes extends Controlador{
                 //hijos←generar_sucesores(Actual)
                 ArrayList<Estructuras> hijos = new ArrayList<Estructuras>();
                 //hijos.add(getProximaParada(actual));
-                hijos.addAll(getEstacionesCercana(ciudad, 
-                        pais, null,actual.getDestino().getGeo().getLatitud(),actual.getDestino().getGeo().getLongitud()));
+                hijos = generarSucesores(ciudad, pais,actual);
                 //hijos←tratar_repetidos(Hijos, Est_cerrados, Est_abiertos)
                hijos = tratarRepetidos(hijos, cerrados, abiertos);
                //Est_abiertos.insertar(Hijos)
+               latitudOr = actual.getDestino().getGeo().getLatitud();
+               longitudOr = actual.getDestino().getGeo().getLongitud();
                for (int i = 0; i < hijos.size(); i++) {
                    for(int j = 0; j < hijos.get(i).estaciones.size(); j++) {
                         AccionViajar copiar = new AccionViajar();
@@ -359,9 +367,9 @@ public class ControladorTransportes extends Controlador{
                //Actual←Est_abiertos.primero
                 if(!abiertos.isEmpty())actual = abiertos.peek();
                 fin = esFinal(actual, epDestino);
-                System.out.println(actual.getOrigen().getGeo().getLatitud()+" "+actual.getDestino().getGeo().getLatitud());
+                System.out.println(actual.getOrigen().getDescripcion()+" "+actual.getOrigen().getGeo().getLatitud()+" "+actual.getDestino().getGeo().getLatitud());
             }
-            if(!fin) System.out.println("Soy final ");
+            if(fin) System.out.println("Soy final ");
             av.add(actual);
             return av;
         
@@ -414,18 +422,21 @@ public class ControladorTransportes extends Controlador{
     private double distancia(AccionViajar o1, double lat1, double lon1 ) {
             //Δlat = lat2− lat1
             double lat = EnRadianes(o1.getDestino().getGeo().getLatitud() - lat1);
-            
+  
             //Δlong = long2− long1
             double lon = EnRadianes(o1.getDestino().getGeo().getLongitud() - lon1);
+
             //a = sin²(Δlat/2) + cos(lat1) · cos(lat2) · sin²(Δlong/2)
-            double a = Math.pow(Math.sin(lat/2),2) + Math.cos(EnRadianes(lat1))+
-                    Math.cos(EnRadianes(o1.getDestino().getGeo().getLatitud())+
-                            Math.pow(Math.sin(lon/2),2));
+            double a = (Math.sin(lat/2)*Math.sin(lat/2)) + Math.cos(EnRadianes(lat1))*
+                    Math.cos(EnRadianes(o1.getDestino().getGeo().getLatitud()))*
+                            (Math.sin(lon/2)*Math.sin(lon/2));
+
             //c = 2 · atan2(√a, √(1−a))
-            double raiz1 = Math.sqrt(a); 
+            double raiz1 = Math.sqrt(Math.abs(a)); 
             double raiz2 = Math.sqrt(1.0 - a);
             double c = (Math.atan2(raiz1, raiz2));
             c *= 2;
+
             //d = R · c
             return radio * c;
         }
@@ -444,12 +455,56 @@ public class ControladorTransportes extends Controlador{
         return false;
     }
 
-    private Estructuras getProximaParada(AccionViajar actual) {
-        Estructuras est = new Estructuras();
-        CtrlFactoriaDatos cfd = new CtrlFactoriaDatos();
-        CtrlEstructurasPublicas cep = cfd.getCtrlEstructurasPublicas(actual.getDestino().transporte);
-       // cep.getSiguienteParada(actual.getDestino());
-        return est;
+
+    private ArrayList<Estructuras> generarSucesores(String ciudad, String pais, AccionViajar actual) {
+        ArrayList<Estructuras> hijos = new ArrayList<Estructuras>();
+        for (int i = 0; i < actual.getDestino().getEc().getLineas().size(); i++) {
+//            System.out.println(actual.getDestino().getEc().getLineas().get(i).getNumLinea()+" "+ actual.getDestino().getDescripcion());
+            if (!contieneLinea(lineas,actual.getDestino().getEc().getLineas().get(i).getNumLinea())) {
+                ArrayList<EstacionCivica> ecec = getParadas(ciudad, pais, actual.getDestino().transporte,
+                       actual.getDestino().getEc().getLineas().get(i).getNumLinea());
+                Lineas l = new Lineas();
+                l.estaciones.addAll(ecec);
+                l.Linea = actual.getDestino().transporte;
+                lineas.add(l);
+            }
+            for(int j = 0; j < lineas.size(); j++) {
+                
+                        
+                if( actual.getDestino().getEc().getLineas().get(i).getNumLinea().equals(
+                        lineas.get(j).Linea)) {
+                    double distancia = 100000000.0;
+                    for (int k = 0; k < lineas.get(j).estaciones.size();k++) {
+                        if (lineas.get(j).estaciones.get(k) != null && !lineas.get(j).estaciones.get(k).getDescripcion().equals("") &&
+                                !lineas.get(j).estaciones.get(k).getDescripcion().equals(actual.getDestino().getEc().getDescripcion())) {
+                            if(lineas.get(j).estaciones.get(k).getGeo() != null) {
+                            double dist = distancia(actual, 
+                                    lineas.get(j).estaciones.get(k).getGeo().getLatitud(), 
+                                lineas.get(j).estaciones.get(k).getGeo().getLongitud()); 
+                             
+                            if (distancia > dist) {
+                                 System.out.println(actual.getDestino().getEc().getLineas().get(i).getNumLinea()
+                        +" "+lineas.get(j).Linea);
+                                distancia = dist;
+                                Estructuras est = new Estructuras(); 
+                                est.transporte = actual.getDestino().transporte;
+                                
+                                est.estaciones.add(lineas.get(j).estaciones.get(k));
+                                hijos.add(est);
+                                hijos.addAll(getEstacionesCercana(ciudad, pais, "",
+                                        lineas.get(j).estaciones.get(k).getGeo().getLatitud(),
+                                        lineas.get(j).estaciones.get(k).getGeo().getLongitud()));
+                                lineas.remove(lineas.get(j).estaciones.get(k));
+                            }
+                            }
+                           
+                        }
+                    }
+                }
+            }
+           
+       }
+       return hijos;
     }
 
 

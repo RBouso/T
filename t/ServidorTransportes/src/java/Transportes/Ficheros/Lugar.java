@@ -14,6 +14,15 @@ public class Lugar extends Cosa{
     private CoordinadasGeo geo;
     private DireccionPostal direccion;
     private String telefono;
+    private EstacionCivica ec;
+
+    public EstacionCivica getEc() {
+        return ec;
+    }
+
+    public void setEc(EstacionCivica ec) {
+        this.ec = ec;
+    }
 
     public CoordinadasGeo getGeo() {
         return geo;
