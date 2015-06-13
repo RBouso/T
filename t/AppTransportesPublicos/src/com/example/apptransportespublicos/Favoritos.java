@@ -8,8 +8,7 @@ import android.support.v4.app.FragmentTabHost;
 
 public class Favoritos extends FragmentActivity{
 
-	private String ciudad;
-	private String pais;
+
 	private FragmentTabHost tabHost;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

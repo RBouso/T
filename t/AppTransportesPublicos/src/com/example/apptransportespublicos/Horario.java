@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -22,12 +21,8 @@ import org.json.JSONObject;
 
 import com.example.conexion.constantes;
 
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.app.DatePickerDialog;
-import android.support.v7.app.ActionBarActivity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -35,19 +30,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class Horario extends Fragment{
@@ -59,16 +49,13 @@ public class Horario extends Fragment{
 	private String list2;
 	private Spinner spinner1;
 	private Spinner spinner2;
-	private Spinner spinnerFecha;
 	private String transporte;
 	private String ciudad;
 	private String pais;
 	private String linea;
 	private List<String> list = new ArrayList<String>();
 	private List<String> sentido = new ArrayList<String>();
-	private List<EstructuraPublica> estaciones = new ArrayList<EstructuraPublica>();
-
-	private EditText fecha;
+	
 	private DatePicker dp;
 	
 	
@@ -86,7 +73,6 @@ public class Horario extends Fragment{
 		 transporte = this.getTag();
 		 ciudad = this.getArguments().get("ciudad").toString();
 		 pais = this.getArguments().get("pais").toString();
-//		 Spinner s1  = (Spinner) v.findViewById(R.id.spinnerLineas);
 		 addItems("Spinner1");
 
 		 addListenerOnSpinnerItemSelection();
@@ -94,7 +80,6 @@ public class Horario extends Fragment{
 		 dp = (DatePicker) v.findViewById(R.id.datePicker1);
 		 dp.setCalendarViewShown(false);
 		 dp.setSpinnersShown(true);
-//		 spinnerFecha = (Spinner) v.findViewById(R.id.SpinnerFecha);
 		 
 		 boton.setOnClickListener(new OnClickListener() {
 			
@@ -129,8 +114,6 @@ public class Horario extends Fragment{
 				else {
 					Intent i = new Intent(getActivity(), ListaHorario.class);
 					
-	//				Intent i = new Intent(getActivity(), MainActivity.class);
-	//                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	                i.putExtra("ciudad", ciudad);
 	                i.putExtra("pais", pais);
 	                i.putExtra("transporte", transporte);
@@ -206,7 +189,6 @@ public class Horario extends Fragment{
 	private void addItemsOnSpinner1() {
 		// TODO Auto-generated method stub
 		Spinner s2 = (Spinner) v.findViewById(R.id.spinnerLineasHorario);
-		Log.d("Tamaño", ""+list.size());
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
 			android.R.layout.simple_spinner_item, list);
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -251,7 +233,6 @@ public class Horario extends Fragment{
 					String url;
 					if (selec.equals("Spinner1"))url = constantes.horario+"ciudad="+ciudad+"&pais="+pais+"&transporte="+transporte;
 					else url = constantes.horario+"ciudad="+ciudad+"&pais="+pais+"&transporte="+transporte+"&linea="+espacio(linea);
-					Log.d("url", url);
 					HttpGet peticion = new HttpGet(url);
 					// ejecuta una petición get
 					 InputStream is = null;
@@ -282,7 +263,6 @@ public class Horario extends Fragment{
 						return null;
 					}
 					
-//					return HttpRequest.get(params[0]).accept("application/json").body();
 				
 			}
 
@@ -290,9 +270,7 @@ public class Horario extends Fragment{
 
 			protected void onPostExecute(String response) {
 				try {
-					//linea.setText(response);
-					
-					Log.d("String", response);
+
 					JSONObject json = new JSONObject(response);
 					JSONArray js = json.getJSONArray("nombres");
 						

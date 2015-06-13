@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
@@ -22,6 +21,8 @@ import com.example.conexion.constantes;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -113,7 +114,6 @@ public class Tab extends Fragment{
 				EstructuraPublica ep = new EstructuraPublica();
 				for (int i = 0; i < estaciones.size(); i++) {
 					if(estaciones.get(i).descripcion.equals(list2)) {
-						Log.d("estructura" , "he encontrado yooooooooooooooooooooooo");
 						return estaciones.get(i);
 					}
 				}
@@ -172,15 +172,11 @@ public class Tab extends Fragment{
 		});
 	}
 
-	private void addListenerOnButton() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	private void addItemsOnSpinner1() {
 		// TODO Auto-generated method stub
 		Spinner s2 = (Spinner) v.findViewById(R.id.spinnerLineas);
-		Log.d("Tamaño", ""+list.size());
+
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
 			android.R.layout.simple_spinner_item, list);
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -224,7 +220,7 @@ public class Tab extends Fragment{
 					String url;
 					if (selec.equals("Spinner1"))url = constantes.lineas+"ciudad="+ciudad+"&pais="+pais+"&transporte="+transporte;
 					else url = constantes.paradas+"ciudad="+ciudad+"&pais="+pais+"&transporte="+transporte+"&linea="+espacio(linea);
-					Log.d("url", url);
+
 					HttpGet peticion = new HttpGet(url);
 					// ejecuta una petición get
 					 InputStream is = null;
@@ -265,7 +261,6 @@ public class Tab extends Fragment{
 				try {
 					//linea.setText(response);
 					progress.dismiss();
-					Log.d("String", response);
 					JSONObject json = new JSONObject(response);
 					if (selec.equals("Spinner1")) {
 						JSONArray js = json.getJSONArray("nombres");
@@ -286,7 +281,7 @@ public class Tab extends Fragment{
 						for (int i = 0; i < js.length(); i++) {
 							JSONObject j = js.getJSONObject(i);
 							
-							if(!paradas.contains(j.getString("descripcion"))) paradas.add(j.getString("descripcion"));
+							
 							EstructuraPublica a = new EstructuraPublica();
 							if (!j.getString("descripcion").isEmpty())
 								a.descripcion = j.getString("descripcion");
@@ -302,6 +297,24 @@ public class Tab extends Fragment{
 								a.direccion = j.getString("direccion");
 							if (!j.getString("telefono").isEmpty())
 								a.telefono = j.getString("telefono");
+							if(!paradas.contains(j.getString("direccion"))) {
+								if(j.getString("descripcion").isEmpty()) {
+									Geocoder g = new Geocoder(getActivity());
+									
+									try {
+										
+										List<Address> fromLocationName = g.getFromLocation(a.latitud, a.longitud, 1);
+										if (!fromLocationName.isEmpty()) {
+											a.direccion = fromLocationName.get(0).getAddressLine(0);
+										}
+										
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+								}
+								paradas.add(j.getString("direccion"));
+							}
 							estaciones.add(a);
 							
 						}

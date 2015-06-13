@@ -20,6 +20,7 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="15dp"
         android:text="Nombre de la calle:" />
 
          <EditText
@@ -37,6 +38,7 @@
         android:layout_marginTop="20dp"
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
+        android:textSize="15dp"
         android:text="Nº de la calle:" />
 
     <EditText

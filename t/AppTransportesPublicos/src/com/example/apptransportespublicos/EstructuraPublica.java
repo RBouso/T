@@ -1,9 +1,7 @@
 package com.example.apptransportespublicos;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
 public class  EstructuraPublica {
 	public double latitud;
@@ -17,6 +15,7 @@ public class  EstructuraPublica {
 	public String transporte;
 	public Aparcamiento aparcamiento;
 	public Bicicletas bicis;
+	public ArrayList<String> lineas = new ArrayList<String>();
 
 
 }

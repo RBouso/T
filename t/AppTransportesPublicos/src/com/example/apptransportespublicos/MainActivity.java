@@ -22,6 +22,7 @@ import com.example.conexion.constantes;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
 //import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -55,14 +56,11 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -70,7 +68,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class MainActivity extends ActionBarActivity {
@@ -86,7 +83,6 @@ public class MainActivity extends ActionBarActivity {
 	 private ActionBarDrawerToggle toggle;
 	public boolean mChangeContentFragment = false;
 	public Object mNextContentFragment;
-	private Object mContentFragment;
 	private Bundle b;
 	private String ciudad;
 	private String pais;
@@ -98,11 +94,15 @@ public class MainActivity extends ActionBarActivity {
 	private String direccion;
 	private ArrayList<String> transportesList = new ArrayList<String>();
 	private EstructuraPublica estructura = new EstructuraPublica();
-	private ArrayList<EstructuraPublica> estructuras = new ArrayList<EstructuraPublica>();
-
+	
+	
 	private RatingBar rb;
+	protected boolean geolocalizacion = false;
 
 	private String linea;
+	private String dirpunto;
+
+	private float zoom = 10;
 	
 	@SuppressLint("NewApi")
 	@Override
@@ -124,7 +124,7 @@ public class MainActivity extends ActionBarActivity {
 		NavDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 		NavList.setAdapter(new ArrayAdapter<String>(this,
 	                R.layout.activity_header,R.id.title_item, titulos));
-
+		
 
 
 		NavList.setOnItemClickListener(new OnItemClickListener() {
@@ -166,6 +166,11 @@ public class MainActivity extends ActionBarActivity {
 				    	 i.putExtra("ciudad", ciudad);
 				    	 i.putExtra("pais", pais);
 					     startActivity(i);
+				    	break;
+				    	
+				    case 6:
+				    	i = new Intent(MainActivity.this, SobreNosotros.class);
+				    	startActivity(i);
 				    	break;
 				}
 				NavList.setItemChecked(position, true);
@@ -251,11 +256,11 @@ public class MainActivity extends ActionBarActivity {
 			
 			
 		}
-	    
+       
        if (savedInstanceState == null) {
             selectItem(0);
         }
-
+       
 	}
 
 
@@ -267,6 +272,7 @@ public class MainActivity extends ActionBarActivity {
 			latitude = fromLocationName.get(0).getLatitude();
 			longitude = fromLocationName.get(0).getLongitude();
 			pais = fromLocationName.get(0).getCountryName();
+			dirpunto = fromLocationName.get(0).getAddressLine(0);
 			
 			
 			
@@ -292,7 +298,7 @@ public class MainActivity extends ActionBarActivity {
 		if (i == 0){
 			crearFragment();
 			obtenerGeolocalizacion();
-			
+			 
 		}
         // update selected item and title, then close the drawer
         NavList.setItemChecked(i, true);
@@ -314,75 +320,95 @@ public class MainActivity extends ActionBarActivity {
 				// TODO Auto-generated method stub
 				latitude = location.getLatitude();
 				longitude = location.getLongitude();
-				Geocoder g = new Geocoder(context);
-				try {
-					
-					if (ciudad == null) {
-						
-							List<Address> fromLocation = g.getFromLocation(latitude, longitude, 1);
-							ciudad = fromLocation.get(0).getLocality();
-							pais = fromLocation.get(0).getCountryName();
-						
-							añadirPunto();
-							buscaTransportes("direccion");
-						
-					}
-					else {
-						
-						obtenerVistaCiudad();
-						if (transporte != null) {
-							if (estructura.descripcion != null) {
-								ep.add(estructura);
-								latitude = estructura.latitud;
-								longitude = estructura.longitud;
-								añadirParadas();
-							}
-							else if (linea != null){
+				if (geolocalizacion == true) {
+					Geocoder g = new Geocoder(context);
 								
-								buscaTransportes("linea");
-							}
-							else {
-								buscaTransportes(transporte);
-							}
+								try {
+									List<Address> fromLocation= fromLocation = g.getFromLocation(latitude, longitude, 1);
+									ciudad = fromLocation.get(0).getLocality();
+									pais = fromLocation.get(0).getCountryName();
+									dirpunto = fromLocation.get(0).getAddressLine(0);
+									añadirPunto();
+									buscaTransportes("direccion");
+								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								
+				}
+				else {
+				
+					Geocoder g = new Geocoder(context);
+					
+					Log.d("", "entro");
+					try {
+						
+						if (ciudad == null) {
+							
+								List<Address> fromLocation = g.getFromLocation(latitude, longitude, 1);
+								ciudad = fromLocation.get(0).getLocality();
+								pais = fromLocation.get(0).getCountryName();
+								dirpunto = fromLocation.get(0).getAddressLine(0);
+								buscaTransportes("direccion");
+							
 						}
 						else {
 							
-							if (direccion != null){
+							obtenerVistaCiudad();
+							if (transporte != null) {
+								if (estructura.descripcion != null) {
+									ep.add(estructura);
+									latitude = estructura.latitud;
+									longitude = estructura.longitud;
+									zoom = 15;
+									añadirParadas();
+								}
+								else if (linea != null){
+									
+									buscaTransportes("linea");
+								}
+								else {
+									buscaTransportes(transporte);
+								}
+							}
+							else {
 								
+								if (direccion != null){
+									
+									
+										List<Address> fromLocationName = g.getFromLocationName(direccion+", "+ciudad, 1);
+										latitude = fromLocationName.get(0).getLatitude();
+										longitude = fromLocationName.get(0).getLongitude();
+										pais = fromLocationName.get(0).getCountryName();
+										buscaTransportes("direccion");
+								}
 								
-									List<Address> fromLocationName = g.getFromLocationName(direccion+", "+ciudad, 1);
-									latitude = fromLocationName.get(0).getLatitude();
-									longitude = fromLocationName.get(0).getLongitude();
-									pais = fromLocationName.get(0).getCountryName();
+								else  {
+									añadirPunto();
 									buscaTransportes("direccion");
+								}
+									
 							}
-							
-							else  {
-								añadirPunto();
-								buscaTransportes("direccion");
-							}
-								
 						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+						
+						builder.setMessage("La WIFI de su teléfono móvil no esta activa. Por favor, active la WIFI e intente acceder de nuevo a la aplicación más tarde.")
+						        .setTitle("Sin conexión a Intenet")
+						        .setCancelable(false)
+						        .setNeutralButton("Aceptar",
+						                new DialogInterface.OnClickListener() {
+						                    public void onClick(DialogInterface dialog, int id) {
+						                        dialog.cancel();
+						                        finish();
+						                    }
+						                });
+						AlertDialog alert = builder.create();
+						alert.show();
+						//e.printStackTrace();
 					}
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-					
-					builder.setMessage("La WIFI de su teléfono móvil no esta activa. Por favor, active la WIFI e intente acceder de nuevo a la aplicación más tarde.")
-					        .setTitle("Sin conexión a Intenet")
-					        .setCancelable(false)
-					        .setNeutralButton("Aceptar",
-					                new DialogInterface.OnClickListener() {
-					                    public void onClick(DialogInterface dialog, int id) {
-					                        dialog.cancel();
-					                        finish();
-					                    }
-					                });
-					AlertDialog alert = builder.create();
-					alert.show();
-					//e.printStackTrace();
-				}
-				
+				}	
 				
 			}
 
@@ -424,44 +450,48 @@ public class MainActivity extends ActionBarActivity {
 	private void añadirParadas() {
 		// TODO Auto-generated method stub
 		int icono = 0;
-		fragment.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom((new LatLng(latitude, longitude)), 14));
+
+		fragment.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom((new LatLng(latitude, longitude)), zoom));
 		fragment.getMap().setMyLocationEnabled(true);
 
-		Log.d("para", "Estoy en añadir paradas");
 		if (transporte.equals("Aparcamiento")) {
-			Log.d("para", "Soy aparcamiento y "+apar.size());
-			Log.d("para", latitude+ " soy "+ longitude);
+
 			icono = R.drawable.icono_parking;
 			fragment.getMap().setMyLocationEnabled(true);
-			for(int i = 0; i < 1; i++) {
-//			for (int i = 0; i < apar.size(); i++) {
+
+			for (int i = 0; i < apar.size(); i++) {
 				Aparcamiento a = apar.get(i);
 				double la = a.latitud;
 				double lo = a.longitud;
-				Geocoder g = new Geocoder(context);
-				
-				Log.d("lat", la+ " "+lo+" "+ a.direccion);
-				try {
-					List<Address> fromLocationName = g.getFromLocationName(a.direccion+", "+a.localidad, 1);
-					if (!fromLocationName.isEmpty()) {
-						la = fromLocationName.get(0).getLatitude();
-					
-						lo = fromLocationName.get(0).getLongitude();
-						pais = fromLocationName.get(0).getCountryName();
+				if(a.direccion == null || a.direccion == "") {
+					Geocoder g = new Geocoder(context);
+	
+					try {
+						
+						List<Address> fromLocationName = g.getFromLocation(la, lo, 1);
+						if (!fromLocationName.isEmpty()) {
+							a.direccion = fromLocationName.get(0).getAddressLine(0);
+						
+							a.pais = fromLocationName.get(0).getCountryName();
+						}
+						
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
-					
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
 				LatLng l = new LatLng(la, lo);
 				String acces = "No";
 				if(a.accesibilidad == 1) acces = "Si";
+				String pt = String.valueOf(a.plazasTotales);
+				if (pt.equals("0")) pt = "-";
+				String pl = String.valueOf(a.plazasLibres);
+				if (pl.equals("0")) pl = "-";
 				fragment.getMap().addMarker(new MarkerOptions().position(l)
-						.title(a.direccion).snippet("Telefono: "+a.telefono+" Descripcion: "+
+						.title(a.direccion).snippet("Transporte: Aparcamiento Telefono: "+a.telefono+" Descripcion: "+
 								a.descripcion+" Latitud: "+ latitude+" Longitud: "+ longitude+" Accesibilidad: "
-								+acces+", Plazas totales: "+String.valueOf(a.plazasTotales)+", Plazas libres: "
-								+String.valueOf(a.plazasLibres)).alpha(1F).anchor(0.2F,0.2F)
+								+acces+", Plazas totales: "+pt+", Plazas libres: "
+								+pl).alpha(1F).anchor(0.2F,0.2F)
 						.icon(BitmapDescriptorFactory.fromResource(icono)));
 				
 				fragment.getMap().setInfoWindowAdapter(new InfoWindowAdapter() {
@@ -491,15 +521,13 @@ public class MainActivity extends ActionBarActivity {
 					            new BaseDeDatos(getApplicationContext(), "DBEstacion", null, 1);
 					 
 					        SQLiteDatabase db = bd.getWritableDatabase();
-//					        bd.onUpgrade(db, 1, 2);
+					       
 					        //Si hemos abierto correctamente la base de datos
 					        if(db != null)
 					        {
 					        	Cursor cu = db.rawQuery("SELECT * FROM Estacion e WHERE e.latitud = "+lat+" and e.longitud = "+lon, null);
 					            if (cu.moveToFirst()) {
-					            	
-					            		Log.d("select Main", cu.getString(0)+" "+cu.getString(1)+" "+cu.getFloat(2)
-					    	        			+" "+cu.getFloat(3)+ " "+cu.getInt(4));
+
 					            		rb.setRating(cu.getInt(4));
 					            	
 					            }
@@ -525,10 +553,36 @@ public class MainActivity extends ActionBarActivity {
 				Bicicletas a = bici.get(i);
 				double la = a.latitud;
 				double lo = a.longitud;
+				if(a.direccion == null || a.direccion == "") {
+					Geocoder g = new Geocoder(context);
+	
+					try {
+						
+						List<Address> fromLocationName = g.getFromLocation(la, lo, 1);
+						if (!fromLocationName.isEmpty()) {
+							a.direccion = fromLocationName.get(0).getAddressLine(0);
+						
+							a.pais = fromLocationName.get(0).getCountryName();
+						}
+						
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 				LatLng l = new LatLng(la, lo);
+				String an = String.valueOf(a.anclajes);
+				String bl = String.valueOf(a.biciLibres);
+				if (an.equals("0")&& bl.equals("0")) {
+					an = "-";
+					bl = "-";
+				}
+
 				fragment.getMap().addMarker(new MarkerOptions().position(l)
-						.title(a.direccion).snippet("Telefono: "+a.telefono+" Descripcion: "+a.descripcion+" Latitud: "+ latitude+" Longitud: "+ longitude+" Nº Anclajes: "+String.valueOf(a.anclajes)+", Plazas libres"
-								+String.valueOf(a.biciLibres)).alpha(1F).anchor(0.2F,0.2F)
+						.title(a.direccion).snippet("Transporte: Bicicletas Telefono: "+a.telefono+" Descripcion: "+
+				a.descripcion+" Latitud: "+ latitude+" Longitud: "+ longitude+
+				" Nº Anclajes: "+an+", Plazas libres: "
+								+bl).alpha(1F).anchor(0.2F,0.2F)
 						.icon(BitmapDescriptorFactory.fromResource(icono)));
 				
 				fragment.getMap().setInfoWindowAdapter(new InfoWindowAdapter() {
@@ -549,8 +603,7 @@ public class MainActivity extends ActionBarActivity {
 						tv.setText(marker.getSnippet().substring(marker.getSnippet().indexOf("Nº"), marker.getSnippet().lastIndexOf(",")+1));
 						tv=(TextView)popup.findViewById(R.id.snippet1);
 						tv.setText(marker.getSnippet().substring(marker.getSnippet().lastIndexOf(",")+1));
-//						infoRatingListener.setMarker(marker);
-//						if(rb.getRating() == 0) rb.setRating(1);
+
 						
 						rb = (RatingBar) popup.findViewById(R.id.ratingBar1);
 						rb.setEnabled(true);
@@ -566,9 +619,7 @@ public class MainActivity extends ActionBarActivity {
 					        {
 					        	Cursor cu = db.rawQuery("SELECT * FROM Estacion e WHERE e.latitud = "+lat+" and e.longitud = "+lon, null);
 					            if (cu.moveToFirst()) {
-					            	do {
 					            		rb.setRating(cu.getInt(4));
-					            	}while(cu.moveToNext());
 					            }
 					        
 					           cu.close();
@@ -601,10 +652,33 @@ public class MainActivity extends ActionBarActivity {
 				EstructuraPublica a = ep.get(i);
 				double la = a.latitud;
 				double lo = a.longitud;
+				if(a.direccion == null || a.direccion == "") {
+					Geocoder g = new Geocoder(context);
+					try {
+						
+						List<Address> fromLocationName = g.getFromLocation(la, lo, 1);
+						
+						if (!fromLocationName.isEmpty()) {
+							a.direccion = fromLocationName.get(0).getAddressLine(0);
+						
+							a.pais = fromLocationName.get(0).getCountryName();
+						}
+						
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 				LatLng l = new LatLng(la, lo);
+				String lin = "";
+				for (int k = 0; k < a.lineas.size(); k++) {
+					if (k != 0) lin += ", ";
+					if (!a.lineas.equals(""))
+						lin += a.lineas.get(k);
+				}
 				fragment.getMap().addMarker(new MarkerOptions().position(l)
-						.title(a.direccion).snippet("Telefono: "+a.telefono+" Descripcion: "+a.descripcion+" Latitud: "+ 
-				latitude+" Longitud: "+ longitude).alpha(1F).anchor(0.2F,0.2F)
+						.title(a.direccion).snippet("Transporte: "+a.transporte+" Telefono: "+a.telefono+" Descripcion: "+a.descripcion+" Latitud: "+ 
+				latitude+" Longitud: "+ longitude + " Lineas: "+lin).alpha(1F).anchor(0.2F,0.2F)
 						.icon(BitmapDescriptorFactory.fromResource(icono)));
 				
 fragment.getMap().setInfoWindowAdapter(new InfoWindowAdapter() {
@@ -622,36 +696,32 @@ fragment.getMap().setInfoWindowAdapter(new InfoWindowAdapter() {
 						TextView tv=(TextView)popup.findViewById(R.id.title);
 						tv.setText(marker.getTitle());
 						tv=(TextView)popup.findViewById(R.id.snippet);
-						tv.setText(marker.getSnippet().substring(marker.getSnippet().indexOf("Nº"), marker.getSnippet().lastIndexOf(",")+1));
-						tv=(TextView)popup.findViewById(R.id.snippet1);
-						tv.setText(marker.getSnippet().substring(marker.getSnippet().lastIndexOf(",")+1));
-//						infoRatingListener.setMarker(marker);
-//						if(rb.getRating() == 0) rb.setRating(1);
-						
-						rb = (RatingBar) popup.findViewById(R.id.ratingBar1);
-						rb.setEnabled(true);
-						Double lat = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Latitud")+9,marker.getSnippet().indexOf("Longitud")));
-						Double lon = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Longitud")+10,marker.getSnippet().indexOf("Nº")));
-						BaseDeDatos bd =
-					            new BaseDeDatos(getApplicationContext(), "DBEstacion", null, 1);
-					 
-					        SQLiteDatabase db = bd.getWritableDatabase();
-//					        bd.onUpgrade(db, 1, 2);
-					        //Si hemos abierto correctamente la base de datos
-					        if(db != null)
-					        {
-					        	Cursor cu = db.rawQuery("SELECT * FROM Estacion e WHERE e.latitud = "+lat+" and e.longitud = "+lon, null);
-					            if (cu.moveToFirst()) {
-					            	do {
-					            		rb.setRating(cu.getInt(4));
-					            	}while(cu.moveToNext());
-					            }
-					        
-					           cu.close();
-					            //Cerramos la base de datos
-					            db.close();
-					        }
-						
+						if(marker.getSnippet() != null) {
+							tv.setText(marker.getSnippet().substring(marker.getSnippet().indexOf("Lineas")+8));
+	//						
+							rb = (RatingBar) popup.findViewById(R.id.ratingBar1);
+							rb.setEnabled(true);
+							Double lat = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Latitud")+9,marker.getSnippet().indexOf("Longitud")));
+							Double lon = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Longitud")+10,marker.getSnippet().indexOf("Linea")));
+							BaseDeDatos bd =
+						            new BaseDeDatos(getApplicationContext(), "DBEstacion", null, 1);
+						 
+						        SQLiteDatabase db = bd.getWritableDatabase();
+						        //Si hemos abierto correctamente la base de datos
+						        if(db != null)
+						        {
+						        	Cursor cu = db.rawQuery("SELECT * FROM Estacion e WHERE e.latitud = "+lat+" and e.longitud = "+lon, null);
+						            if (cu.moveToFirst()) {
+						            		rb.setRating(cu.getInt(4));
+						            		Log.d("",cu.getInt(4)+ " "+cu.getString(6));
+	
+						            }
+						        
+						           cu.close();
+						            //Cerramos la base de datos
+						            db.close();
+						        }
+						}
 						return(popup);
 					}
 				});
@@ -664,64 +734,65 @@ fragment.getMap().setInfoWindowAdapter(new InfoWindowAdapter() {
 	        public void onInfoWindowClick(Marker marker) {
 	        	Intent i = new Intent(MainActivity.this,Info.class);
 	        	String direccion = marker.getTitle();
-				String telefono = marker.getSnippet().substring(9,marker.getSnippet().indexOf("Descripcion"));
-	        	String descripcion = marker.getSnippet().substring(marker.getSnippet().indexOf("Descripcion")+12,marker.getSnippet().indexOf("Latitud"));
-	        	Double lat = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Latitud")+9,marker.getSnippet().indexOf("Longitud")));
-				
-				i.putExtra("transporte", transporte);
-				i.putExtra("ciudad", ciudad);
-				i.putExtra("pais", pais);
-				if (telefono != null)
-					i.putExtra("telefono", telefono);
-				else i.putExtra("telefono", "-1");
-	            i.putExtra("direccion", direccion);
-	            i.putExtra("latitud", lat);
-
-				if (transporte.equals("Aparcamiento")) {
-					Double lon = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Longitud")+10,marker.getSnippet().indexOf("Accesibilidad")));
-					i.putExtra("longitud", lon);
-					String acces = marker.getSnippet().substring(marker.getSnippet().indexOf("Accesibilidad")+15, marker.getSnippet().indexOf(", Plazas totales"));
-					int total = Integer.parseInt(marker.getSnippet().substring(marker.getSnippet().indexOf("totales")+9, marker.getSnippet().indexOf(", Plazas libres")));
-		            int libres = Integer.parseInt(marker.getSnippet().substring(marker.getSnippet().indexOf("libres")+8));
-	            
-		            i.putExtra("acces", acces);
-		            i.putExtra("total", total);
-		            i.putExtra("libres", libres);
-				}
-				else if (transporte.equals("Bicicletas")) {
-					Double lon = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Longitud")+10,marker.getSnippet().indexOf("Nº")));
-					i.putExtra("longitud", lon);
-					int anclajes = Integer.parseInt(marker.getSnippet().substring(marker.getSnippet().indexOf("Anclajes")+9, marker.getSnippet().indexOf(", Plazas libres")));
-		            int libres = Integer.parseInt(marker.getSnippet().substring(marker.getSnippet().indexOf("libres")+8));
-	            
-		            i.putExtra("anclajes", anclajes);
-		            i.putExtra("bicis", libres);
-				}
-				else {
-					Double lon = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Longitud")+10));
-					i.putExtra("longitud", lon);
-				}
-	            startActivity(i);
+	        	if(marker.getSnippet() != null) {
+					String trans = marker.getSnippet().substring(12,marker.getSnippet().indexOf("Telefono"));
+		        	
+					String telefono = marker.getSnippet().substring(marker.getSnippet().indexOf("Telefono")+9,marker.getSnippet().indexOf("Descripcion"));
+		        	//String descripcion = marker.getSnippet().substring(marker.getSnippet().indexOf("Descripcion")+12,marker.getSnippet().indexOf("Latitud"));
+		        	Double lat = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Latitud")+9,marker.getSnippet().indexOf("Longitud")));
+					
+					i.putExtra("transporte", trans);
+					i.putExtra("ciudad", ciudad);
+					i.putExtra("pais", pais);
+					if (telefono != null)
+						i.putExtra("telefono", telefono);
+					else i.putExtra("telefono", "-1");
+		            i.putExtra("direccion", direccion);
+		            i.putExtra("latitud", lat);
+	
+					if (transporte.equals("Aparcamiento")) {
+						Double lon = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Longitud")+10,marker.getSnippet().indexOf("Accesibilidad")));
+						i.putExtra("longitud", lon);
+						String acces = marker.getSnippet().substring(marker.getSnippet().indexOf("Accesibilidad")+15, marker.getSnippet().indexOf(", Plazas totales"));
+						String total = marker.getSnippet().substring(marker.getSnippet().indexOf("totales")+9, marker.getSnippet().indexOf(", Plazas libres"));
+			            String libres = marker.getSnippet().substring(marker.getSnippet().indexOf("libres")+8);
+		            
+			            i.putExtra("acces", acces);
+			            i.putExtra("total", total);
+			            i.putExtra("libres", libres);
+					}
+					else if (transporte.equals("Bicicletas")) {
+						Double lon = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Longitud")+10,marker.getSnippet().indexOf("Nº")));
+						i.putExtra("longitud", lon);
+						String anclajes = marker.getSnippet().substring(marker.getSnippet().indexOf("Anclajes")+10, marker.getSnippet().indexOf(", Plazas libres"));
+			            String libres = marker.getSnippet().substring(marker.getSnippet().indexOf("libres")+8);
+		            
+			            i.putExtra("anclajes", anclajes);
+			            i.putExtra("bicis", libres);
+					}
+					else {
+						Double lon = Double.valueOf(marker.getSnippet().substring(marker.getSnippet().indexOf("Longitud")+10,marker.getSnippet().indexOf("Linea")));
+						i.putExtra("longitud", lon);
+						String lin = marker.getSnippet().substring(marker.getSnippet().indexOf("Linea")+8);
+						i.putExtra("lineas", lin);
+					}
+		            startActivity(i);
+	        	}
 	        }
 	    });
-//		fragment.getMap().setOnInfoWindowClickListener((OnInfoWindowClickListener) this);
-//		 Toast.makeText(getApplicationContext(), latitude+ " "+ longitude, Toast.LENGTH_LONG).show();
-		fragment.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom((new LatLng(latitude, longitude)), 14));
+		
+		fragment.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom((new LatLng(latitude, longitude)),zoom));
 	}
 
 
 
 	private void añadirPunto() {
-		// TODO Auto-generated method stub
-//		Log.d("Longitud", latitude+" "+ longitude);
-////		if (locManager!= null)
-//		if (longitude != 0.0 && latitude != 0.0) {
-//			Log.d("Longitud", "entro");
 		if(fragment.getMap() != null) {
-			fragment.getMap().setMyLocationEnabled(true);
-			fragment.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom((new LatLng(latitude, longitude)), 13));
 
-			fragment.getMap().addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)));
+			fragment.getMap().setMyLocationEnabled(true);
+			fragment.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom((new LatLng(latitude, longitude)), 15));
+
+			fragment.getMap().addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title(dirpunto));
 		}
 	}
 	
@@ -798,12 +869,10 @@ fragment.getMap().setInfoWindowAdapter(new InfoWindowAdapter() {
 
 
 
-private  class FragmentMapa extends Fragment {
+public  class FragmentMapa extends Fragment {
 	private View rootView;
 	
-	public FragmentMapa(){}
-
-
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
@@ -815,7 +884,19 @@ private  class FragmentMapa extends Fragment {
         rootView = inflater.inflate(R.layout.activity_fragment_mapa, container, false);
         
 		fragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-		
+		fragment.getMap().setOnMyLocationButtonClickListener(new OnMyLocationButtonClickListener() {
+			
+			@Override
+			public boolean onMyLocationButtonClick() {
+				// TODO Auto-generated method stub
+				
+				latitude = fragment.getMap().getMyLocation().getLatitude();
+				longitude = fragment.getMap().getMyLocation().getLongitude();
+				geolocalizacion = true;
+				obtenerGeolocalizacion();
+				return true;
+			}
+		});
         return rootView;
     }
 	
@@ -853,12 +934,18 @@ private class LoadParadaTask extends AsyncTask<Void, Void, String> {
 				HttpClient cliente = new DefaultHttpClient();
 
 				String url;
-				if (nom.equals("Aparcamiento"))
+				if (nom.equals("Aparcamiento")) {
 					url = constantes.aparcamiento+"ciudad="+ciudad+"&pais="+pais;
-				else if (nom.equals("Bicicletas"))
+					zoom = 12;
+				}
+				else if (nom.equals("Bicicletas")) {
 					url = constantes.bicicleta+"ciudad="+ciudad+"&pais="+pais;
-				else if (nom.equals("Taxi"))
+					zoom = 12;
+				}
+				else if (nom.equals("Taxi")) {
 					url = constantes.taxi+"ciudad="+ciudad+"&pais="+pais;
+					zoom = 12;
+				}
 				else if (nom.equals("direccion")) { 
 //					if(direccion != null)
 //						url = constantes.cercanas+"ciudad="+ciudad+"&pais="
@@ -866,23 +953,24 @@ private class LoadParadaTask extends AsyncTask<Void, Void, String> {
 //					else 
 						url = constantes.cercanas+"ciudad="+ciudad+"&pais="
 								+pais+"&latitud="+latitude+"&longitud="+longitude;
+						zoom = 16;
 				}
-				else if (nom.equals("linea"))
+				else if (nom.equals("linea")) {
 					url = constantes.paradas+"ciudad="+ciudad+"&pais="+pais+"&transporte="+transporte+"&linea="+espacio(linea);
+					zoom = 12;
+				}
 				else if (nom.equals("Horarios")) 
 					url = constantes.horario+"ciudad="+ciudad+"&pais="
 							+pais;
 				else
 					url = constantes.transportes+ciudad;
 				HttpGet peticion = new HttpGet(url);
-				Log.d("Url 1", url);
 				// ejecuta una petición get
 				 InputStream is = null;
 				 String result = "";
 				try {
 
 					HttpResponse respuesta = cliente.execute(peticion);
-					Log.d("",respuesta.getStatusLine().getStatusCode()+"");
 					int status = respuesta.getStatusLine().getStatusCode();
 					if (status == 0) {
 						result = "No ha conectado con el servidor";
@@ -941,7 +1029,6 @@ private class LoadParadaTask extends AsyncTask<Void, Void, String> {
 					alert.show();
 				}
 				else {	
-					Log.d("f", response);
 					JSONObject json = new JSONObject(response);
 					
 					if (nom.equals("direccion") || nom.equals("linea")) {
@@ -984,6 +1071,14 @@ private class LoadParadaTask extends AsyncTask<Void, Void, String> {
 									if (!j.getString("biciLibres").isEmpty())
 										b.biciLibres = Integer.valueOf(j.getString("biciLibres"));
 									a.bicis = b;
+								}
+								else if (!a.transporte.equals("Taxi")) {
+									JSONArray lin = j.getJSONArray("lineas");
+									for (int k = 0; k < lin.length(); k++){
+										if (!lin.getString(k).isEmpty())
+											a.lineas.add(lin.getString(k));
+									}
+
 								}
 								
 								transporte = a.transporte;
@@ -1138,7 +1233,6 @@ private class LoadParadaTask extends AsyncTask<Void, Void, String> {
 							}
 						}
 						else {
-							Log.d("Main pais", pais);
 							Intent i = new Intent(MainActivity.this, Transportes.class);
 					    	i.putExtra("ciudad", ciudad);
 					    	i.putExtra("pais", pais);

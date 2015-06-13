@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class BaseDeDatos extends SQLiteOpenHelper{
-	String sqlCreate = "CREATE TABLE Estacion (ciudad TEXT, pais TEXT, latitud REAL, longitud REAL, esFavorita BOOLEAN, puntuacion INTEGER, descripcion TEXT)";
+	String sqlCreate = "CREATE TABLE Estacion (ciudad TEXT, pais TEXT, latitud REAL, longitud REAL, esFavorita BOOLEAN, puntuacion INTEGER, direccion TEXT)";
 	
 	public BaseDeDatos(Context context, String name, CursorFactory factory,
 			int version) {

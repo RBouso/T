@@ -1,37 +1,18 @@
 package com.example.apptransportespublicos;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.example.conexion.constantes;
-
 import android.support.v7.app.ActionBarActivity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
 import android.location.Geocoder;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -78,8 +59,6 @@ public class BusquedaCercana extends ActionBarActivity {
 							Toast.LENGTH_SHORT).show();
 				}
 				else {
-//					ProgressDialog progress = new ProgressDialog(BusquedaCercana.this);
-//					progress.setMessage("Buscando, por favor espere...");
 					Geocoder g = new Geocoder(getApplicationContext());
 					List<Address> ad = new ArrayList<Address>();
 					try {

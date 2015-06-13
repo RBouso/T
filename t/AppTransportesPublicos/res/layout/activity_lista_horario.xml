@@ -8,10 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.apptransportespublicos.ListaHorario" >
 
-    <ScrollView
-        android:id="@+id/scrollView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -69,6 +66,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textSize="15sp" />
+        
+        
+            <Button
+                android:id="@+id/buttonPrincipal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:text="Ir a la pantalla principal" />
 
         <ListView
             android:id="@+id/listViewHorarios"
@@ -80,29 +86,9 @@
             android:layout_weight="0.14" >
         </ListView>
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp" >
 
-            <Button
-                android:id="@+id/buttonlinea"
-                android:layout_width="108dp"
-                android:layout_height="fill_parent"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
-                android:text="Ver linea" />
-
-            <Button
-                android:id="@+id/buttonPrincipal"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
-                android:text="Ir a la pantalla principal" />
-        </LinearLayout>
+   
     </LinearLayout>
 
-    </ScrollView>
 
 </RelativeLayout>

@@ -197,10 +197,7 @@ private class LoadParadaTask extends AsyncTask<Void, Void, String> {
 			// TODO Auto-generated catch block
 			Log.e("Error nuestro", e.toString());
 		}
-//		List<Parada> paradas = getParadas(h);
-//		if (!paradas.isEmpty()) {
-//			mostrarParada(paradas.get(0));
-//		}
+
 	}
 }
 

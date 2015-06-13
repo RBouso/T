@@ -43,22 +43,22 @@ public class TabFavoritos extends Fragment{
 		 ArrayList<String> list = new ArrayList<String>();
 		 if(db != null)
 		  {
-		        	Cursor cu = db.rawQuery("SELECT * FROM Estacion e WHERE e.esFavorita = 1", null);
+		        	Cursor cu = db.rawQuery("SELECT * FROM Estacion e WHERE e.ciudad = '"+ciudad +"' AND e.esFavorita = 1", null);
 		            if (cu.moveToFirst()) {
 		            	do {
-		            		list.add("Av. Sarrià,50");
+		            		list.add(cu.getString(6));
 		            		Log.d("bd", cu.getDouble(2)+" "+ cu.getDouble(3));
 		            	}while(cu.moveToNext());
 		            }
-		        
+		            else {
+		   			 list.add("No hay ninguna estación en favoritos");
+		   			 lista.setClickable(false);
+		   		 }
 		           cu.close();
 		            //Cerramos la base de datos
 		            db.close();
 		        }
-		 else {
-			 list.add("No hay ninguna estación en favoritos");
-			 lista.setClickable(false);
-		 }
+		
 		 	String[] valores = new String[list.size()];
 			valores = list.toArray(valores);
     		Arrays.sort(valores);

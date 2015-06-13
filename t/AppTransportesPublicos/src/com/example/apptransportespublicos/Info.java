@@ -5,21 +5,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import com.example.conexion.constantes;
 
 import BaseDatos.BaseDeDatos;
-import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.database.Cursor;
@@ -31,10 +26,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
@@ -46,10 +39,10 @@ public class Info extends Activity {
 	private Double lat;
 	private Double lon;
 	private String acces;
-	private int total;
-	private int libres;
-	private int anclajes;
-	private int bicis;
+	private String total;
+	private String libres;
+	private String anclajes;
+	private String bicis;
 	private String telefono;
 	private String lineas;
 	private String ciudad;
@@ -84,12 +77,13 @@ public class Info extends Activity {
 		valoracion.setClickable(true);
 		valoracion.setSelected(true);
 		valoracion.setActivated(true);
-		Log.d("rb", rb.isActivated()+ " "+ rb.isClickable()+ " "+ rb.isEnabled()+" "+ rb.isFocusable());
+		
 		
 		lat = b.getDouble("latitud");
 		lon = b.getDouble("longitud");
 		BaseDeDatos bd = new BaseDeDatos(getApplicationContext(), "DBEstacion", null, 1);
 		SQLiteDatabase db = bd.getWritableDatabase();
+		
         //Si hemos abierto correctamente la base de datos
         if(db != null)
         {
@@ -121,12 +115,14 @@ public class Info extends Activity {
 		TextView dir = (TextView) findViewById(R.id.direccion);
 		direccion = b.getString("direccion");
 		dir.setText(direccion);
+		direccion.replace("'", " " );
 		telefono = b.getString("telefono");
-		if(!telefono.equals("-1") || telefono != null) {
+		if(!telefono.equals("-1") && telefono != null && !telefono.contains("null")) {
 			dir = (TextView) findViewById(R.id.telefonoText);
 			dir.setText("Nº de telefeno: ");
 			dir = (TextView) findViewById(R.id.telefono);
 			dir.setText(telefono);
+		
 		}
 		else {
 			dir = (TextView) findViewById(R.id.telefonoText);
@@ -135,7 +131,7 @@ public class Info extends Activity {
 			dir.setVisibility(View.GONE);
 		}
 		
-		if (transporte.equals("Aparcamiento")) {
+		if (transporte.contains("Aparcamiento")) {
 			TextView ac = (TextView) findViewById(R.id.accesibilidadText);
 			ac.setText("Accesibilidad: ");
 			acces = b.getString("acces");
@@ -146,24 +142,24 @@ public class Info extends Activity {
 				ac1.setText("Si");
 			TextView tot = (TextView) findViewById(R.id.totalesText);
 			tot.setText("Plazas totales: ");
-			total = b.getInt("total");
+			total = b.getString("total");
 			tot = (TextView) findViewById(R.id.totales);
 			tot.setText(""+total);
 			tot = (TextView) findViewById(R.id.LibresText);
 			tot.setText("Plazas libres: ");
-			libres = b.getInt("libres");
+			libres = b.getString("libres");
 			tot = (TextView) findViewById(R.id.libres);
 			tot.setText(""+libres);
 		}
-		else if (transporte.equals("Bicicletas")) {
+		else if (transporte.contains("Bicicleta")) {
 			TextView tot = (TextView) findViewById(R.id.accesibilidadText);
 			tot.setText("Nº de anclajes: ");
-			anclajes = b.getInt("anclajes");
+			anclajes = b.getString("anclajes");
 			tot = (TextView) findViewById(R.id.accesibilidad);
 			tot.setText(""+anclajes);
 			tot = (TextView) findViewById(R.id.totalesText);
 			tot.setText("Bicicletas disponibles: ");
-			bicis = b.getInt("bicis");
+			bicis = b.getString("bicis");
 			tot = (TextView) findViewById(R.id.totales);
 			tot.setText(""+bicis);
 			TextView desaparecer = (TextView) findViewById(R.id.LibresText);
@@ -171,7 +167,7 @@ public class Info extends Activity {
 			desaparecer.setVisibility(View.GONE);
 			desaparece.setVisibility(View.GONE);
 		}
-		else if(transporte.equals("Taxi")) {
+		else if(transporte.contains("Taxi")) {
 			TextView tot = (TextView) findViewById(R.id.accesibilidadText);
 			tot.setVisibility(View.GONE);
 			tot = (TextView) findViewById(R.id.accesibilidad);
@@ -225,8 +221,8 @@ public class Info extends Activity {
 				            }
 				        	
 				            else {
-				            	db.execSQL("INSERT INTO Estacion (ciudad, pais, latitud, longitud, esFavorita, puntuacion) " +
-				                           "VALUES ('" + ciudad + "', '" + pais +"', "+lat+", "+lon+", 1, -1)");
+				            	db.execSQL("INSERT INTO Estacion (ciudad, pais, latitud, longitud, esFavorita, puntuacion, direccion) " +
+				                           "VALUES ('" + ciudad + "', '" + pais +"', "+lat+", "+lon+", 1, -1, '"+direccion+"')");
 				            }
 			        	
 				       cu.close();
@@ -266,13 +262,7 @@ public class Info extends Activity {
         val.setText("Valoracion: ");
         val = (TextView) findViewById(R.id.valoracion);
 		//poner valoracion
-        Log.d("rb", "soy indicador"+ rb.isIndicator()+ " "+ rb.isInEditMode()+ " "+ rb.isEnabled()+" "+ rb.isInTouchMode());
-//        valoracion.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
-//			
-//			@Override
-//			public void onRatingChanged(RatingBar ratingBar, float rating,
-//					boolean fromUser) {
-				// TODO Auto-generated method stub
+        
         valoracion.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
 			
 			@Override
@@ -326,8 +316,9 @@ public class Info extends Activity {
 				        			lat+" AND longitud = "+lon);
 				            }
 						 else {
-							 db.execSQL("INSERT INTO Estacion (ciudad, pais, latitud, longitud, esFavorita, puntuacion) " +
-			                           "VALUES ('" + ciudad + "', '" + pais +"', "+lat+", "+lon+", 0, "+puntuacionN+")");
+							 
+							 db.execSQL("INSERT INTO Estacion (ciudad, pais, latitud, longitud, esFavorita, puntuacion, direccion) " +
+			                           "VALUES ('" + ciudad + "', '" + pais +"', "+lat+", "+lon+", 0, "+puntuacionN+", '"+direccion+"')");
 						 }
 						 cu.close();
 						 if(existe) buscarValoracion("modificar");

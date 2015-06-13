@@ -35,5 +35,7 @@
     <string name="title_activity_error">Error</string>
     <string name="title_activity_horario">Horario</string>
     <string name="title_activity_lista_horario">ListaHorario</string>
+    <string name="title_activity_sobre_nosotros">SobreNosotros</string>
+    <string name="title_activity_trayectos">Trayectos</string>
 
 </resources>
