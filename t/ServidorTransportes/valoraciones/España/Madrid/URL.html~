@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+ <head></head> 
+ <body> 
+  <div itemscope itemtype="http://schema.org/URL"> 
+   <span itemprop="reference"> AutobusesMadridRDF</span> 
+   <span itemprop="url"> http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/EMT/2015/EMT_2015_04.rdf</span> 
+   <span itemprop="date">2015/06/08</span> 
+   <span itemprop="period">trimestral</span> 
+  </div> 
+  <div itemscope itemtype="http://schema.org/URL"> 
+   <span itemprop="reference"> MetroMadridRDF</span> 
+   <span itemprop="url"> http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/Metro/2015/Metro_2015_04.rdf</span> 
+   <span itemprop="date"> 2015/06/08</span> 
+   <span itemprop="period"> trimestral</span> 
+  </div> 
+  <div itemscope itemtype="http://schema.org/URL"> 
+   <span itemprop="reference"> TaxiMadridRDF</span> 
+   <span itemprop="url"> http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/Paradas_Taxi/2015/Paradas_Taxi_2015_04.rdf</span> 
+   <span itemprop="date"> 2015/06/08</span> 
+   <span itemprop="period"> trimestral</span> 
+  </div> 
+  <div itemscope itemtype="http://schema.org/URL"> 
+   <span itemprop="reference"> FerrocarrilesMadridRDF</span> 
+   <span itemprop="url"> http://datos.madrid.es/datosabiertos/BDC/POIS_TRANSPORTE/Cercanias/2015/Cercanias_2015_04.rdf</span> 
+   <span itemprop="date"> 2015/06/08</span> 
+   <span itemprop="period"> trimestral</span> 
+  </div> 
+  <div itemscope itemtype="http://schema.org/URL"> 
+   <span itemprop="reference"> AparcamientosMadridRDF</span> 
+   <span itemprop="url"> http://datos.madrid.es/egob/catalogo/202625-0-aparcamientos-publicos.rdf</span> 
+   <span itemprop="date">2015/05/09</span> 
+   <span itemprop="period">anual</span> 
+  </div> 
+  <div itemscope itemtype="http://schema.org/URL"> 
+   <span itemprop="reference"> BicicletasMadridXLS</span> 
+   <span itemprop="url"> http://datos.madrid.es/egob/catalogo/208327-0-transporte-bicicletas-bicimad.xls</span> 
+   <span itemprop="date">2015/05/09</span> 
+   <span itemprop="period">semestral</span> 
+  </div>  
+ </body>
+</html>
